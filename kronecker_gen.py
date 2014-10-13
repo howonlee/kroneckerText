@@ -53,6 +53,9 @@ def plot_graph(dense_mat):
     plt.show()
 
 def plot_graph_indegrees(dense_mat):
+    """
+    Todo: change this to a sparse matrix
+    """
     net = nx.DiGraph(dense_mat)
     degree_sequence=sorted(nx.degree(net).values(),reverse=True) # degree sequence
     plt.loglog(degree_sequence, 'b-')
