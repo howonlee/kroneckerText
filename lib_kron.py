@@ -9,6 +9,9 @@ import matplotlib.cm as cm
 import random
 
 def generate(arr, dim, num_points, probs):
+    """
+    Try to get the arr to be sparse
+    """
     for i in xrange(num_points):
         x_bounds = [0, dim]
         y_bounds = [0, dim]
@@ -34,28 +37,16 @@ def generate(arr, dim, num_points, probs):
                 arr[x_bounds[0],y_bounds[0]] = 1 #they should be the same
     return arr
 
-def stochastic_kronecker(dense_mat, dim, alpha=0.8, beta=0.2):
-    k_mat = np.zeros_like(dense_mat)
+def stochastic_kronecker(arr, dim, alpha=0.8, beta=0.2):
+    """
+    Actually draws from the stochastic kronecker distribution
+    Returns a dok sparse matrix
+    """
+    k_mat = sci_sp.dok_matrix((arr.shape[0], arr.shape[1]))
     for i in xrange(dim):
         for j in xrange(dim):
-            if dense_mat[i,j] == 0 and random.random() < beta:
+            if arr[i,j] == 0 and random.random() < beta:
                 k_mat[i,j] = 1
-            if dense_mat[i,j] == 1 and random.random() < alpha:
+            if arr[i,j] == 1 and random.random() < alpha:
                 k_mat[i,j] = 1
     return k_mat
-
-def plot_kronecker(dense_mat):
-    plt.imshow(dense_mat)
-    plt.show()
-
-def plot_graph_indegrees(dense_mat):
-    """
-    Todo: change this to a sparse matrix and stop using nx
-    """
-    net = nx.DiGraph(dense_mat)
-    degree_sequence=sorted(nx.degree(net).values(),reverse=True) # degree sequence
-    plt.loglog(degree_sequence, 'b-')
-    plt.title("degree rank plot")
-    plt.ylabel("degree")
-    plt.xlabel("rank")
-    plt.show()
