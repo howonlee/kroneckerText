@@ -15,8 +15,8 @@ def generate(arr, dim, num_points, probs):
     for i in xrange(num_points):
         x_bounds = [0, dim]
         y_bounds = [0, dim]
-        curr_dim = dim
         #unroll this shit? it's the inner loop
+        #optimizations: use left shift
         while curr_dim > 1:
             half_dim = curr_dim // 2
             curr_draw = npr.choice(4, p=probs)
