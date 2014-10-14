@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import random
 
-from kronecker import generate, stochastic_kronecker
+from lib_kron import generate, stochastic_kronecker
 
 if __name__ == "__main__":
     k1_probs = np.array([0.25, 0.25, 0.25, 0.25]) #unrolled

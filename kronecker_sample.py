@@ -9,7 +9,7 @@ from operator import itemgetter
 from random import choice
 import random
 
-from kronecker import generate, stochastic_kronecker
+from lib_kron import generate, stochastic_kronecker
 
 def get_brown_freqs(net):
     counts = collections.Counter(brown.words())
