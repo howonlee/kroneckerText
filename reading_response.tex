@@ -12,7 +12,7 @@ An important statistical regularity in language is Zipf's law, which says that g
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure is the n-gram, which creates a Markov model of language, taking the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one relations between words, as a bigram model does, reveals many small-world properties in the structuring of words in corpuses. %%% get ref for n-gram, use the small world of language ref
 
-In this paper we deal, therefore, with the problem of using and adapting already existing algorithms for creating small world nets to creating a parsimonious model of language that respects these network properties of words as they currently exist.
+In this paper we deal, therefore, with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
@@ -21,7 +21,9 @@ In this paper we deal, therefore, with the problem of using and adapting already
 
 \section{Literature Review}
 
-MEJ Newman power laws paper, Kronecker intro paper, Small World of Human Language paper
+We review MEJ Newman's review of 
+
+MEJ Newman power laws paper, Scalable Modeling of Real Graphs using Kronecker Multiplication, Small World of Human Language paper
 
 \subsection{Summary}
 %What was the main technical content of the papers?
@@ -74,6 +76,8 @@ Maybe sample from it for language modelling
 Put in all the data that I have
 
 Perplexity is an easy intermediate measure, of course it's a bad approximation
+
+There may also be interesting investigation of fractal dimension and other fractal measures like lacunarity
 
 %%%
 %%% PUT IN CITATIONS

@@ -1,4 +1,3 @@
-import snap
 import numpy as np
 import numpy.random as npr
 import matplotlib.pyplot as plt
@@ -8,6 +7,9 @@ from nltk.corpus import brown
 import collections
 from operator import itemgetter
 from random import choice
+import random
+
+from kronecker import generate, stochastic_kronecker
 
 def get_brown_freqs(net):
     counts = collections.Counter(brown.words())
@@ -29,33 +31,12 @@ def sample_from_graph(net):
             curr_node = choice(net.nodes())
     return words
 
-
-def generate(arr, dim, num_points, probs):
-    for i in xrange(num_points):
-        curr_dim = dim
-        curr_view = arr.view()
-        while curr_dim > 1:
-            half_dim = curr_dim // 2
-            curr_draw = npr.choice(4, p=probs)
-            if curr_draw == 0:
-                curr_view = curr_view[:half_dim, :half_dim]
-            if curr_draw == 1:
-                curr_view = curr_view[half_dim:, :half_dim]
-            if curr_draw == 2:
-                curr_view = curr_view[:half_dim, half_dim:]
-            if curr_draw == 3:
-                curr_view = curr_view[half_dim:, half_dim:]
-            curr_dim = half_dim
-            if curr_dim == 1:
-                curr_view[0,0] = 1
-    return arr
-
 if __name__ == "__main__":
-    dim = 512 #power of 2
-    #for i in list(np.arange(0,0.5,0.1)):
-    k_probs = np.array([0.25, 0.25, 0.25, 0.25])
+    dim = 256 #power of 2
+    k_probs = np.array([0.4504, 0.2511, 0.2279, 0.0706])
     xs = np.zeros((dim, dim))
-    xs = generate(xs, dim, 10000, k_probs)
+    xs = generate(xs, dim, 2000, k_probs)
+    xs = stochastic_kronecker(xs, dim)
     D = nx.DiGraph(xs)
     D = get_brown_freqs(D)
     print " ".join(sample_from_graph(D))
