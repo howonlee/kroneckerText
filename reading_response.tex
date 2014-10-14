@@ -12,9 +12,9 @@ MEJ Newman power laws paper, Kronecker intro paper, Small World of Human Languag
 
 \subsection{Summary}
 %What was the main technical content of the papers?
-MEJ power laws paper says that you should graph with CDFs, talk about the informational meaning of words
+MEJ power laws paper says that you should graph with CDFs, talk about the informational meaning of words, many possible origins of power law phenomena. Mostly about critical phenomena, which is a philosophical debate and not within the scope of the class.
 
-Kronecker intro paper says do a fractal on the adjacency matrix, construed as a picture. There are these long list of properties, heavy tail for indegree, heavy tail for outdegree, densification power law, small diameters. Note that it's not searchable in this case.
+Kronecker intro paper says do a fractal on the adjacency matrix, construed as a picture. There are these long list of properties, heavy tail for indegree, heavy tail for outdegree, densification power law, small diameters. Note that it's not searchable in this case. Also a good resource for looking at all the properties of the small world net canonically, because they really expect the model to fit all of them
 
 Small world of human language paper of this shit. Says that there is a complex system. I put forward all the data alongside this.
 
@@ -29,15 +29,18 @@ MEJ: No grammar, so the vocabulary and the grammar may be separate.
 Other people have noted the lack of local search in stochastic kronecker graphs. This shouldn't have any problem, but think about local search in semantic networks and it seems to happen.
 %Was anything particularly unrealistic?
 
-Small world of human language should have recognized the practical implications for language modelling
+Small world of human language should have recognized the practical implications for language modelling. Connected words consideration: long-distance correlations, they give reasons but I would actually give another reason that the long-distnace stuff could be frequent paths in the language of the graph
 
-The only real criticism I have is in not investigating all the various network analyses which are possible with the paper.
+They use the BA model, but at the smae time they like the diameter, which does show log log n behavior, and the clustering coefficient, which is lower than the BA model.
+
 \subsection{Brainstorming}
 %What are promising further research questions in the direction of the papers?
 %How could they be pursued?
 %An idea of a better model for something? A better algorithm? A test of an algo or model on a dataset?
 
 Use the Kronecker model for datasets. Not multifractal, mainly because implementation itself can become too heavy. If it's a good kronecker model, is it related to all these other algorithms which can use a bigram as a language model? I mainly have a problem with the characterization of language as unstructured: only a first approximation.
+
+Perhaps one of the properties which lie un-predicted but are good targets for a Kronecker graph are the language modelling properties and the proper distributions and stuff.
 
 \section{Project Proposal}
 %% test of a model or algorithm on a dataset or on simulated data
