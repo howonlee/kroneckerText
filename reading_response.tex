@@ -6,7 +6,13 @@
 
 \title{Kronecker Graphs for Modelling Linguistic Data}
 
-\section{Reaction Papers}
+\section{Introduction}
+
+In linguistic corpuses there is a regularity. Zipf's law, blah. Many language modelling attempts exist. However, you can think of words as being embedded in a sort of word network which has small-world properties, as we shall see. So it might be worth our while to do language modelling with models which also have small-world properties.
+
+In this paper we deal with the problem of creating a good model of language that respects these network properties of words as they currently exist. We look at the MEJ newman paper to look at the previous explanations for the famous regularity, Zipf's law, we look at the Kronecker intro paper to see the model we will be attempting to use on language, and we look at the Small World of Human Language paper because they pointed out the statistical regularity which we will be trying to make a language model with.
+
+\section{Literature Review}
 
 MEJ Newman power laws paper, Kronecker intro paper, Small World of Human Language paper
 
@@ -21,7 +27,7 @@ Small world of human language paper of this shit. Says that there is a complex s
 %How do papers relate to the topics presented in the course?
 They invoke many small-world properties at the same time and are therefore great models for a variety of natural networks. But the current literature has focused upon social networks, but there are many possible objects of network analysis. I want to explore one which doesn't appear much in the literature, which is the relation words have to each other. Instead of creating semantic nets, I want to explore the ones which are implicit in bigram models or co-occurance nets.
 
-\subsection{Critique}
+\subsection{Discussion} %%% critique
 %What are strengths and weaknesses of the papers and how they are addressed?
 %What were the authors missing?
 MEJ: No grammar, so the vocabulary and the grammar may be separate.
@@ -33,7 +39,6 @@ Small world of human language should have recognized the practical implications 
 
 They use the BA model, but at the smae time they like the diameter, which does show log log n behavior, and the clustering coefficient, which is lower than the BA model.
 
-\subsection{Brainstorming}
 %What are promising further research questions in the direction of the papers?
 %How could they be pursued?
 %An idea of a better model for something? A better algorithm? A test of an algo or model on a dataset?
@@ -43,6 +48,12 @@ Use the Kronecker model for datasets. Not multifractal, mainly because implement
 Perhaps one of the properties which lie un-predicted but are good targets for a Kronecker graph are the language modelling properties and the proper distributions and stuff.
 
 \section{Project Proposal}
+
+\subsection{Introduction}
+\subsection{Data and Problem}
+\subsection{Network Representation}
+\subsection{Language Model}
+\subsection{Evaluation}
 %% test of a model or algorithm on a dataset or on simulated data
 Do the kronecker fit on a bigram model to make language model
 %% a proposal for a model or algorithm that potentially extends or improves the topics discussed in the papers
@@ -51,5 +62,9 @@ I know what I'm doing, but what are you?
 Maybe sample from it for language modelling
 
 Put in all the data that I have
+
+%%%
+%%% PUT IN CITATIONS
+%%%
 
 \end{document}
