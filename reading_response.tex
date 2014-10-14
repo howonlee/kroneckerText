@@ -8,9 +8,11 @@
 
 \section{Introduction}
 
-In linguistic corpuses there is a regularity. Zipf's law, blah. Many language modelling attempts exist. However, you can think of words as being embedded in a sort of word network which has small-world properties, as we shall see. So it might be worth our while to do language modelling with models which also have small-world properties.
+An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a deep statement about the organization of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic structures. %%%%%% get refs for "not a deep statment"
 
-In this paper we deal with the problem of creating a good model of language that respects these network properties of words as they currently exist. We look at the MEJ newman paper to look at the previous explanations for the famous regularity, Zipf's law, we look at the Kronecker intro paper to see the model we will be attempting to use on language, and we look at the Small World of Human Language paper because they pointed out the statistical regularity which we will be trying to make a language model with.
+One important language model which is used in many places which incorporates some aspect of linguistic structure is the n-gram, which creates a Markov model of language, taking the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one relations between words, as a bigram model does, reveals many small-world properties in the structuring of words in corpuses. %%% get ref for n-gram, use the small world of language ref
+
+In this paper we deal, therefore, with the problem of using and adapting already existing algorithms for creating small world nets to creating a parsimonious model of language that respects these network properties of words as they currently exist.
 
 \section{Literature Review}
 
