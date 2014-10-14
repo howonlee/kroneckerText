@@ -8,7 +8,7 @@
 
 \section{Introduction}
 
-An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a deep statement about the organization of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic structures. %%%%%% get refs for "not a deep statment"
+An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a deep statement about the organization of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. %%%%%% get refs for "not a deep statment"
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure is the n-gram, which creates a Markov model of language, taking the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one relations between words, as a bigram model does, reveals many small-world properties in the structuring of words in corpuses. %%% get ref for n-gram, use the small world of language ref
 
@@ -62,7 +62,9 @@ Perhaps one of the properties which lie un-predicted but are good targets for a 
 \subsection{Language Model}
 \subsection{Evaluation}
 %% test of a model or algorithm on a dataset or on simulated data
-Do the kronecker fit on a bigram model to make language model
+Do the kronecker fit on a bigram model to make language model. This fits very well with already existing AI tasks, so we should use it for one of these tasks, MT, for the prior.
+
+We should see if these model long-range dependencies
 %% a proposal for a model or algorithm that potentially extends or improves the topics discussed in the papers
 Use it as a language model for MT, I don't know
 I know what I'm doing, but what are you?
