@@ -8,7 +8,7 @@
 
 \section{Reaction Papers}
 
-MEJ Newman power laws paper, Kronecker intro paper, Multifractals paper
+MEJ Newman power laws paper, Kronecker intro paper, Small World of Human Language paper
 
 \subsection{Summary}
 %What was the main technical content of the papers?
@@ -16,23 +16,28 @@ MEJ power laws paper says that you should graph with CDFs, talk about the inform
 
 Kronecker intro paper says do a fractal on the adjacency matrix, construed as a picture. There are these long list of properties, heavy tail for indegree, heavy tail for outdegree, densification power law, small diameters. Note that it's not searchable in this case.
 
-Multifractal says do multifractal on the adjacency matrix to generalize and to think of it in the limit into infinity.
+Small world of human language paper of this shit. Says that there is a complex system. I put forward all the data alongside this.
 
 %How do papers relate to the topics presented in the course?
-They invoke many small-world properties at the same time and are therefore great models for a variety of natural networks. But the current literature has focused upon social networks, but there are many possible objects of network analysis. I want to explore one which doesn't appear much in the literature, which is the relation words have to each other. Instead of creating semantic nets, I want to explore the ones which are implicit in bigram models.
+They invoke many small-world properties at the same time and are therefore great models for a variety of natural networks. But the current literature has focused upon social networks, but there are many possible objects of network analysis. I want to explore one which doesn't appear much in the literature, which is the relation words have to each other. Instead of creating semantic nets, I want to explore the ones which are implicit in bigram models or co-occurance nets.
 
 \subsection{Critique}
 %What are strengths and weaknesses of the papers and how they are addressed?
 %What were the authors missing?
-No grammar, so the vocabulary and the grammar may be separate.
+MEJ: No grammar, so the vocabulary and the grammar may be separate.
 
-Other people have noted the lack of local search in stochastic kronecker graphs.
+Other people have noted the lack of local search in stochastic kronecker graphs. This shouldn't have any problem, but think about local search in semantic networks and it seems to happen.
 %Was anything particularly unrealistic?
-Should be some kind of multifractal, but then the multifractal paper doesn't propose a nice search for it. Was there any real data in the multifractals paper?
+
+Small world of human language should have recognized the practical implications for language modelling
+
+The only real criticism I have is in not investigating all the various network analyses which are possible with the paper.
 \subsection{Brainstorming}
 %What are promising further research questions in the direction of the papers?
 %How could they be pursued?
 %An idea of a better model for something? A better algorithm? A test of an algo or model on a dataset?
+
+Use the Kronecker model for datasets. Not multifractal, mainly because implementation itself can become too heavy. If it's a good kronecker model, is it related to all these other algorithms which can use a bigram as a language model? I mainly have a problem with the characterization of language as unstructured: only a first approximation.
 
 \section{Project Proposal}
 %% test of a model or algorithm on a dataset or on simulated data
