@@ -6,6 +6,8 @@
 \begin{document}
 
 \title{Kronecker Graphs for Modelling Linguistic Data}
+\author{Howon Lee}
+\maketitle
 
 \section{Introduction}
 
@@ -27,13 +29,15 @@ A particular point of interest is the introduction to a possible information-the
 . 
 
 \subsubsection{J Leskovec, C. Faloutsos}
-A possible model of small world graphs is the stochastic Kronecker graph, which is a sample from a distribution over graphs. The distribution is created by drawing a fractal over an adjacency matrix by the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time. The other thing about creating a distribution over graphs is that the parameters for that distribution can be fitted with an algorithm, which is described in the paper.
+A possible model of small world graphs is the stochastic Kronecker graph, which is a sample from a distribution over graphs. The distribution is created by drawing a fractal over an adjacency matrix by the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
-KronFit is a gradient descent algorithm, but is much faster than other such algorithms for graphs like the exponential random graph. This is because it uses MCMC to assign node labels and uses the sparsity of the small world graph to start with the likelihood of an empty graph and adjust for the edges that exist, in time linear to the number of edges.
+The novel contribution of this paper is to note that the parameters for that distribution can be fitted with an algorithm, which is described in the paper. With the fitted model, many suggested uses are noted, such as using the fitted graph for anonymization, as a null hypothesis, for compression of networks, and so on. The number of parameters is determined using a BIC metric. Every part of this algorithm can and should be done when the whole matrix does not fit in memory.
 
-There are also real interpretations of the Kronecker product process in the structure and creation of graphs. %%%%%%%%%%% which ones?
+KronFit is a gradient descent algorithm, but is much faster than other such algorithms for graphs like the exponential random graph. This is because it uses MCMC to assign node labels, avoiding that combinatorial explosion, and because it uses the sparsity of the small world graph to start with the likelihood of an empty graph and adjust for the edges that exist, in time linear to the number of edges instead of quadratic to the number of nodes.
 
-One important point to make is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data.
+There are also real interpretations of the Kronecker product process in the structure and creation of graphs. One intuition is that networks are hierarchically organized into communities, which grow recursively, creating miniature copies of themselves. Another interpretation is to say that each node is described by a sequence of categorical features, and the probability of two nodes linking depends on the product of individual attribute similarities, which allows modelling of homophily and heterophily at the same time.
+
+One important point to re-iterate is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data.
 
 \subsubsection{RF Cancho, RV Sole}
 Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences, with the admittedly simplistic assumption that the trigrams and bigrams are correlated.
