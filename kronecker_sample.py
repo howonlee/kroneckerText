@@ -25,6 +25,7 @@ def sample_from_graph(net):
     for i in xrange(400):
         words.append(net.node[curr_node]["word"])
         neighs = net.neighbors(curr_node)
+        #choose these weighted on the neighbors' indegree, instead of randomly
         if neighs:
             curr_node = choice(neighs)
         else:

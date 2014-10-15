@@ -50,3 +50,15 @@ def stochastic_kronecker(arr, dim, alpha=0.8, beta=0.2):
             if arr[i,j] == 1 and random.random() < alpha:
                 k_mat[i,j] = 1
     return k_mat
+
+def kron_fit():
+    """
+    Kronecker fit
+    """
+    pass
+
+def kron_em():
+    """
+    Kronecker em
+    """
+    pass
