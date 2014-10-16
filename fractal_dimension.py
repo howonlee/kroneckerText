@@ -10,8 +10,9 @@ from random import choice
 import random
 
 if __name__ == "__main__":
-    get the bigram matrix, create that sucker
-    normalize
-    bound it via like 0.005 or something
-    count that fractal dimension via boxes
-    probably can also count lacunarity via box counting
+    #get the bigram matrix, create that sucker
+    #normalize
+    #bound it via like 0.005 or something
+    #count that fractal dimension via boxes
+    #probably can also count lacunarity via box counting
+    #and then use it for nice things
