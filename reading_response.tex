@@ -60,14 +60,9 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
 
 %%%%%%%%%%% put in the figures
 
-%%% strengths, weaknesses, how are they addressed?
-There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. %%%%%%%%% fractal brocolli example, not at all scales
+There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. However, I suspect that there is a fairly strong argument for looking at a limited number of juxtaposed words when building such a net, analogous to the argument for only looking at a limited number of scales of resolution when investigating a power law phenomena. %%% go through the Kolmogorov exponent stuff
 
-%%% what are they missing
-Missing a practical application for the language model, because unlike in other fields creating a model for this sampling becomes useful. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language, if not for the learning of language in the first place, if you believe in Universal Grammar. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes} (Richter). Therefore, there should be room for usage as a language model. %%% cite for richter, chomsky
-
-%Was anything particularly unrealistic?
-They use the BA model, but at the smae time they like the diameter, which does show log log n behavior, and the clustering coefficient, which is lower than the BA model. Criticize the null model a bit more, but note the time period.
+They are missing a practical application for the language model which is implicit in their description of the properties of the small world, because unlike in some other fields creating a model for language is useful in real tasks. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes} (Richter). Therefore, there should be room for leveraging this finding that corpus lexicons are characterized by small-world networks language model. %%% cite for richter, chomsky
 
 \subsection{Brainstorm}
 
@@ -84,7 +79,7 @@ Medium-sized and large corpuses of words are fairly easy to get. We will use the
 \subsection{Evaluation}
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. We should therefore also do a simple and a more complex task with the language model, such as next-word generation and spell-checking, and evaluate the goodness by a held-out test set and also by examination of the results.
 
-There may also be an interesting investigation possible of fractal dimension and lacunarity in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features.
+There may also be an interesting investigation possible of fractal dimension and lacunarity in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features. %% citation for fractal dimension, lacunarity
 
 %%%
 %%% PUT IN CITATIONS
