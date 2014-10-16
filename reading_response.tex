@@ -42,14 +42,10 @@ There are also real interpretations of the Kronecker product process in the stru
 \subsection{J Leskovec, C. Faloutsos discussion}
 
 One important point to re-iterate is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%What are strengths and weaknesses of the papers and how they are addressed?
-%What were the authors missing?
-%Was anything particularly unrealistic?
 
-Other people have noted that there is not a capacity for local search in stochastic kronecker graphs. %% will this matter? will this not matter?
+There is another work which notes that local search (viz., decentralized search) cannot efficiently find paths through Kronecker graphs. This is a large lacuna in the claim that Kronecker graphs are an attempt to model every aspect of how small world networks work at once. %%%%%%%% stochastic kronecker graphs paper
 
-No mention of the fact that the construction itself is fractal, we can get some leverage out of that I think
+One omission must be noted. Both interpretations of the Kronecker product process in the structure and creation of the Kronecker graphs are recursive in nature, in this case fractally self-similar. Therefore, the Kronecker graph model implicitly tells a fractal story about the creation of any small-world net which one models with it, that its construction is fractal and therefore that the existing machinery of fractal analysis can be used upon it.
 
 \subsection{RF Cancho, RV Sole}
 Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences, with the admittedly simplistic assumption that the trigrams and bigrams are correlated.
