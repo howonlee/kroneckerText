@@ -86,21 +86,11 @@ We will fit a Kronecker graph generator on a bigram model of a corpus. We will s
 \subsection{Data and Problem}
 Large corpuses are very easy to get. %%% more actual details plox
 \subsection{Language Model}
+Do the kronecker fit on a bigram model to make language model. This fits very well with already existing AI tasks, since language models are a technology used in many places in NLP.
 \subsection{Evaluation}
-%% test of a model or algorithm on a dataset or on simulated data
-Do the kronecker fit on a bigram model to make language model. This fits very well with already existing AI tasks, so we should use it for one of these tasks, MT, for the prior.
+Perplexity is an easy intermediate measure, of course it's a bad approximation. We should also do two simple tasks with the language model, like generation itself and spell-checking. A stretch goal is to rig up an MT system with this language model as the fluency prior.
 
-We should see if these model long-range dependencies
-%% a proposal for a model or algorithm that potentially extends or improves the topics discussed in the papers
-Use it as a language model for MT, I don't know
-I know what I'm doing, but what are you?
-Maybe sample from it for language modelling
-
-Put in all the data that I have
-
-Perplexity is an easy intermediate measure, of course it's a bad approximation
-
-There may also be interesting investigation of fractal dimension and lacunarity. Those quantities are easy to calculate, so we shall calculate them for the adjacency matrix itself. That is, implicit in the model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features. To this end, we will test an authorship attribution task.
+There may also be interesting investigation of fractal dimension and lacunarity. Those quantities are easy to calculate, so we shall calculate them for the adjacency matrix itself. That is, implicit in the model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features. To this end, we will test an authorship attribution task. There should also be an effort to get an analytic similarity dimension.
 
 %%%
 %%% PUT IN CITATIONS
