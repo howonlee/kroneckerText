@@ -28,11 +28,11 @@ A particular point of interest is the introduction to a possible information-the
 . 
 \subsection{MEJ Newman Discussion}
 
-%%%%%%%%%%%%%%%%%%%%%%
 %What are strengths and weaknesses of the papers and how they are addressed?
-%What were the authors missing?
+As a review paper, there is not any original work in the paper: it must be criticized in whether the distribution of subjects in the review cleave closely to the importance the field should give to the respective subjects. %%%%%%
+
 %Was anything particularly unrealistic?
-MEJ: No grammar, so the vocabulary and the grammar may be separate.
+The main point of contention is in covering as the purported source of Zipf's law GA Miller's monkey on a typewriter argument. Because this theory is only compatible with a random typewriter with no structure. That is, to condition on the previous letters or words gives no information for the generation of the typewriter model, except that the example of Shannon's communication game, that of guessing the next word based upon the previous words in a communication, implies this sort of conditional structure. And humans in real life can play this communication game. This is probably more of a contention with Miller's paper than with MEJ Newman's.
 
 \subsection{J Leskovec, C. Faloutsos}
 A possible model of small world graphs is the stochastic Kronecker graph, which is a sample from a distribution over graphs. The distribution is created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
@@ -58,13 +58,15 @@ Why? Four reasons. It's much easier to get those link structures automatically, 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
 \subsection{RF Cancho, RV Sole discussion}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%What are strengths and weaknesses of the papers and how they are addressed?
-%What were the authors missing?
-%Was anything particularly unrealistic?
-Small world of human language should have recognized the practical implications for language modelling. Connected words consideration: long-distance correlations, they give reasons but I would actually give another reason that the long-distnace stuff could be frequent paths in the language of the graph
 
-They use the BA model, but at the smae time they like the diameter, which does show log log n behavior, and the clustering coefficient, which is lower than the BA model.
+%%% strengths, weaknesses, how are they addressed?
+There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. %%%%%%%% withering criticism, friends
+
+%%% what are they missing
+Missing a practical application for the language model, because unlike in other fields creating a model for this sampling becomes useful. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language, if not for the learning of language in the first place, if you believe in Universal Grammar. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes} (Richter). Therefore, there should be room for usage as a language model. %%% cite for richter, chomsky
+
+%Was anything particularly unrealistic?
+They use the BA model, but at the smae time they like the diameter, which does show log log n behavior, and the clustering coefficient, which is lower than the BA model. Criticize the null model a bit more, but note the time period.
 
 \subsection{Brainstorm}
 %What are promising further research questions in the direction of the papers?

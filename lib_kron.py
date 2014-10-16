@@ -7,6 +7,7 @@ import scipy.sparse as sci_sp
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import random
+import pymc
 
 def generate(arr, dim, num_points, probs):
     """
