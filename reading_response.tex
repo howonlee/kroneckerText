@@ -7,14 +7,14 @@
 \begin{document}
 
 \title{Kronecker Graphs for Modelling Linguistic Data}
-\author{Howon Lee}
+\author{Howon Lee (howonlee)}
 \maketitle
 
 \section{Introduction}
 
-An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a deep statement about the organization of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. %%%%%% get refs for "not a deep statment"
+An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. %%%%%% get refs for "not a deep statment"
 
-One important language model which is used in many places which incorporates some aspect of linguistic structure is the n-gram, which creates a Markov model of language, taking the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses. %%% get ref for n-gram, use the small world of language ref
+One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which creates a Markov model of language, taking the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses. %%% get ref for n-gram, use the small world of language ref
 
 In this paper we deal, therefore, with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist.
 
@@ -87,6 +87,10 @@ Medium-sized and large corpuses of words are fairly easy to get. We will use the
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. We should therefore also do a simple and a more complex task with the language model, such as next-word generation and spell-checking, and evaluate the goodness by a held-out test set and also by examination of the results.
 
 There may also be an interesting investigation possible of fractal dimension and lacunarity in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features. %% citation for fractal dimension, lacunarity
+
+\begin{thebibliography}{99}
+  \bibitem{} %% and then cite with \cite{key}
+\end{thebibliography}
 
 %%%
 %%% PUT IN CITATIONS
