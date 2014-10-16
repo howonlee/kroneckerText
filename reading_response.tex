@@ -1,6 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{graphicx}
 \usepackage[margin=1in]{geometry}
 \newcommand{\del}{\nabla}
 \begin{document}
@@ -56,9 +57,15 @@ Looking at the graph created in this way, they find small-world properties like 
 
 \subsection{RF Cancho, RV Sole discussion}
 
-Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law and skewed eigenvectors are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph.
+Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law and skewed network values are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has p>0.1. %%% skew and densification power law cites
 
-%%%%%%%%%%% put in the figures
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{densification_plot.png}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
+\end{figure}
 
 There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. However, I suspect that there is a fairly strong argument for looking at a limited number of juxtaposed words when building such a net, analogous to the argument for only looking at a limited number of scales of resolution when investigating a power law phenomena. %%% go through the Kolmogorov exponent stuff
 
