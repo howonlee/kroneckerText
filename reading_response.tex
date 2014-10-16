@@ -57,7 +57,7 @@ Looking at the graph created in this way, they find small-world properties like 
 
 \subsection{RF Cancho, RV Sole discussion}
 
-Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has p>0.1. %%% skew and densification power law cites
+Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$.
 
 \begin{figure}
   \includegraphics[width=0.5\textwidth]{densification_plot.png}
@@ -69,7 +69,7 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
 
 There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. However, I suspect that there is a fairly strong argument for looking at a limited number of juxtaposed words when building such a net, analogous to the argument for only looking at a limited number of scales of resolution when investigating a power law phenomena. That is, fractals are mathematical structures but the real life objects which obey fractal properties only obey them at certain levels, with a lower and upper cutoff in size \cite{fractalcutoffs}
 
-They are missing a practical application for the language model which is implicit in their description of the properties of the small world, because unlike in some other fields creating a model for language is useful in real tasks. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes} \cite{richter}. Therefore, there should be room for leveraging this finding that corpus lexicons are characterized by small-world networks language model.
+They are missing a practical application for the language model which is implicit in their description of the properties of the small world, because unlike in some other fields creating a model for language is useful in real tasks. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes"} \cite{richter}. Therefore, there should be room for leveraging this finding that corpus lexicons are characterized by small-world networks language model.
 
 \subsection{Brainstorm}
 
@@ -89,23 +89,34 @@ Perplexity is an easy development measure of the generator's goodness. Of course
 There may also be an interesting investigation possible of fractal dimension \cite{fractaldim} and lacunarity \cite{lacunarity} in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features.
 
 \begin{thebibliography}{99}
-%%%
-%%% PUT IN CITATIONS
-%%%
   \bibitem{smallworldlang}
+    Cancho, RF. and RV Sole. 2001. "The Small World of Human Language". Proceedings of the Royal Society B: Biological Sciences.
   \bibitem{kronfit}
+    Lekovec, J., and Faloutsos, C. 2007. "Scalable Modeling of Real Graphs Using Kronecker Multiplication." Proceedings of ICML.
   \bibitem{mejpowerlaw}
+    Newman, MEJ. 2005. "Power laws, Pareto distributions and Zipf's law." Contemporary Physics.
   \bibitem{fractaldim}
+    Mandelbrot, BB., 1982. "The Fractal Geometry of Nature." WH Freeman and Company.
   \bibitem{lacunarity}
+    Mandelbrot, BB., 1995. "Measures of Fractal Lacunarity: Minkowski Content and Alternatives". Fractal Geometry and Stochastics.
   \bibitem{nltk}
+    Bird, S., E. Loper and E. Klein. 2009. "Natural Language Processing with Python." O'Reilly Media Inc.
   \bibitem{richter}
+    Stix, G. 1992. "Finding Fault." Scientific American.
   \bibitem{fractalcutoffs}
+    Malcai, O., DA. Lidar, O. Biham and D. Avnir. 1998. "Scaling Range and Cutoffs in Empirical Fractals". Physical Review.
   \bibitem{netvalskew}
-  \bibitem{densificationpowerlaw}
+    Chakrabarti, D., Y. Zhan and C. Faloutsos. 2004. "R-mat: A recursive model for graph mining." SIAM Conference on Data Mining.
+  \bibitem{densificationpowerlaw}%
+    Leskovec, J., JM Kleinberg and C. Faloutsos. 2007. "Graph evolution: Densification and shrinking diameters." ACM TKDD.
   \bibitem{stochkrongraph}
+    Mahdian, M., and Y. Xu. 2007. "Stochastic Kronecker Graphs." Workshop on Algorithms and Models for the Web Graph.
   \bibitem{mlcompression}
+    Frank, E., C. Chui and IH. Witten. 2000. "Text Categorization using Compression Models." IEEE Data Compression.
   \bibitem{cosma}
+    Clauset, A., CR Shalizi and MEJ Newman. 2009. "Power-law distributions in empirical data." SIAM Review.
   \bibitem{gamiller}
+    Miller, GA. 1957. "Some Effects of Intermittent Silence". The American Journal of Psychology.
 \end{thebibliography}
 
 
