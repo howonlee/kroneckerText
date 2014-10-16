@@ -50,6 +50,8 @@ One important point to re-iterate is that one suggested usage for the Kronecker 
 
 Other people have noted the lack of local search in stochastic kronecker graphs. This shouldn't have any problem, but think about local search in semantic networks and it seems to happen.
 
+No mention of the fact that the construction itself is fractal
+
 \subsection{RF Cancho, RV Sole}
 Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences, with the admittedly simplistic assumption that the trigrams and bigrams are correlated.
 
@@ -98,7 +100,7 @@ Put in all the data that I have
 
 Perplexity is an easy intermediate measure, of course it's a bad approximation
 
-There may also be interesting investigation of fractal dimension and other fractal measures like lacunarity
+There may also be interesting investigation of fractal dimension and lacunarity. Those quantities are easy to calculate, so we shall calculate them for the adjacency matrix itself. That is, implicit in the model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features. To this end, we will test an authorship attribution task.
 
 %%%
 %%% PUT IN CITATIONS
