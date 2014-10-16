@@ -39,14 +39,15 @@ The novel contribution of this paper is to note that the parameters for that dis
 
 There are also real interpretations of the Kronecker product process in the structure and creation of graphs. One intuition is that networks are hierarchically organized into communities, which grow recursively, creating miniature copies of themselves. Another interpretation is to say that each node is described by a sequence of categorical features, and the probability of two nodes linking depends on the product of individual attribute similarities, which allows modelling of homophily and heterophily at the same time.
 
-One important point to re-iterate is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data.
 \subsection{J Leskovec, C. Faloutsos discussion}
+
+One important point to re-iterate is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %What are strengths and weaknesses of the papers and how they are addressed?
 %What were the authors missing?
 %Was anything particularly unrealistic?
 
-Other people have noted the lack of local search in stochastic kronecker graphs. This shouldn't have any problem, but think about local search in semantic networks and it seems to happen.
+Other people have noted that there is not a capacity for local search in stochastic kronecker graphs. %% will this matter? will this not matter?
 
 No mention of the fact that the construction itself is fractal, we can get some leverage out of that I think
 
@@ -80,15 +81,17 @@ Perhaps one of the properties which lie un-predicted but are good targets for a 
 \section{Project Proposal}
 
 \subsection{Introduction}
-We will fit a Kronecker graph generator on a bigram model of a corpus. We will see the generated Kronecker graph's usefulness as a language model on its own.
-\subsection{Data and Problem}
-Large corpuses are very easy to get. %%% more actual details plox
-\subsection{Language Model}
-Do the kronecker fit on a bigram model to make language model. This fits very well with already existing AI tasks, since language models are a technology used in many places in NLP.
-\subsection{Evaluation}
-Perplexity is an easy intermediate measure, of course it's a bad approximation. We should also do two simple tasks with the language model, like generation itself and spell-checking. A stretch goal is to rig up an MT system with this language model as the fluency prior.
+We will fit a Kronecker graph generator on a n-gram model of a corpus. We will see the generated Kronecker graph's usefulness as a very parsimonious language model on its own.
+\subsection{Data}
+Medium-sized and large corpuses of words are fairly easy to get. We will use the Brown NLTK corpus for development, and then take advantage of the many corpuses in NLTK to attempt the authorship measure, in particular the Gutenberg corpus. When we get to machine translation, we will use the Canadian Hansards bitext.
+\subsection{Problem}
+We will fit a Kronecker graph generator's parameters on an n-gram model to make a language model. This fits very well with already existing AI tasks, since language models are a technology used in many places in NLP.
 
-There may also be interesting investigation of fractal dimension and lacunarity. Those quantities are easy to calculate, so we shall calculate them for the adjacency matrix itself. That is, implicit in the model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features. To this end, we will test an authorship attribution task. There should also be an effort to get an analytic similarity dimension.
+We will also look at the fractal nature of n-gram models to use as a simple feature in an authorship attribution (classification) task.
+\subsection{Evaluation}
+Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. We should therefore also do two simple tasks with the language model, like generation itself and spell-checking, and then rig up an OCR system with this language model as the respective language model. What will then be compared is those three systems' generalization performance on a test set.
+
+There may also be an interesting investigation possible of fractal dimension and lacunarity in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features.
 
 %%%
 %%% PUT IN CITATIONS
