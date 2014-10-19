@@ -1,6 +1,7 @@
 import numpy as np
 import numpy.random as npr
 import scipy.sparse as sci_sp
+import scipy.stats as sci_st
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import networkx as nx
@@ -64,6 +65,9 @@ def plot_sparse(mat):
     plt.show()
 
 def plot_box_counts(mat):
+    """
+    we can fit the lognormal distribution normally, I think
+    """
     box_sizes = list(reversed(range(3, 500)))
     box_counts = []
     for box_size in box_sizes:
@@ -73,6 +77,10 @@ def plot_box_counts(mat):
     plt.xlabel("box size")
     plt.ylabel("box count")
     plt.loglog(box_sizes, box_counts)
+    box_size_arr = np.array(box_sizes)
+    shape, loc, scale = sci_st.lognorm.fit(box_counts)
+    box_lognorm = sci_st.lognorm(s=shape, loc=loc, scale=scale)
+    plt.loglog(box_sizes, box_lognorm.pdf(box_sizes))
     plt.show()
 
 if __name__ == "__main__":
