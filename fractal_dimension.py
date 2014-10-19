@@ -8,20 +8,28 @@ from nltk.corpus import brown
 import collections
 import random
 
-def word_mapping(words):
+def word_mapping(words, shuffle=True):
     word_dict = {}
     curr_count = 0
-    for word in words:
-        if word in word_dict:
-            pass #do nothing
-        else:
-            word_dict[word] = -1
-            curr_count += 1
-    #shuffle the range, we should have no -1's afterwards
-    word_range = range(curr_count)
-    random.shuffle(word_range)
-    for key in word_dict:
-        word_dict[key] = word_range.pop()
+    if shuffle:
+        for word in words:
+            if word in word_dict:
+                pass #do nothing
+            else:
+                word_dict[word] = -1
+                curr_count += 1
+        #shuffle the range, we should have no -1's afterwards
+        word_range = range(curr_count)
+        random.shuffle(word_range)
+        for key in word_dict:
+            word_dict[key] = word_range.pop()
+    else:
+        for word in words:
+            if word in word_dict:
+                pass #do nothing
+            else:
+                word_dict[word] = curr_count
+                curr_count += 1
     return word_dict
 
 def get_bigrams(ls):
@@ -49,15 +57,23 @@ def get_box_count(box_size, mat):
     return count
 
 if __name__ == "__main__":
-    brown_words = brown.words()
+    brown_words = brown.words()[:4000]
     print len(brown_words)
     bigrams = get_bigrams(brown_words)
-    word_dict = word_mapping(brown_words)
+    word_dict = word_mapping(brown_words, shuffle=False)
     mat = bigram_to_mat(bigrams, word_dict)
-    box_sizes = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
+    box_sizes = list(reversed(range(1, 500)))
     box_counts = []
     for box_size in box_sizes:
         print "getting box size ", box_size
         box_counts.append(get_box_count(box_size, mat))
+    print len(box_sizes), len(box_counts)
+    plt.title("box size vs. box counts, on the bigram model construed as a network")
+    plt.xlabel("box size")
+    plt.ylabel("box count")
     plt.loglog(box_sizes, box_counts)
     plt.show()
+    """
+    plt.spy(mat, markersize=0.1)
+    plt.show()
+    """
