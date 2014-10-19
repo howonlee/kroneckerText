@@ -3,6 +3,11 @@ import itertools
 import random
 import cPickle
 
+"""
+Run this with pypy! It's over an order of magnitude faster
+(this is why we go through the file reading rigamarole)
+"""
+
 def get_ngram(corpus, n):
     return itertools.izip(*[corpus[i:] for i in xrange(n)])
 
@@ -18,7 +23,7 @@ if __name__ == "__main__":
     brown_words = []
     with open("brown.txt", "r") as brown_file:
         brown_words = cPickle.load(brown_file)
-    num_n = range(1,5)
+    num_n = range(1,10)
     num_ngrams = []
     for i in num_n:
         num_ngrams.append(sum(1 for _ in unique(get_ngram(brown_words, i))))
