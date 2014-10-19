@@ -8,7 +8,10 @@ from nltk.corpus import brown
 import collections
 import random
 
-def word_mapping(words, shuffle=True):
+def word_mapping(words, shuffle=False):
+    """
+    There does exist a distortion while shuffling, unfortunately
+    """
     word_dict = {}
     curr_count = 0
     if shuffle:
@@ -56,24 +59,26 @@ def get_box_count(box_size, mat):
             count += get_indiv_box_count(i, j, box_size, mat)
     return count
 
-if __name__ == "__main__":
-    brown_words = brown.words()[:4000]
-    print len(brown_words)
-    bigrams = get_bigrams(brown_words)
-    word_dict = word_mapping(brown_words, shuffle=False)
-    mat = bigram_to_mat(bigrams, word_dict)
-    box_sizes = list(reversed(range(1, 500)))
+def plot_sparse(mat):
+    plt.spy(mat, markersize=0.1)
+    plt.show()
+
+def plot_box_counts(mat):
+    box_sizes = list(reversed(range(3, 500)))
     box_counts = []
     for box_size in box_sizes:
         print "getting box size ", box_size
         box_counts.append(get_box_count(box_size, mat))
-    print len(box_sizes), len(box_counts)
     plt.title("box size vs. box counts, on the bigram model construed as a network")
     plt.xlabel("box size")
     plt.ylabel("box count")
     plt.loglog(box_sizes, box_counts)
     plt.show()
-    """
-    plt.spy(mat, markersize=0.1)
-    plt.show()
-    """
+
+if __name__ == "__main__":
+    brown_words = brown.words()[:4000]
+    print len(brown_words), " words"
+    bigrams = get_bigrams(brown_words)
+    word_dict = word_mapping(brown_words, shuffle=False)
+    mat = bigram_to_mat(bigrams, word_dict)
+    plot_box_counts(mat)
