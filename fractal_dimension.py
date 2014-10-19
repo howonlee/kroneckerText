@@ -34,6 +34,7 @@ def bigram_to_mat(bigram, word_map):
     return mat
 
 def get_indiv_box_count(i, j, box_size, mat):
+    #this is embarrasingly parallel
     for k in xrange(0, box_size):
         for l in xrange(0, box_size):
             if mat.has_key((i + k, j + l)):
@@ -53,7 +54,7 @@ if __name__ == "__main__":
     bigrams = get_bigrams(brown_words)
     word_dict = word_mapping(brown_words)
     mat = bigram_to_mat(bigrams, word_dict)
-    box_sizes = [256, 128, 64, 32, 16, 8, 4, 2, 1] #let's try to think about this sort of thing
+    box_sizes = [512, 256, 128, 64, 32, 16, 8, 4, 2, 1]
     box_counts = []
     for box_size in box_sizes:
         print "getting box size ", box_size
