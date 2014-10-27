@@ -33,14 +33,16 @@ def sample_from_graph(net):
             curr_node = choice(net.nodes())
     return words
 
-if __name__ == "__main__":
-    k_probs = np.array([[0.999, 0.772], [0.772, 0.257]])
-    xs = create_generator(k_probs, 6)
-    xs = generate(xs)
-    plt.spy(xs, markersize=0.1)
+def sparse_graph(mat):
+    plt.spy(mat, markersize=0.1)
     plt.show()
-    #D = nx.DiGraph(xs.todense())
-    #D = get_brown_freqs(D)
-    #print " ".join(sample_from_graph(D))
-    #print "====================="
-    #print "====================="
+
+if __name__ == "__main__":
+    k_probs = np.array([[0.9999, 0.420], [0.420, 0.100]])
+    xs = create_generator(k_probs, 9)
+    xs = generate(xs)
+    D = nx.DiGraph(xs.todense())
+    D = get_brown_freqs(D)
+    print " ".join(sample_from_graph(D))
+    print "====================="
+    print "====================="
