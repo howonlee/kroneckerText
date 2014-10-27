@@ -10,6 +10,7 @@ from random import choice
 import random
 
 from lib_kron import create_generator, generate
+from fractal_dimension import plot_box_counts
 
 def get_brown_freqs(net):
     counts = collections.Counter(brown.words())
@@ -36,8 +37,10 @@ if __name__ == "__main__":
     k_probs = np.array([[0.999, 0.772], [0.772, 0.257]])
     xs = create_generator(k_probs, 6)
     xs = generate(xs)
-    D = nx.DiGraph(xs.todense())
-    D = get_brown_freqs(D)
-    print " ".join(sample_from_graph(D))
-    print "====================="
-    print "====================="
+    plt.spy(xs, markersize=0.1)
+    plt.show()
+    #D = nx.DiGraph(xs.todense())
+    #D = get_brown_freqs(D)
+    #print " ".join(sample_from_graph(D))
+    #print "====================="
+    #print "====================="
