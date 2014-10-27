@@ -8,6 +8,7 @@ import collections
 from operator import itemgetter
 from random import choice
 import random
+import sys
 
 from lib_kron import create_generator, generate
 from fractal_dimension import plot_box_counts
@@ -34,15 +35,18 @@ def sample_from_graph(net):
     return words
 
 def sparse_graph(mat):
-    plt.spy(mat, markersize=0.1)
+    plt.spy(mat, markersize=0.2)
     plt.show()
 
 if __name__ == "__main__":
-    k_probs = np.array([[0.9999, 0.420], [0.420, 0.100]])
-    xs = create_generator(k_probs, 9)
+    k_probs = np.array([[0.9999, 0.300,0.300],[0.300,0.300,0.300],[0.300,0.300,0.300]])
+    xs = create_generator(k_probs, 5)
     xs = generate(xs)
-    D = nx.DiGraph(xs.todense())
-    D = get_brown_freqs(D)
-    print " ".join(sample_from_graph(D))
-    print "====================="
-    print "====================="
+    if len(sys.argv) == 2 and sys.argv[1] == "graph":
+        sparse_graph(xs)
+    else:
+        D = nx.DiGraph(xs.todense())
+        D = get_brown_freqs(D)
+        print " ".join(sample_from_graph(D))
+        print "====================="
+        print "====================="
