@@ -9,7 +9,7 @@ from operator import itemgetter
 from random import choice
 import random
 
-from lib_kron import generate, stochastic_kronecker
+from lib_kron import create_generator, generate
 
 def get_brown_freqs(net):
     counts = collections.Counter(brown.words())
@@ -34,11 +34,10 @@ def sample_from_graph(net):
 
 if __name__ == "__main__":
     dim = 256 #power of 2
-    k_probs = np.array([0.4504, 0.2511, 0.2279, 0.0706])
-    xs = np.zeros((dim, dim))
-    xs = generate(xs, dim, 2000, k_probs)
-    xs = stochastic_kronecker(xs, dim)
-    D = nx.DiGraph(xs)
+    k_probs = np.array([[0.4504, 0.2511], [0.2279, 0.0706]])
+    xs = create_generator(k_probs, 6)
+    xs = generate(xs)
+    D = nx.DiGraph(xs.todense())
     D = get_brown_freqs(D)
     print " ".join(sample_from_graph(D))
     print "====================="
