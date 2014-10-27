@@ -27,11 +27,29 @@ def generate(arr):
                 k_mat[i,j] = 1
     return k_mat
 
+def evaluate_gradient(param_mat, graph_mat):
+    """
+    Could calculate the log-likelihood, too, actually
+    """
+    pass
+
+def update_params(estimate, grad):
+    pass
+
 def kron_fit(mat, est_size=2):
     """
     Kronecker fit on not too big a space
     """
-    estimate = np.zeros((est_size,est_size))
+    mat_shape = mat.shape
+    assert mat.shape[0] % est_size == 0
+    estimate = npr.random((est_size,est_size))
+    """
+    while True:
+        grad = evaluate_gradient()
+        estimate = update_params(estimate, grad)
+        if converged:
+            break
+    """
     return estimate
 
 def kron_em():
