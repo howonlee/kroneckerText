@@ -27,14 +27,16 @@ def generate(arr):
                 k_mat[i,j] = 1
     return k_mat
 
-def kron_fit():
+def kron_fit(mat, est_size=2):
     """
     Kronecker fit on not too big a space
     """
-    pass
+    estimate = np.zeros((est_size,est_size))
+    return estimate
 
 def kron_em():
     """
     Kronecker em
+    To be implemented when I have the time
     """
     pass
