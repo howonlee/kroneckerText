@@ -33,8 +33,7 @@ def sample_from_graph(net):
     return words
 
 if __name__ == "__main__":
-    dim = 256 #power of 2
-    k_probs = np.array([[0.4504, 0.2511], [0.2279, 0.0706]])
+    k_probs = np.array([[0.999, 0.772], [0.772, 0.257]])
     xs = create_generator(k_probs, 6)
     xs = generate(xs)
     D = nx.DiGraph(xs.todense())
