@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import operator
 
 def lnprob(x):
+    """
+    This is amenable to a trick: only compute twice in each case...
+    """
     return -0.5 * np.sum(x ** 2)
 
 def run_mcmc(ndim, lnprob, p0, num_steps=1000):
