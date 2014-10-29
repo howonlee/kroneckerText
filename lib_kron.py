@@ -7,7 +7,7 @@ import scipy.sparse as sci_sp
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import random
-import pymc
+import emcee
 
 def create_generator(generator, exponent):
     """
