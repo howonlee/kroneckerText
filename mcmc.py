@@ -7,6 +7,9 @@ import matplotlib.pyplot as plt
 import operator
 import random
 
+def empty_lnprob(theta, k):
+    pass
+
 def lnprob(x, graph, theta):
     """
     This is amenable to a trick: only compute twice in each case...
@@ -18,7 +21,7 @@ def swap_nodes(ls_sigma, j, k):
     return tuple(ls_sigma)
 
 if __name__ == "__main__":
-    N = 10
+    N = 16
     sigma = tuple(range(N))
     prev_sigma = tuple(range(N))
     for i in xrange(10000)
