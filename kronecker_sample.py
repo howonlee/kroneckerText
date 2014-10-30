@@ -39,7 +39,7 @@ def sparse_graph(mat):
     plt.show()
 
 if __name__ == "__main__":
-    k_probs = np.array([[0.9999, 0.300,0.300],[0.300,0.300,0.300],[0.300,0.300,0.300]])
+    k_probs = np.array([[0.9999, 0.999,0.999],[0.999,0.500,0.300],[0.999,0.500,0.500]])
     xs = create_generator(k_probs, 5)
     xs = generate(xs)
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
