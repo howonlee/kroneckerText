@@ -8,6 +8,13 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import random
 import emcee
+from nltk.corpus import brown
+
+def brown_bigram_mat(n=40000):
+    """
+    Bigram matrix for brown data
+    """
+    pass
 
 def create_generator(generator, exponent):
     """
@@ -51,10 +58,3 @@ def kron_fit(mat, est_size=2):
             break
     """
     return estimate
-
-def kron_em():
-    """
-    Kronecker em
-    To be implemented when I have the time
-    """
-    pass
