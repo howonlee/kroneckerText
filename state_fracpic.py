@@ -26,6 +26,12 @@ def plot_powerlaw(mat):
     plt.loglog(range(len(degrees)),degrees)
     plt.show()
 
+def plot_degrees_powerlaw(degrees):
+    degrees = sorted(degrees)
+    degrees.reverse()
+    plt.loglog(range(len(degrees)),degrees)
+    plt.show()
+
 def thresh_mat(mat):
     return mat.multiply(mat>3)
 
@@ -33,8 +39,11 @@ if __name__ == "__main__":
     gutenberg_states = []
     with open("brown_states.txt", "r") as states_file:
         gutenberg_states = cPickle.load(states_file)
-    gutenberg_states = gutenberg_states[:1000]
+    gutenberg_states = gutenberg_states[:10000]
     len_gut = len(gutenberg_states)
     sp_statemat = sci_sp.dok_matrix((len_gut, len_gut))
     state = 0
-    print "something mcmc needs to be done here..."
+    word_dict = collections.Counter()
+    #we can have the powerlaw...
+    for idx, word in enumerate(gutenberg_states):
+        word_dict[word] += 1
