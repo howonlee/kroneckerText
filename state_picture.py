@@ -9,12 +9,11 @@ def plot_sparse(mat):
     plt.spy(mat, markersize=0.1)
     plt.show()
 
-def plot_powerlaw(mat, max_gut_state):
+def plot_powerlaw(mat):
     degrees = mat.sum(axis=1)
     degrees = list(np.sort(np.ravel(degrees)))
     degrees.reverse()
-    print len(degrees)
-    plt.loglog(range(max_gut_state+1),degrees)
+    plt.loglog(range(len(degrees)),degrees)
     plt.show()
 
 if __name__ == "__main__":
@@ -33,6 +32,7 @@ if __name__ == "__main__":
         sp_statemat[x,y] += 1
         if state % 10000 == 0:
             print "state: ", state
-    sp_statemat = sp_statemat.tocsr()
+    #threshholding
+    sp_statemat = sp_statemat.multiply(sp_statemat>3)
     #plot_sparse(sp_statemat)
-    plot_powerlaw(sp_statemat, max_gut_state)
+    plot_powerlaw(sp_statemat)
