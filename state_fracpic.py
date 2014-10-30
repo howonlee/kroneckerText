@@ -4,6 +4,7 @@ import numpy as np
 import itertools
 import random
 import math
+import collections
 import matplotlib.pyplot as plt
 
 def plot_sparse(mat):
@@ -14,12 +15,12 @@ def plot_lognormal(mat):
     degrees = mat.sum(axis=1)
     degrees = list(np.sort(np.ravel(degrees)))
     degrees.reverse()
-    degrees = map(lambda x: math.exp(x), degrees)
+    degrees = map(lambda x: math.log(x), degrees)
     plt.plot(range(len(degrees)),degrees)
     plt.show()
 
 def plot_powerlaw(mat):
-    degrees = mat.sum(axis=1)
+    degrees = mat.sum(axis=0)
     degrees = list(np.sort(np.ravel(degrees)))
     degrees.reverse()
     plt.loglog(range(len(degrees)),degrees)
@@ -32,18 +33,8 @@ if __name__ == "__main__":
     gutenberg_states = []
     with open("brown_states.txt", "r") as states_file:
         gutenberg_states = cPickle.load(states_file)
-    gutenberg_states = gutenberg_states[:400000]
-    max_gut_state = max(gutenberg_states)
-    print max_gut_state
-    sp_statemat = sci_sp.dok_matrix((max_gut_state+1, max_gut_state+1))
-    uni, bi = itertools.tee(gutenberg_states)
-    bi.next()
+    gutenberg_states = gutenberg_states[:1000]
+    len_gut = len(gutenberg_states)
+    sp_statemat = sci_sp.dok_matrix((len_gut, len_gut))
     state = 0
-    for x, y in itertools.izip(uni, bi):
-        state += 1
-        sp_statemat[x,y] += 1
-        if state % 10000 == 0:
-            print "state: ", state
-    #plot_sparse(sp_statemat)
-    #plot_powerlaw(sp_statemat)
-    plot_lognormal(sp_statemat)
+    print "something mcmc needs to be done here..."
