@@ -6,7 +6,7 @@ import numpy.random as npr
 import matplotlib.pyplot as plt
 import operator
 
-def lnprob(x):
+def lnprob(x, prior, switch):
     """
     This is amenable to a trick: only compute twice in each case...
     """
