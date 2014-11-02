@@ -10,7 +10,7 @@ from random import choice
 import random
 import sys
 
-from lib_kron import create_generator, generate
+from lib_kron import *
 from fractal_dimension import plot_box_counts
 
 def get_brown_freqs(net):
@@ -39,13 +39,13 @@ def sparse_graph(mat):
     plt.show()
 
 if __name__ == "__main__":
-    k_probs = np.array([[0.9999, 0.900,0.800],[0.900,0.500,0.300],[0.800,0.500,0.500]])
-    xs = create_generator(k_probs, 5)
-    xs = generate(xs)
+    k_probs = np.array([[0.06497, 0.4972, 0.03143, 0.1481], [0.5009, 0.9999, 0.3081, 0.7603], [0.03298, 0.3063, 0.02129, 0.07878], [0.154, 0.7644, 0.08075, 0.3984]])
+    xs = create_generator(k_probs, 4)
+    xs = generate_weighted(xs)
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
         sparse_graph(xs)
     else:
-        D = nx.DiGraph(xs.todense())
+        D = nx.DiGraph(xs)
         D = get_brown_freqs(D)
         print " ".join(sample_from_graph(D))
         print "====================="

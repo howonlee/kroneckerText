@@ -54,7 +54,7 @@ if __name__ == "__main__":
         sp_statemat[(x,y,z,xx)] += 1
         if state % 10000 == 0:
             print "state: ", state
-    #plot_sparse(sp_statemat)
+    plot_sparse(sp_statemat)
     #plot_powerlaw(sp_statemat)
     #plot_lognormal(sp_statemat)
-    plot_degrees_powerlaw([y for x,y in sp_statemat.most_common()])
+    #plot_degrees_powerlaw([y for x,y in sp_statemat.most_common()])

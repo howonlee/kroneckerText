@@ -84,7 +84,7 @@ def plot_box_counts(mat):
     plt.show()
 
 if __name__ == "__main__":
-    brown_words = brown.words()[:40000]
+    brown_words = brown.words()
     print len(brown_words), " words"
     bigrams = get_bigrams(brown_words)
     word_dict = word_mapping(brown_words, shuffle=False)

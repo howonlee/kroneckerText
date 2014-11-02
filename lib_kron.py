@@ -33,3 +33,14 @@ def generate(arr):
             if rand < arr[i,j]:
                 k_mat[i,j] = 1
     return k_mat
+
+def generate_weighted(arr):
+    k_mat = np.zeros(arr.shape)
+    for i in xrange(arr.shape[0]):
+        for j in xrange(arr.shape[0]):
+            rand = random.random()
+            if rand > arr[i,j]:
+                k_mat[i,j] = 0
+            else:
+                k_mat[i,j] = arr[i,j]
+    return k_mat
