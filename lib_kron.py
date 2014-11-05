@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 import random
 import emcee
+import gc
 from nltk.corpus import brown
 
 def brown_bigram_mat(n=40000):
@@ -18,10 +19,14 @@ def brown_bigram_mat(n=40000):
 
 def create_generator(generator, exponent):
     """
-    Create the dense kronecker distributional array
+    Do the sparsification at each point?
+    Calculate things out-of-memory like in the actual implementation?
     """
     arr = generator.copy()
     for x in xrange(exponent):
+        print "creating generator for exponent ... ", x
+        print arr.shape
+        gc.collect()
         arr = np.kron(arr, generator)
     return arr
 

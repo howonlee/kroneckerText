@@ -39,14 +39,36 @@ def sparse_graph(mat):
     plt.show()
 
 if __name__ == "__main__":
-    k_probs = np.array([[0.06497, 0.4972, 0.03143, 0.1481], [0.5009, 0.9999, 0.3081, 0.7603], [0.03298, 0.3063, 0.02129, 0.07878], [0.154, 0.7644, 0.08075, 0.3984]])
-    xs = create_generator(k_probs, 4)
-    xs = generate_weighted(xs)
+    xs = sci_sp.dok_matrix((2**16, 2**16))
+    with open("brown_generated.txt", "r") as gengraph_file:
+        for line in gengraph_file.readlines():
+            tup = tuple(line.split())
+            xs[int(tup[0]), int(tup[1])] = 1
+    print "generated graph read"
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
         sparse_graph(xs)
     else:
+        labels = []
+        label_dict = {}
+        with open("2_labels.txt", "r") as labels_file:
+            labels = map(int, labels_file.read().split())
+        print "labels read"
+        for idx, label in enumerate(labels):
+            label_dict[idx] = label
+        labelled_xs = sci_sp.dok_matrix(xs.shape)
+        for key in xs.iterkeys():
+            curr_first = key[0]
+            if key[0] in label_dict:
+                curr_first = label_dict[key[0]]
+            curr_second = key[1]
+            if key[1] in label_dict:
+                curr_second = label_dict[key[1]]
+            labelled_xs[curr_first, curr_second] = 1
+        print "labelled xs created"
+        sparse_graph(labelled_xs)
+        """
+        Change this bit
         D = nx.DiGraph(xs)
         D = get_brown_freqs(D)
         print " ".join(sample_from_graph(D))
-        print "====================="
-        print "====================="
+        """
