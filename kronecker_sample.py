@@ -38,6 +38,28 @@ def sparse_graph(mat):
     plt.spy(mat, markersize=0.2)
     plt.show()
 
+def apply_labels(old_xs, label_dict):
+    labelled_xs = sci_sp.dok_matrix(old_xs.shape)
+    for key in old_xs.iterkeys():
+        curr_first = key[0]
+        if key[0] in label_dict:
+            curr_first = label_dict[key[0]]
+        curr_second = key[1]
+        if key[1] in label_dict:
+            curr_second = label_dict[key[1]]
+        labelled_xs[curr_first, curr_second] = 1
+    return labelled_xs
+
+def read_labels(filename="2_labels.txt"):
+    labels = []
+    label_dict = {}
+    with open(filename, "r") as labels_file:
+        labels = map(int, labels_file.read().split())
+    print "labels read: file: ", filename
+    for idx, label in enumerate(labels):
+        label_dict[idx] = label
+    return label_dict
+
 if __name__ == "__main__":
     xs = sci_sp.dok_matrix((2**16, 2**16))
     with open("brown_generated.txt", "r") as gengraph_file:
@@ -48,22 +70,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
         sparse_graph(xs)
     else:
-        labels = []
-        label_dict = {}
-        with open("2_labels.txt", "r") as labels_file:
-            labels = map(int, labels_file.read().split())
-        print "labels read"
-        for idx, label in enumerate(labels):
-            label_dict[idx] = label
-        labelled_xs = sci_sp.dok_matrix(xs.shape)
-        for key in xs.iterkeys():
-            curr_first = key[0]
-            if key[0] in label_dict:
-                curr_first = label_dict[key[0]]
-            curr_second = key[1]
-            if key[1] in label_dict:
-                curr_second = label_dict[key[1]]
-            labelled_xs[curr_first, curr_second] = 1
+        label_dict = read_labels("2_labels.txt")
+        labelled_xs = apply_labels(xs, label_dict)
         print "labelled xs created"
         sparse_graph(labelled_xs)
         """
