@@ -61,8 +61,8 @@ def read_labels(filename="2_labels.txt"):
     return label_dict
 
 if __name__ == "__main__":
-    xs = sci_sp.dok_matrix((2**16, 2**16))
-    with open("brown_generated.txt", "r") as gengraph_file:
+    xs = sci_sp.dok_matrix((6**7, 6**7))
+    with open("brown_6_generated.txt", "r") as gengraph_file:
         for line in gengraph_file.readlines():
             tup = tuple(line.split())
             xs[int(tup[0]), int(tup[1])] = 1
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
         sparse_graph(xs)
     else:
-        label_dict = read_labels("2_labels.txt")
+        label_dict = read_labels("6_labels.txt")
         labelled_xs = apply_labels(xs, label_dict)
         print "labelled xs created"
         sparse_graph(labelled_xs)
