@@ -9,6 +9,7 @@ if __name__ == "__main__":
         brown_total = cPickle.load(brown_file)
     bis = find_ngrams(brown_total, 2)
     #make the matrix
+    #reorder the matrix
     #sample from the matrix
     #print the sample
     #next step: turn the sample back into words, see that they're all bigram-ish

@@ -9,10 +9,6 @@ from nltk.corpus import brown
 import collections
 import random
 
-"""
-Also present in the generation folder as a lib
-"""
-
 def word_mapping(words, shuffle=False):
     """
     There does exist a distortion while shuffling, unfortunately
@@ -67,6 +63,10 @@ def get_box_count(box_size, mat):
 def plot_sparse(mat):
     plt.spy(mat, markersize=0.1)
     plt.show()
+
+def sample_from_mat(mat, start, num_words = 5000):
+    #sample from that matrix
+    return sample
 
 def plot_box_counts(mat):
     """
