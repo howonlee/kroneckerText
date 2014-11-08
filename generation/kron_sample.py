@@ -14,22 +14,19 @@ from lib_kron import *
 from word_lib import plot_box_counts
 
 if __name__ == "__main__":
-    xs = sci_sp.dok_matrix((6**7, 6**7))
-    with open("../brown_6_generated.txt", "r") as gengraph_file:
+    dim = 2**16
+    gen_text = "../brown_2_generated.txt"
+    labels = "../2_labels.txt"
+    xs = sci_sp.dok_matrix((dim, dim))
+    with open(gen_text, "r") as gengraph_file:
         for line in gengraph_file.readlines():
             tup = tuple(line.split())
             xs[int(tup[0]), int(tup[1])] = 1
     print "generated graph read"
-    if len(sys.argv) == 2 and sys.argv[1] == "graph":
+    if len(sys.argv) == 2 and sys.argv[1] == "nolabel":
         sparse_graph(xs)
     else:
-        label_dict = read_labels("../6_labels.txt")
-        #labelled_xs = apply_labels(xs, label_dict)
+        label_dict = read_labels(labels)
+        labelled_xs = apply_labels(xs, label_dict)
         print "labelled xs created"
         sparse_graph(xs)
-        """
-        Change this bit
-        D = nx.DiGraph(xs)
-        D = get_brown_freqs(D)
-        print " ".join(sample_from_graph(D))
-        """

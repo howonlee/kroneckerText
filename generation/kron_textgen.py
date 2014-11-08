@@ -1,13 +1,14 @@
 import cPickle
 from lib_kron import *
 import word_lib
+import matplotlib.pyplot as plt
 import sys
 from nltk.corpus import brown
 
 if __name__ == "__main__":
-    dim = 2**16
-    gen_text = "../brown_2_generated.txt"
-    labels = "../2_labels.txt"
+    dim = 6**7
+    gen_text = "../brown_6_generated.txt"
+    labels = "../6_labels.txt"
     with open("../brown.txt") as brown_file:
         brown_words = cPickle.load(brown_file)
     print len(brown_words), " words"
@@ -21,9 +22,12 @@ if __name__ == "__main__":
             xs[int(tup[0]), int(tup[1])] = 1
     print "generated graph read"
     label_dict = read_labels(labels)
+    #labelled_xs = xs
     labelled_xs = apply_labels(xs, label_dict)
-    labelled_xs = labelled_xs[:51156,:51156]
-    labelled_xs = labelled_xs.tocsr()
+    sparse_graph(labelled_xs)
+
+    """
     print "labelled xs created"
     sample = word_lib.sample_from_mat(labelled_xs, 1)
     print " ".join([state_dict[x] for x in sample])
+    """

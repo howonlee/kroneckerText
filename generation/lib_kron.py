@@ -10,6 +10,11 @@ import random
 import emcee
 import gc
 from nltk.corpus import brown
+from itertools import izip
+
+def sort_coo(m):
+    tuples = izip(m.row, m.col, m.data)
+    return sorted(tuples, key=lambda x: (x[0], x[2]))
 
 def get_brown_freqs(net):
     counts = collections.Counter(brown.words())

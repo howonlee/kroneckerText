@@ -8,6 +8,7 @@ import matplotlib.cm as cm
 import networkx as nx
 from nltk.corpus import brown
 import collections
+import cPickle
 import random
 
 def old_word_mapping(words, shuffle=False):
@@ -110,9 +111,10 @@ def plot_box_counts(mat):
     plt.show()
 
 if __name__ == "__main__":
-    brown_words = brown.words()[:40000]
+    with open("../brown.txt", "r") as brown_file:
+        brown_words = cPickle.load(brown_file)
     print len(brown_words), " words"
     bigrams = get_bigrams(brown_words)
-    word_dict = word_mapping(brown_words, shuffle=False)
+    word_dict = word_mapping(brown_words)
     mat = bigram_to_mat(bigrams, word_dict)
     plot_sparse(mat)
