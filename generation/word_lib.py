@@ -1,5 +1,6 @@
 import numpy as np
 import numpy.random as npr
+import numpy.linalg as npl
 import scipy.sparse as sci_sp
 import scipy.stats as sci_st
 import matplotlib.pyplot as plt
@@ -65,7 +66,19 @@ def plot_sparse(mat):
     plt.show()
 
 def sample_from_mat(mat, start, num_words = 5000):
-    #sample from that matrix
+    assert not sci_sp.isspmatrix_dok(mat)
+    curr_state = start
+    possible_states = np.arange(mat.shape[0])
+    trans_row = np.array(mat[curr_state,:].todense()) #min will probably always be 0
+    trans_row = trans_row.squeeze(0)
+    trans_row /= npl.norm(trans_row, ord=1)
+    sample = []
+    for i in xrange(num_words):
+        sample.append(curr_state)
+        curr_state = npr.choice(possible_states, p=trans_row)
+        trans_row = np.array(mat[curr_state,:].todense()) #min will probably always be 0
+        trans_row = trans_row.squeeze(0)
+        trans_row /= npl.norm(trans_row, ord=1)
     return sample
 
 def plot_box_counts(mat):
