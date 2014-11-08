@@ -10,7 +10,7 @@ from nltk.corpus import brown
 import collections
 import random
 
-def word_mapping(words, shuffle=False):
+def old_word_mapping(words, shuffle=False):
     """
     There does exist a distortion while shuffling, unfortunately
     """
@@ -36,6 +36,15 @@ def word_mapping(words, shuffle=False):
                 word_dict[word] = curr_count
                 curr_count += 1
     return word_dict
+
+def word_mapping(words):
+    curr_count = 0
+    state_map = {}
+    for word in words:
+        if word not in state_map:
+            state_map[word] = curr_count
+            curr_count += 1
+    return state_map
 
 def get_bigrams(ls):
     return zip(ls, ls[1:])

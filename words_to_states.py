@@ -15,5 +15,8 @@ if __name__ == "__main__":
             state_map[word] = curr_count
             curr_count += 1
     gutenberg_states = [state_map[word] for word in gutenberg_total]
+    print curr_count
+    """
     with open("brown_states.txt", "w") as brownstate_file:
         cPickle.dump(gutenberg_states, brownstate_file)
+        """
