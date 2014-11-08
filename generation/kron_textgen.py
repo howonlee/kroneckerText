@@ -18,10 +18,9 @@ if __name__ == "__main__":
             xs[int(tup[0]), int(tup[1])] = 1
     print "generated graph read"
     label_dict = read_labels("../6_labels.txt")
-    labelled_xs = apply_labels(xs, label_dict)
-    labelled_xs = labelled_xs[:51156,:51156]
-    labelled_xs = labelled_xs.tocsr()
+    #labelled_xs = apply_labels(xs, label_dict)
+    xs = xs[:51156,:51156]
+    xs = xs.tocsr()
     print "labelled xs created"
-    sample = word_lib.sample_from_mat(labelled_xs, 1)
-    for x in sample:
-        print state_dict[x]
+    sample = word_lib.sample_from_mat(xs, 1)
+    print " ".join([state_dict[x] for x in sample])

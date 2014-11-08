@@ -11,11 +11,11 @@ import random
 import sys
 
 from lib_kron import *
-from fractal_dimension import plot_box_counts
+from word_lib import plot_box_counts
 
 if __name__ == "__main__":
     xs = sci_sp.dok_matrix((6**7, 6**7))
-    with open("brown_6_generated.txt", "r") as gengraph_file:
+    with open("../brown_6_generated.txt", "r") as gengraph_file:
         for line in gengraph_file.readlines():
             tup = tuple(line.split())
             xs[int(tup[0]), int(tup[1])] = 1
@@ -23,10 +23,10 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1] == "graph":
         sparse_graph(xs)
     else:
-        label_dict = read_labels("6_labels.txt")
-        labelled_xs = apply_labels(xs, label_dict)
+        label_dict = read_labels("../6_labels.txt")
+        #labelled_xs = apply_labels(xs, label_dict)
         print "labelled xs created"
-        sparse_graph(labelled_xs)
+        sparse_graph(xs)
         """
         Change this bit
         D = nx.DiGraph(xs)
