@@ -17,7 +17,7 @@ if __name__ == "__main__":
         labelled_xs = apply_labels(xs, label_dict)
         print "labelled xs created"
 
-
+    """
     brown_words = brown.words()[:40000]
     print len(brown_words), " words"
     bigrams = word_lib.get_bigrams(brown_words)
@@ -26,3 +26,4 @@ if __name__ == "__main__":
     mat = word_lib.bigram_to_mat(bigrams, word_dict)
     mat = mat.tocsr()
     print " ".join(map(lambda x: state_dict[x], word_lib.sample_from_mat(mat, 0)))
+    """
