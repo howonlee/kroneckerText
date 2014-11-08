@@ -7,6 +7,7 @@ if __name__ == "__main__":
     print len(brown_words), " words"
     bigrams = word_lib.get_bigrams(brown_words)
     word_dict = word_lib.word_mapping(brown_words, shuffle=False)
+    state_dict = {v:k for k, v in word_dict.iteritems()}
     mat = word_lib.bigram_to_mat(bigrams, word_dict)
     mat = mat.tocsr()
-    print word_lib.sample_from_mat(mat, 0)
+    print " ".join(map(lambda x: state_dict[x], word_lib.sample_from_mat(mat, 0)))

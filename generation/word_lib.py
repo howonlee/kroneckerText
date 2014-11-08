@@ -65,7 +65,7 @@ def plot_sparse(mat):
     plt.spy(mat, markersize=0.1)
     plt.show()
 
-def sample_from_mat(mat, start, num_words = 5000):
+def sample_from_mat(mat, start, num_words=500):
     assert not sci_sp.isspmatrix_dok(mat)
     curr_state = start
     possible_states = np.arange(mat.shape[0])

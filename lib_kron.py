@@ -11,12 +11,6 @@ import emcee
 import gc
 from nltk.corpus import brown
 
-def brown_bigram_mat(n=40000):
-    """
-    Bigram matrix for brown data
-    """
-    pass
-
 def create_generator(generator, exponent):
     """
     Do the sparsification at each point?
