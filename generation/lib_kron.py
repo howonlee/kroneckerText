@@ -96,5 +96,8 @@ def read_labels(filename="2_labels.txt"):
         labels = map(int, labels_file.read().split())
     print "labels read: file: ", filename
     for idx, label in enumerate(labels):
-        label_dict[idx] = label
+        """
+        WE NEED TO INVESTIGATE WHETHER THIS HAPPENS OR NOT
+        """
+        label_dict[label] = idx
     return label_dict

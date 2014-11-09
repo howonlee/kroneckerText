@@ -117,4 +117,5 @@ if __name__ == "__main__":
     bigrams = get_bigrams(brown_words)
     word_dict = word_mapping(brown_words)
     mat = bigram_to_mat(bigrams, word_dict)
+    mat = mat[:1000, :1000]
     plot_sparse(mat)
