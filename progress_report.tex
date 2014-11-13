@@ -12,8 +12,6 @@
 
 \section{Introduction}
 
-%%%%%%% consider the POS tagging problem. Split it into two: there's generation and matching. We are looking at generation.
-
 An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. \cite{smallworldlang}
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
