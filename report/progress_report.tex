@@ -70,11 +70,13 @@ The problem that this language model should be used in is a part-of-speech tagge
 We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. %%%% cite for Penn Treebank, cite for NLTK corpus
 
 \subsection{Evaluation}
-Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. %%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOAAAAAR
+Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
+
+There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
 \subsection{Preliminary Results}
 
-Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$. %%% other shit, hop plots, shit like that
+Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$ (we want a big $p$).
 
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{densification_plot.png}
@@ -82,10 +84,9 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
   \caption{left: densification plot, with $x^{1.14}$ plotted, right: network value plot}
 \end{figure}
 
-%%%%% one figure, one big caption, no titles, no legends, axis labels
-%%%%% add desultory discussion
+We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well.
 
-We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model.
+A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a sample.
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{bigram_sparsematplot.png}
   \includegraphics[width=0.45\textwidth]{bigram_small_sparsematplot.png}
@@ -93,7 +94,6 @@ We have not made significant progress on the POS tagging system, becaue the gene
   \includegraphics[width=0.45\textwidth]{kronfit6_sparsematplot.png}
   \caption{clockwise from top left: matrix plot of bigram, matrix plot of \frac{1}{5} of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
 \end{figure}
-%%%%% one figure, one big caption, no titles, no legends, axis labels
 %%%%% examples of some generated text
 
 %%%%% add some desultory discussion, know that it's shit right now, we need to do trigrams, but it's a great compression basically
@@ -118,7 +118,7 @@ We have not made significant progress on the POS tagging system, becaue the gene
     Malcai, O., DA. Lidar, O. Biham and D. Avnir. 1998. "Scaling Range and Cutoffs in Empirical Fractals". Physical Review.
   \bibitem{netvalskew}
     Chakrabarti, D., Y. Zhan and C. Faloutsos. 2004. "R-mat: A recursive model for graph mining." SIAM Conference on Data Mining.
-  \bibitem{densificationpowerlaw}%
+  \bibitem{densificationpowerlaw}
     Leskovec, J., JM Kleinberg and C. Faloutsos. 2007. "Graph evolution: Densification and shrinking diameters." ACM TKDD.
   \bibitem{stochkrongraph}
     Mahdian, M., and Y. Xu. 2007. "Stochastic Kronecker Graphs." Workshop on Algorithms and Models for the Web Graph.
