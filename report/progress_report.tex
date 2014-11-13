@@ -12,13 +12,6 @@
 
 \section{Introduction}
 
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
-
 An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. \cite{smallworldlang}
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
@@ -35,7 +28,7 @@ MEJ Newman's paper is a review and introduction to power laws, which are notable
 
 A particular point of interest is the introduction to a possible information-theoretic origin of Zipf's law. MEJ Newman reviews a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which is a power law.
 
-This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of the typing. However, the example of Shannon's communication game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play this communication game. %%%% cite for Shannon's communication game
+This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of the typing. However, the example of Shannon's entropy game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play Shannon's entropy game. \cite{shannon}
 . 
 
 A strong point of the paper is its covering most things which were known about the power law phenomena at the time, and being skeptical about the general trend of plotting some distribution, finding a fat tail or fitting a simple least squares model, and declaring that the phenomenon respected a power law: that skepticism is continued in C. Shalzi's paper\cite{cosma}.
@@ -64,10 +57,10 @@ Looking at the graph created in this way, they find small-world properties like 
 
 If we take the central thesis of RF Cancho and RF Sole's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
 
-The problem that this language model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model can be fit into a POS tagger as a prior for the optimization target in a noisy channel model.%%%% citation for what POS taggers are
+The problem that this language model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model can be fit into a POS tagger as a prior for the optimization target in a noisy channel model.\cite{collins}
 
 \subsection{Data}
-We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. %%%% cite for Penn Treebank, cite for NLTK corpus
+We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. \cite{nltk}
 
 \subsection{Evaluation}
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
@@ -84,20 +77,16 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
   \caption{left: densification plot, with $x^{1.14}$ plotted, right: network value plot}
 \end{figure}
 
-We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well.
+We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well: here, the bigram matrix, later, the trigram matrix.
 
-A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a sample.
+A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a single sample.
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{bigram_sparsematplot.png}
   \includegraphics[width=0.45\textwidth]{bigram_small_sparsematplot.png}
   \includegraphics[width=0.45\textwidth]{kronfit2_sparsematplot.png}
   \includegraphics[width=0.45\textwidth]{kronfit6_sparsematplot.png}
-  \caption{clockwise from top left: matrix plot of bigram, matrix plot of \frac{1}{5} of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
+  \caption{clockwise from top left: matrix plot(dots are edges) of bigram, matrix plot of \frac{1}{5} of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
 \end{figure}
-%%%%% examples of some generated text
-
-%%%%% add some desultory discussion, know that it's shit right now, we need to do trigrams, but it's a great compression basically
-
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
@@ -128,6 +117,12 @@ A significant problem remains the matching of the node labels to the words. Sinc
     Clauset, A., CR Shalizi and MEJ Newman. 2009. "Power-law distributions in empirical data." SIAM Review.
   \bibitem{gamiller}
     Miller, GA. 1957. "Some Effects of Intermittent Silence". The American Journal of Psychology.
+  \bibitem{shannon}
+    Shannon, C. E., 1950. "Prediction and Entropy of Printed English". Bell System Technical Journal.
+  \bibitem{nltk}
+    Bird, Steven, Edward Loper and Ewan Klein, 2009. "Natural Language Processing with Python." O'Reilly Media Inc.
+  \bibitem{collins}
+    Collins, Michael. 2011. "Tagging with Hidden Markov Models".
 \end{thebibliography}
 
 
