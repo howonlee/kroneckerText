@@ -67,7 +67,7 @@ If we take the central thesis of RF Cancho and RF Sole's work to be true, then w
 The problem that this language model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model can be fit into a POS tagger as a prior for the optimization target in a noisy channel model.%%%% citation for what POS taggers are
 
 \subsection{Data}
-We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system.
+We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. %%%% cite for Penn Treebank, cite for NLTK corpus
 
 \subsection{Evaluation}
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. %%%%%%%%%%%%%%%%%%%%%%%%%%%%% MOAAAAAR
@@ -84,6 +84,7 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
 \end{figure}
 
 %%%%% one figure, one big caption, no titles, no legends, axis labels
+%%%%% add desultory discussion
 
 We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model.
 %%%%% add the sparse matrix plot of the bigram
@@ -92,6 +93,7 @@ We have not made significant progress on the POS tagging system, becaue the gene
 %%%%% add some statistical analysis of generated text
 
 %%%%% one figure, one big caption, no titles, no legends, axis labels
+%%%%% add some desultory discussion
 
 
 \begin{thebibliography}{99}
