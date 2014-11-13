@@ -12,6 +12,13 @@
 
 \section{Introduction}
 
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+%%%%%%%%%%%%%%%%%% READ MY AND HER EMAIL
+
 An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. \cite{smallworldlang}
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
@@ -71,18 +78,21 @@ Because the RF Cancho and RV Sole paper was from 2001, there exist some properti
 
 %%%%%% add a lot of small simple graphs for the power laws indegree, outdegree, eigenvectors, densification, etc
 
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{densification_plot.png}
+  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
+\end{figure}
+
+%%%%% one figure, one big caption, no titles, no legends, axis labels
+
 We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model.
 %%%%% add the sparse matrix plot of the bigram
 %%%%% add the sparse matrix plot that we made of kronfit graph
 %%%%% add some generated text
+%%%%% add some statistical analysis of generated text
 
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{densification_plot.png}
-\end{figure}
+%%%%% one figure, one big caption, no titles, no legends, axis labels
 
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
-\end{figure}
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
