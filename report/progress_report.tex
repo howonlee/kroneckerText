@@ -76,24 +76,31 @@ Perplexity is an easy development measure of the generator's goodness. Of course
 
 Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$. %%% other shit, hop plots, shit like that
 
-%%%%%% add a lot of small simple graphs for the power laws indegree, outdegree, eigenvectors, densification, etc
-
 \begin{figure}
-  \includegraphics[width=0.5\textwidth]{densification_plot.png}
-  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
+  \includegraphics[width=0.3\textwidth]{densification_plot.png}
+  \includegraphics[width=0.3\textwidth]{eigenvector_loglog.png}
+  \caption{} %%%%%%%%%%%%%%%%%%%%%% fill this up
 \end{figure}
 
 %%%%% one figure, one big caption, no titles, no legends, axis labels
 %%%%% add desultory discussion
 
 We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model.
-%%%%% add the sparse matrix plot of the bigram
-%%%%% add the sparse matrix plot that we made of kronfit graph
-%%%%% add some generated text
-%%%%% add some statistical analysis of generated text
-
+\begin{figure}
+  %%%%%%%%%%% make all these figures and then add them
+  \includegraphics[width=0.3\textwidth]{bigram_sparsematplot.png}
+  \includegraphics[width=0.3\textwidth]{kronfit_sparsematplot.png}
+  \includegraphics[width=0.3\textwidth]{kronfit6_sparsematplot.png}
+  %%%% below are statistical analyses of generated text
+  \includegraphics[width=0.3\textwidth]{kronfit6_outdegree.png}
+  \includegraphics[width=0.3\textwidth]{kronfit6_densification.png}
+  \includegraphics[width=0.3\textwidth]{kronfit6_eigenvector.png}
+  \caption{} %%%%%%%%%%%%%%%%%%%%%% fill this up
+\end{figure}
 %%%%% one figure, one big caption, no titles, no legends, axis labels
-%%%%% add some desultory discussion
+%%%%% examples of some generated text
+
+%%%%% add some desultory discussion, know that it's shit right now, we need to do trigrams, but it's a great compression basically
 
 
 \begin{thebibliography}{99}
