@@ -33,5 +33,5 @@ if __name__ == "__main__":
     label_dict = read_labels(labels)
     labelled_xs = process_xs(xs)
     print "labelled xs created"
-    sample = word_lib.sample_from_mat(labelled_xs, 1)
+    sample = word_lib.sample_from_mat(labelled_xs, 1, num_words=10000)
     print " ".join([state_dict[x] for x in sample])

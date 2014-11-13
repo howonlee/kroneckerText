@@ -74,7 +74,9 @@ def sample_from_graph(net):
     return words
 
 def sparse_graph(mat):
-    plt.spy(mat, markersize=0.2)
+    plt.spy(mat, markersize=0.1)
+    plt.xlabel("start word label")
+    plt.ylabel("end word label")
     plt.show()
 
 def apply_labels(old_xs, label_dict):
