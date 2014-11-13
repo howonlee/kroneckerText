@@ -73,6 +73,8 @@ def get_box_count(box_size, mat):
 
 def plot_sparse(mat):
     plt.spy(mat, markersize=0.1)
+    plt.xlabel("start word label")
+    plt.ylabel("end word label")
     plt.show()
 
 def sample_from_mat(mat, start, num_words=500):
@@ -117,5 +119,5 @@ if __name__ == "__main__":
     bigrams = get_bigrams(brown_words)
     word_dict = word_mapping(brown_words)
     mat = bigram_to_mat(bigrams, word_dict)
-    mat = mat[:1000, :1000]
+    mat = mat[:10000, :10000]
     plot_sparse(mat)
