@@ -17,5 +17,6 @@ U, S, V = npl.svd(adj)
 eigs = S ** 2 / np.cumsum(S)[-1]
 
 plt.loglog(eigs[:200], 'b-')
-plt.title("eigenvectors on log-log plot")
-plt.show()
+plt.xlabel("rank")
+plt.ylabel("network value")
+plt.savefig("eigenvector_loglog")
