@@ -24,18 +24,16 @@ We want to deal with the problem of using and adapting already existing algorith
 
 We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
 
-\section{MEJ Newman}
+\subsection{MEJ Newman}
 
-MEJ Newman's paper is a review and introduction to power laws, which are notable for being found in very many domains across nature, and for the unhelpfulness of their first and second moments. That is, the number of inhabitants of the mean city is on the order of $10^3$, but that doesn't tell you about the existence of Tokyo. There are many pitfalls in the estimation of power laws, especially in the least mean square estimation, which gets systematic errors even on synthetic data, and many possible origins of power law phenomena, which are listed: two important ones are Yule processes and critical phenomena.
+MEJ Newman's paper is a review and introduction to power laws, which are notable for being found in very many domains across nature, and for the behavior of their first and second moments. That is, the average number of inhabitants of a city is on the order of $10^3$, but that doesn't tell you about the existence of Tokyo. There are many pitfalls in the estimation of power laws, especially in the least mean square estimation, which gets systematic errors even on synthetic data, and many possible origins of power law phenomena, which are listed: two important ones are Yule processes and critical phenomena.
 
-A particular point of interest is the introduction to a possible information-theoretic origin of Zipf's law. MEJ Newman reviews a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which ends up being a power law. This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in the normal alphabet.
+A particular point of interest is the introduction to a possible information-theoretic origin of Zipf's law. MEJ Newman reviews a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which ends up being a power law. This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in the normal alphabet. However, this theory is only compatible with a random typewrite with no structure (independence of the samples). However, the example of Shannon's communication game, where one guesses the next word based upon the previous word in a communication, implies that this sort of conditional structure exists, since humans can play this communication game. %%%% cite for Shannon's communication game
 . 
 
 A strong point of the paper is its covering most things which were known about the power law phenomena at the time, and being skeptical about the general trend of plotting some distribution, finding a fat tail, and declaring that the phenomenon respected a power law: that skepticism is continued in C. Shalzi's paper\cite{cosma}.
 
-The main point of contention we have with the paper is in presenting GA Miller's monkey on a typewriter argument as the purported source of Zipf's law. This is because this theory is only compatible with a random typewriter with no structure. That is, to condition on the previous letters or words gives no information for the generation of the typewriter model, except that the example of Shannon's communication game, that of guessing the next word based upon the previous words in a communication, implies this sort of conditional structure. And humans in real life can play this communication game. This is probably more of a contention with Miller's paper than with MEJ Newman's.
-
-\section{Leskovec et al}
+\subsection{Leskovec et al}
 
 A possible model of small world graphs is the stochastic Kronecker graph\cite{kronfit}, which is a sample from a distribution over graphs. The distribution is created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
@@ -47,9 +45,7 @@ One important point to re-iterate is that one suggested usage for the Kronecker 
 
 There is another work which notes that local search (viz., decentralized search) cannot efficiently find paths through Kronecker graphs. This is a large lacuna in the claim that Kronecker graphs are an attempt to model every aspect of how small world networks work at once\cite{stochkrongraph}.
 
-One omission must be noted. Both interpretations of the Kronecker product process in the structure and creation of the Kronecker graphs are recursive in nature, in this case fractally self-similar. Therefore, the Kronecker graph model implicitly tells a fractal story about the creation of any small-world net which one models with it, that its construction is fractal and therefore that the existing machinery of fractal analysis can be used upon it.
-
-\section{Cancho et al}
+\subsection{Cancho et al}
 
 Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences, with the admittedly simplistic assumption that the trigrams and bigrams are correlated.
 
@@ -57,21 +53,11 @@ Why? Four reasons. It's much easier to get those link structures automatically, 
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
-Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$.
-
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{densification_plot.png}
-\end{figure}
-
-\begin{figure}
-  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
-\end{figure}
-
 There is ample room for criticizing the decision to say that two words are linked to each other if they are within two words of each other in a corpus. However, I suspect that there is a fairly strong argument for looking at a limited number of juxtaposed words when building such a net, analogous to the argument for only looking at a limited number of scales of resolution when investigating a power law phenomena. That is, fractals are mathematical structures but the real life objects which obey fractal properties only obey them at certain levels, with a lower and upper cutoff in size \cite{fractalcutoffs}
 
-They are missing a practical application for the language model which is implicit in their description of the properties of the small world, because unlike in some other fields creating a model for language is useful in real tasks. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes"} \cite{richter}. Therefore, there should be room for leveraging this finding that corpus lexicons are characterized by small-world networks language model.
+They are missing a practical application for the language model which is implicit in their description of the properties of the small world, because unlike in some other fields creating a model for the mere sampling of a language is useful in real tasks. We know that humans solve the inverse problem for languages in some way, because there has to be teaching for the learning of a specific language. However, this is not true in many other power-law distributed domains: \emph{Only fools, charlatans and liars predict earthquakes"} \cite{richter}. Therefore, there should be room for leveraging this finding that corpus lexicons are characterized by small-world networks language model.
 
-\subsection{Project Status}
+\section{Project Status}
 
 \subsection{Problem}
 
@@ -87,6 +73,19 @@ Perplexity is an easy development measure of the generator's goodness. Of course
 There may also be an interesting investigation possible of fractal dimension \cite{fractaldim} and lacunarity \cite{lacunarity} in the data itself. That is, implicit in the Kronecker graph model is an assumption that the network's adjacency matrix can be treated as a fractal: we should run as far as we can with this assumption, and see if fractal measures of this kind are meaningful and useful as features of the corpus. To this end, we will test an authorship attribution task with standard machine learning algorithms: the specific machine learning algorithm in this case should be less important than ascertaining the fact of whether fractal dimension and lacunarity are important features.
 
 \subsection{Preliminary Results}
+
+Here is a replication of many of the results of the Cancho et al paper on word graphs, specifically here the graph based upon a bigram. %%%%%%%%%%%%%%%%%%%
+
+Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$.
+
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{densification_plot.png}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[width=0.5\textwidth]{eigenvector_loglog.png}
+\end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
