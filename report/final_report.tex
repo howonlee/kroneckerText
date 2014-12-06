@@ -62,12 +62,14 @@ The problem that this language model should be used in is a part-of-speech tagge
 \subsection{Data}
 We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. \cite{nltk}
 
+%%%% put some real statistics on here
+
 \subsection{Evaluation}
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
 
 There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
-\subsection{Preliminary Results}
+\subsection{Results and Discussion}
 
 Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$ (we want a big $p$).
 
