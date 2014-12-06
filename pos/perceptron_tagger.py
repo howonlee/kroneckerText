@@ -31,3 +31,6 @@ class PerceptronTagger(object):
 
     def _make_tagdict(self, sentences):
         pass
+
+if __name__ == "__main__":
+    pass
