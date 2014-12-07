@@ -9,7 +9,7 @@ import numpy.linalg as npl
 
 with open("miller_corpus.txt", "r") as miller_corpus:
     net = nx.DiGraph()
-    words = miller_corpus.read().split()[:10000]
+    words = miller_corpus.read().split()[:5000]
     net.add_nodes_from(words)
     for word, prevword in zip(words, words[1:]):
         net.add_edge(word, prevword)
@@ -21,4 +21,5 @@ with open("miller_corpus.txt", "r") as miller_corpus:
     plt.loglog(eigs, 'b-')
     plt.xlabel("rank")
     plt.ylabel("singular value")
+    plt.title("Singular Values from Miller Corpus Graph")
     plt.savefig("miller_singval_loglog")
