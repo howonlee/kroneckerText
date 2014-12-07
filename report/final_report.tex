@@ -69,7 +69,13 @@ One of the goals of this project is to convince that there is something to study
 
 %%% the probability of the node being connected to every other node is ...
 
-Nodes corresponding to words of the same length have a degree distribution distributed normally. To have an edge in the graph is to be next to each other in the corpus. %%% finish proof!
+Nodes corresponding to words of the same length have a degree distribution distributed normally. %%% continue... with mixture distribution below
+
+If you condition on the number of letters, we note that every word has an equal chance of happening. And the number of letters is according to a geometric distribution. Meaning, that the probability of any particular word $w$ composed of $i$ letters with a monkey typewriter with $k$ keys with spacebar probability $q$ and letter probability $p$ is:
+
+$$p(w, i) = \frac{qp^{i-1}}{k^i}$$
+
+Which has a well-defined mean and variance. If we assume that we have a word of a certain length $N$, and uniform probabilities of the words, then we can get to the central limit theorem because of this. %%%% un-bullshit this
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
 
