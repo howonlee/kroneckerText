@@ -48,6 +48,6 @@ if __name__ == "__main__":
     train, test = traintest_split(brown.tagged_sents())
     tagger= PerceptronTagger(load=True)
     #tagger.train(train, "baseline_res")
-    stripped_tests, corr_tags = tag_strip(test)
+    stripped_tests, test_tags = tag_strip(test)
     tags = tagger.tag(stripped_tests, tokenize=False)
     get_conf_mat(tags, test_tags)
