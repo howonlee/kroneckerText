@@ -20,9 +20,9 @@ We want to deal with the problem of using and adapting already existing algorith
 
 \section{Literature Review}
 
-We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
+%%% fold this literature review into a really short one.
 
-\subsection{MEJ Newman}
+We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
 
 MEJ Newman's paper is a review and introduction to power laws, which are notable for being found in very many domains across nature, and for the behavior of their first and second moments. That is, the average number of inhabitants of a city is on the order of $10^3$, but that doesn't tell you about the existence of Tokyo.
 
@@ -32,8 +32,6 @@ This is a simplistic argument, but can be made less simplistic in talking about 
 . 
 
 A strong point of the paper is its covering most things which were known about the power law phenomena at the time, and being skeptical about the general trend of plotting some distribution, finding a fat tail or fitting a simple least squares model, and declaring that the phenomenon respected a power law: that skepticism is continued in C. Shalzi's paper\cite{cosma}.
-
-\subsection{Leskovec et al}
 
 A possible model of small world graphs is the stochastic Kronecker graph\cite{kronfit}, which is a sample from a distribution over graphs created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
@@ -45,13 +43,9 @@ One important point to take into mind is that one suggested usage for the Kronec
 
 There is another work which notes that local search (viz., decentralized search) cannot efficiently find paths through Kronecker graphs. This is a large lacuna in the claim that Kronecker graphs are an attempt to model every aspect of how small world networks work at once\cite{stochkrongraph}.
 
-\subsection{Cancho et al}
-
 Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
-
-\section{Project Status}
 
 \subsection{Problem}
 
@@ -62,14 +56,34 @@ The problem that this language model should be used in is a part-of-speech tagge
 \subsection{Data}
 We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. \cite{nltk}
 
-%%%% put some real statistics on here
+%%%% put some real data statistics on here
 
 \subsection{Evaluation}
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
 
 There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
+\subsection{Language Network Properties}
+
+%%% compare with flickr network or something like that
+%%% also compare with kronecker graph
+
+%%% x: degree y: count
+%%% x: rank y: singular value
+%%% x: degree y: clustering coefficient
+%%% x: number of hops y: number of node pairs
+
 \subsection{Results and Discussion}
+
+%four purposes to this project
+%%% convince the reader that language model graph is a small world graph
+%%% convince the reader that Kronecker graphs would be good for this
+%%% convince the reader that Kronecker graphs have faults for this
+%%% report some actual results, omae
+%% 1. confusion matrix for the POS baseline
+%%%2. confusion matrix with Kronecker graph
+%%%3. some generated text, try the MTurk thing
+%%% and a LOT of error analysis
 
 Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$ (we want a big $p$).
 

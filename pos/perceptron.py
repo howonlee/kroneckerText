@@ -22,10 +22,31 @@ class AveragedPerceptron(object):
         return max(self.classes, key=lambda label: (scores[label], label))
 
     def update(self, truth, guess, features):
-        pass
+        def update_feature(c,f,w,v):
+            param = (f,c)
+            self._totals[param] += (self.i - self._tstamps[param]) * w
+            self._tstamps[param] = self.i
+            self.weights[f][c] = w + v
+        self.i += 1
+        if truth == guess:
+            return None
+        for f in features:
+            weights = self.weights.setdefault(f, {})
+            upd_feat(truth, f, weights.get(truth, 0.0), 1.0)
+            upd_feat(guess, f, weights.get(guess, 0.0), -1.0)
 
     def average_weights(self):
-        pass
+        for feat, weighs in self.weights.items():
+            new_feat_weights = {}
+            for clas, weight in weights.items():
+                param = (feat, clas)
+                total = self._totals[param]
+                total += (self.i - self._tstamps[param]) * weight
+                averaged = round(total / float(self.i), 3)
+                if averaged:
+                    new_feat_weights[clas] = averaged
+            self.weights[feat] = new_feat_weights
+        return None
 
     def save(self, path):
         return pickle.dump(dict(self.weights), open(path, "w"))
@@ -36,4 +57,13 @@ class AveragedPerceptron(object):
 
 #notice that this is not part of the class!
 def train(nr_iter, examples):
-    pass
+    model = AveragedPerceptron()
+    for i in range(nr_iter):
+        random_shuffle(examples)
+        for features, class_ in examples:
+            scores = model.predict(features)
+            guess, score = max(scores.items(), key=lambda i: i[1])
+            if guess != class_:
+                model.update(class_, guess, features)
+    model.average_weights()
+    return model
