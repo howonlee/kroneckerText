@@ -81,30 +81,27 @@ We also empirically observe that the degree distribution of this Miller graph se
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
 
-%%% compare with stack overflow net
-%%% also compare with kronecker graph
-
+%%% brown net, miller net, stack overflow net, kronecker graph
 %%% x: degree y: count
 %%% x: rank y: singular value
-%%% x: degree y: clustering coefficient %%%maybe something different?
-%%% x: degree y: triads %%% maybe something different?
+%%% x: degree y: clustering coefficient
+%%% x: degree y: triads
+%%% 4x4, my lads, let's work on this.
+%%% lots of caveats for the quicker computation
 
 \subsection{Results and Discussion of the POS Task}
 
-%four purposes to this project
 %%% convince the reader that Kronecker graphs would be good for this
 %%% convince the reader that Kronecker graphs have faults for this
 %%% report some actual results, omae
 %% 1. confusion matrix for the POS baseline
 %%%2. confusion matrix with Kronecker graph
 %%%3. some generated text, try the MTurk thing
-%%% where's the mathematical analysis?
-%%% and a LOT of error analysis
+%%% and a LOT of error analysis on the actual words themselves
 
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{densification_plot.png}
-  \includegraphics[width=0.45\textwidth]{eigenvector_loglog.png}
-  \caption{left: densification plot, with $x^{1.14}$ plotted, right: network value plot}
+  \caption{left: densification plot, with $x^{1.14}$ plotted}
 \end{figure}
 
 We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well: here, the bigram matrix, later, the trigram matrix.

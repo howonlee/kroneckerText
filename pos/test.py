@@ -1,6 +1,7 @@
 from tagger import PerceptronTagger
 from nltk.corpus import brown
 import operator
+import itertools
 import numpy as np
 
 def traintest_split(sentence_list):
@@ -50,4 +51,7 @@ if __name__ == "__main__":
     #tagger.train(train, "baseline_res")
     stripped_tests, test_tags = tag_strip(test)
     tags = tagger.tag(stripped_tests, tokenize=False)
+    print tags
+    print "==========="
+    test_tags = list(itertools.chain.from_iterable(test_tags))
     get_conf_mat(tags, test_tags)
