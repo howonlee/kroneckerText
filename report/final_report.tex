@@ -63,29 +63,35 @@ Perplexity is an easy development measure of the generator's goodness. Of course
 
 There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
-\subsection{Language Network Properties}
+\subsection{Language Network Properties, and Analysis of the Random Monkeys Bigram Graph}
 
-%%% compare with flickr network or something like that
+One of the goals of this project is to convince that there is something to studying the language network in the way in which we are studying them: as a network not unalike a social network, or a biological network, or a web network. Although the monkey-typing process can be edited to create very many of the realistic graph properties in creating a graph, Miller's explanation for the Zipf phenomenon does not seem to be sufficient as is, seen in this light. %%%cite RTG: A Recursive Realistic Graph Generator using Random Typing
+
+%%% the probability of the node being connected to every other node is ...
+
+Nodes corresponding to words of the same length have a degree distribution distributed normally. To have an edge in the graph is to be next to each other in the corpus. %%% finish proof!
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
+
+%%% compare with stack overflow net
 %%% also compare with kronecker graph
 
 %%% x: degree y: count
 %%% x: rank y: singular value
-%%% x: degree y: clustering coefficient
-%%% x: number of hops y: number of node pairs
+%%% x: degree y: clustering coefficient %%%maybe something different?
+%%% x: degree y: triads %%% maybe something different?
 
-\subsection{Results and Discussion}
+\subsection{Results and Discussion of the POS Task}
 
 %four purposes to this project
-%%% convince the reader that language model graph is a small world graph
 %%% convince the reader that Kronecker graphs would be good for this
 %%% convince the reader that Kronecker graphs have faults for this
 %%% report some actual results, omae
 %% 1. confusion matrix for the POS baseline
 %%%2. confusion matrix with Kronecker graph
 %%%3. some generated text, try the MTurk thing
+%%% where's the mathematical analysis?
 %%% and a LOT of error analysis
-
-Because the RF Cancho and RV Sole paper was from 2001, there exist some properties of small world graphs which were first published afterwards and therefore for good reason were not examined. For example, the densification power law\cite{densificationpowerlaw} and skewed network values\cite{netvalskew} are properties reviewed in the Kronecker graph article but not in this paper, among others. So figures 1 and 2 are an analysis of those two properties using a 1st-order word net (bigram). In this case, this is a directed and not an undirected graph. KS test for the densification versus $x^{1.14}$ has $p>0.1$ (we want a big $p$).
 
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{densification_plot.png}
