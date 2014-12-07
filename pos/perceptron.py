@@ -36,7 +36,7 @@ class AveragedPerceptron(object):
             update_feature(guess, f, weights.get(guess, 0.0), -1.0)
 
     def average_weights(self):
-        for feat, weighs in self.weights.items():
+        for feat, weights in self.weights.items():
             new_feat_weights = {}
             for clas, weight in weights.items():
                 param = (feat, clas)
