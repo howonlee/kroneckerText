@@ -9,21 +9,11 @@ import logging
 from textblob.base import BaseTagger
 from textblob.tokenizers import WordTokenizer, SentenceTokenizer
 from textblob.exceptions import MissingCorpusError
-from textblob_aptagger._perceptron import AveragedPerceptron
+from perceptron import AveragedPerceptron
 
 PICKLE = "trontagger-0.1.0.pickle"
 
-
 class PerceptronTagger(BaseTagger):
-
-    '''Greedy Averaged Perceptron tagger, as implemented by Matthew Honnibal.
-
-    See more implementation details here:
-        http://honnibal.wordpress.com/2013/09/11/a-good-part-of-speechpos-tagger-in-about-200-lines-of-python/
-
-    :param load: Load the pickled model upon instantiation.
-    '''
-
     START = ['-START-', '-START2-']
     END = ['-END-', '-END2-']
     AP_MODEL_LOC = os.path.join(os.path.dirname(__file__), PICKLE)
@@ -170,3 +160,6 @@ class PerceptronTagger(BaseTagger):
 
 def _pc(n, d):
     return (float(n) / d) * 100
+
+if __name__ == "__main__":
+    pass
