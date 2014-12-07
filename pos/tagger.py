@@ -12,7 +12,7 @@ from textblob.tokenizers import WordTokenizer, SentenceTokenizer
 from textblob.exceptions import MissingCorpusError
 from perceptron import AveragedPerceptron
 
-PICKLE = "trontagger-0.1.0.pickle"
+PICKLE = "baseline_res"
 
 class PerceptronTagger(BaseTagger):
     START = ['-START-', '-START2-']
@@ -29,7 +29,7 @@ class PerceptronTagger(BaseTagger):
     def tag(self, corpus, tokenize=True):
         prev, prev2 = self.START
         tokens = []
-        for words in corpus:
+        for sentence in corpus:
             for words in sentence:
                 context = self.START + [self._normalize(w) for w in words] + self.END
                 for i, word in enumerate(words):

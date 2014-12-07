@@ -67,15 +67,17 @@ There are well-established methods for evaluation for the POS tagging task, sinc
 
 One of the goals of this project is to convince that there is something to studying the language network in the way in which we are studying them: as a network not unalike a social network, or a biological network, or a web network. Although the monkey-typing process can be edited to create very many of the realistic graph properties in creating a graph, Miller's explanation for the Zipf phenomenon does not seem to be sufficient as is, seen in this light. %%%cite RTG: A Recursive Realistic Graph Generator using Random Typing
 
-%%% the probability of the node being connected to every other node is ...
+One interesting statement to make about the bigram graph created from generated text from the monkey typing method (call it the Miller graph) is that, for a given length $y$ where $y$ is large enough for the central limit theorem to apply, there will be an approximation of the frequency-rank distribution to a lognormal distribution.
 
-The degree distribution of this Miller graph is multinomially distributed.
+Say that the probability of each key in the keyboard is $p$. Then, if you take a word chosen from any of the possible words of length $y$, the chance it will appear is $p^y$, but each of the random variables composing the RV for the word appearing are IID (viz., they are discrete uniform with probability $p$ for each key in the keyboard), with the exception of the probability of the space bar being hit.
 
-If you condition on the number of letters, we note that every word has an equal chance of happening. And the number of letters is according to a geometric distribution. Meaning, that the probability of any particular word $w$ composed of $i$ letters with a monkey typewriter with $k$ keys with spacebar probability $q$ and letter probability $p$ is:
+So call that random variable, the probability that a uniform word appears, $W$. It is the product of $y$ instances of the random variable, the probability that a key is struck, call it $P$. So
 
-$$p(w, i) = \frac{qp^{i-1}}{k^i}$$
+$$ \log W = \sum_y \log P $$
 
-Which has a well-defined mean and variance. If we assume that we have a word of a certain length $N$, and uniform probabilities of the words, then we can get to the central limit theorem because of this. %%%% un-bullshit this
+Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once.
+
+We also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed, although we don't have a proof.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
 

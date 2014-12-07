@@ -46,8 +46,8 @@ if __name__ == "__main__":
     text = "Simple is better than complex. Complex is better than complicated."
     sentences = brown.tagged_sents()
     train, test = traintest_split(brown.tagged_sents())
-    tagger= PerceptronTagger(load=False)
-    tagger.train(train, 1)
-    stripped_tests, corr_tags = tag_strip(tests)
+    tagger= PerceptronTagger(load=True)
+    #tagger.train(train, "baseline_res")
+    stripped_tests, corr_tags = tag_strip(test)
     tags = tagger.tag(stripped_tests, tokenize=False)
     get_conf_mat(tags, test_tags)
