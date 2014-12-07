@@ -24,12 +24,14 @@ def tag_strip(sentence_list):
     return new_sentence_list, tags_list
 
 def get_conf_mat(tags, test_tags, name="baseline"):
+    print len(tags)
+    print len(test_tags)
     assert len(tags) == len(test_tags)
     vocab = set()
     for tag in tags:
         vocab.add(tag)
     for tag in test_tags:
-        vocab.add(test_tags)
+        vocab.add(tag)
     curr_idx = 0
     vocab_dict = {}
     for word in vocab:
@@ -47,11 +49,9 @@ if __name__ == "__main__":
     text = "Simple is better than complex. Complex is better than complicated."
     sentences = brown.tagged_sents()
     train, test = traintest_split(brown.tagged_sents())
+    stripped_tests, test_tags = tag_strip(test)
     tagger= PerceptronTagger(load=True)
     #tagger.train(train, "baseline_res")
-    stripped_tests, test_tags = tag_strip(test)
-    tags = tagger.tag(stripped_tests, tokenize=False)
-    print tags
-    print "==========="
+    tags = tagger.tag(stripped_tests)
     test_tags = list(itertools.chain.from_iterable(test_tags))
     get_conf_mat(tags, test_tags)

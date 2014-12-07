@@ -6,6 +6,7 @@ from collections import defaultdict
 import pickle
 import logging
 import operator
+import itertools
 
 from textblob.base import BaseTagger
 from textblob.tokenizers import WordTokenizer, SentenceTokenizer
@@ -26,20 +27,20 @@ class PerceptronTagger(BaseTagger):
         if load:
             self.load(self.AP_MODEL_LOC)
 
-    def tag(self, corpus, tokenize=True):
+    def tag(self, corpus):
         prev, prev2 = self.START
         tokens = []
         for sentence in corpus:
-            for words in sentence:
-                context = self.START + [self._normalize(w) for w in words] + self.END
-                for i, word in enumerate(words):
-                    tag = self.tagdict.get(word)
-                    if not tag:
-                        features = self._get_features(i, word, context, prev, prev2)
-                        tag = self.model.predict(features)
-                    tokens.append((word, tag))
-                    prev2 = prev
-                    prev = tag
+            context = self.START + [self._normalize(w) for w in sentence] + self.END
+            for i, word in enumerate(sentence):
+                tag = self.tagdict.get(word)
+                if not tag:
+                    features = self._get_features(i, word, context, prev, prev2)
+                    tag = self.model.predict(features)
+                tokens.append((word, tag))
+                prev2 = prev
+                prev = tag
+        print "tokens inside the tagger", len(tokens)
         return tokens
 
     def train(self, sentences, save_loc=None, nr_iter=5):
