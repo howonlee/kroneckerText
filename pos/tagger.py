@@ -5,6 +5,7 @@ import random
 from collections import defaultdict
 import pickle
 import logging
+import operator
 
 from textblob.base import BaseTagger
 from textblob.tokenizers import WordTokenizer, SentenceTokenizer
@@ -26,26 +27,19 @@ class PerceptronTagger(BaseTagger):
             self.load(self.AP_MODEL_LOC)
 
     def tag(self, corpus, tokenize=True):
-        '''Tags a string `corpus`.'''
-        # Assume untokenized corpus has \n between sentences and ' ' between words
-        s_split = SentenceTokenizer().tokenize if tokenize else lambda t: t.split('\n')
-        w_split = WordTokenizer().tokenize if tokenize else lambda s: s.split()
-        def split_sents(corpus):
-            for s in s_split(corpus):
-                yield w_split(s)
-
         prev, prev2 = self.START
         tokens = []
-        for words in split_sents(corpus):
-            context = self.START + [self._normalize(w) for w in words] + self.END
-            for i, word in enumerate(words):
-                tag = self.tagdict.get(word)
-                if not tag:
-                    features = self._get_features(i, word, context, prev, prev2)
-                    tag = self.model.predict(features)
-                tokens.append((word, tag))
-                prev2 = prev
-                prev = tag
+        for words in corpus:
+            for words in sentence:
+                context = self.START + [self._normalize(w) for w in words] + self.END
+                for i, word in enumerate(words):
+                    tag = self.tagdict.get(word)
+                    if not tag:
+                        features = self._get_features(i, word, context, prev, prev2)
+                        tag = self.model.predict(features)
+                    tokens.append((word, tag))
+                    prev2 = prev
+                    prev = tag
         return tokens
 
     def train(self, sentences, save_loc=None, nr_iter=5):
@@ -61,7 +55,9 @@ class PerceptronTagger(BaseTagger):
         for iter_ in range(nr_iter):
             c = 0
             n = 0
-            for words, tags in sentences:
+            for tups in sentences:
+                words = map(operator.itemgetter(0), tups)
+                tags = map(operator.itemgetter(1), tups)
                 prev, prev2 = self.START
                 context = self.START + [self._normalize(w) for w in words] \
                                                                     + self.END
@@ -133,8 +129,8 @@ class PerceptronTagger(BaseTagger):
     def _make_tagdict(self, sentences):
         '''Make a tag dictionary for single-tag words.'''
         counts = defaultdict(lambda: defaultdict(int))
-        for words, tags in sentences:
-            for word, tag in zip(words, tags):
+        for sentence in sentences:
+            for word, tag in sentence:
                 counts[word][tag] += 1
                 self.classes.add(tag)
         freq_thresh = 20

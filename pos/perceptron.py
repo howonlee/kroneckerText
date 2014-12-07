@@ -9,7 +9,7 @@ class AveragedPerceptron(object):
         self.classes = set()
         self._totals = defaultdict(int)
         self._tstamps = defaultdict(int)
-        self.i #number instances
+        self.i = 0 #number instances
 
     def predict(self, features):
         scores = defaultdict(float)
@@ -32,8 +32,8 @@ class AveragedPerceptron(object):
             return None
         for f in features:
             weights = self.weights.setdefault(f, {})
-            upd_feat(truth, f, weights.get(truth, 0.0), 1.0)
-            upd_feat(guess, f, weights.get(guess, 0.0), -1.0)
+            update_feature(truth, f, weights.get(truth, 0.0), 1.0)
+            update_feature(guess, f, weights.get(guess, 0.0), -1.0)
 
     def average_weights(self):
         for feat, weighs in self.weights.items():
