@@ -40,7 +40,6 @@ class PerceptronTagger(BaseTagger):
                 tokens.append((word, tag))
                 prev2 = prev
                 prev = tag
-        print "tokens inside the tagger", len(tokens)
         return tokens
 
     def train(self, sentences, save_loc=None, nr_iter=5):

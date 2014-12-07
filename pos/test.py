@@ -3,6 +3,7 @@ from nltk.corpus import brown
 import operator
 import itertools
 import numpy as np
+import matplotlib.pyplot as plt
 
 def traintest_split(sentence_list):
     trains = []
@@ -24,8 +25,8 @@ def tag_strip(sentence_list):
     return new_sentence_list, tags_list
 
 def get_conf_mat(tags, test_tags, name="baseline"):
-    print len(tags)
-    print len(test_tags)
+    tags = map(operator.itemgetter(1), tags)
+    #test_tags = map(operator.itemgetter(1), tags)
     assert len(tags) == len(test_tags)
     vocab = set()
     for tag in tags:
@@ -41,6 +42,7 @@ def get_conf_mat(tags, test_tags, name="baseline"):
     for idx, tup in enumerate(zip(tags, test_tags)):
         tag, test = tup
         conf_mat[vocab_dict[tag], vocab_dict[test]] += 1
+    print vocab_dict
     plt.matshow(conf_mat)
     plt.colorbar()
     plt.savefig(name + "_conf_mat")
