@@ -20,4 +20,5 @@ eigs = eigs[eigs>0.0005]
 plt.loglog(eigs, 'b-')
 plt.xlabel("rank")
 plt.ylabel("singular value")
+plt.title("Singular Values of Brown Corpus Graph")
 plt.savefig("singval_loglog")

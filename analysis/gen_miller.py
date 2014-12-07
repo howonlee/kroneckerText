@@ -9,5 +9,5 @@ def get_letter():
         return " "
     return random.choice(string.ascii_lowercase)
 
-words = "".join(get_letter() for _ in range(1000000))
+words = "".join(get_letter() for _ in range(1000000000))
 print words
