@@ -8,7 +8,7 @@ import numpy as np
 import numpy.linalg as npl
 
 net = nx.DiGraph()
-words = brown.words()[:10000]
+words = brown.words()[:5000]
 net.add_nodes_from(words)
 for word, prevword in zip(words, words[1:]):
     net.add_edge(word, prevword)
