@@ -7,6 +7,7 @@ import pickle
 import logging
 import operator
 import itertools
+import networkx
 
 from textblob.base import BaseTagger
 from textblob.tokenizers import WordTokenizer, SentenceTokenizer
