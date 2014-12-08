@@ -16,22 +16,21 @@ An important statistical regularity in language is Zipf's law, which says that g
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
 
-We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task.
+We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task, and for a language generation task.
 
 \section{Literature Review}
 
+%%%%
 %%% fold this literature review into a really short one.
 
-We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
+%We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
 
-MEJ Newman's paper is a review and introduction to power laws, which are notable for being found in very many domains across nature, and for the behavior of their first and second moments. That is, the average number of inhabitants of a city is on the order of $10^3$, but that doesn't tell you about the existence of Tokyo.
+Language is not even close to the only place where power laws are found, and a power law may be explained by one of a multiplictiy of possible causes. MEJ Newman gives a review \cite{mejpowerlaw}. Among their properties is that, depending on the parameter, the first and second moments can be infinite. That is, the average number of inhabitants of a city is on the order of $10^3$. If the populations of cities were distributed according to the Gaussian, Tokyo would be stupendously unlikely, basically impossible.
 
 A particular point of interest is the introduction to a possible information-theoretic origin of Zipf's law. MEJ Newman reviews a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which is a power law.
 
 This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of the typing. However, the example of Shannon's entropy game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play Shannon's entropy game. \cite{shannon}
 . 
-
-A strong point of the paper is its covering most things which were known about the power law phenomena at the time, and being skeptical about the general trend of plotting some distribution, finding a fat tail or fitting a simple least squares model, and declaring that the phenomenon respected a power law: that skepticism is continued in C. Shalzi's paper\cite{cosma}.
 
 A possible model of small world graphs is the stochastic Kronecker graph\cite{kronfit}, which is a sample from a distribution over graphs created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
@@ -43,7 +42,7 @@ One important point to take into mind is that one suggested usage for the Kronec
 
 There is another work which notes that local search (viz., decentralized search) cannot efficiently find paths through Kronecker graphs. This is a large lacuna in the claim that Kronecker graphs are an attempt to model every aspect of how small world networks work at once\cite{stochkrongraph}.
 
-Cancho and Sole's paper talk about the implicit statistical regularities in a small world net made from the co-occurrence network of words in sentences. Instead of talking about syntactic structure in sentences, they investigate the statistical structure of these mere co-occurrences. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.
+Instead of talking about syntactic structure in sentences, it is possible investigate the statistical structure of these mere co-occurrences, and this was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
@@ -77,7 +76,7 @@ $$ \log W = \sum_y \log P $$
 
 Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once.
 
-We also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed, although we don't have a proof.
+We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed, although we don't actually have a proof of \emph{that}.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
 

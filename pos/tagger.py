@@ -58,12 +58,13 @@ class PerceptronTagger(BaseTagger):
             for tups in sentences:
                 words = map(operator.itemgetter(0), tups)
                 tags = map(operator.itemgetter(1), tups)
-                prev, prev2 = self.START
+                prev, prev2 = self.START #do this complicatedly
                 context = self.START + [self._normalize(w) for w in words] \
                                                                     + self.END
                 for i, word in enumerate(words):
                     guess = self.tagdict.get(word)
                     if not guess:
+                        #this is the operant part
                         feats = self._get_features(i, word, context, prev, prev2)
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
@@ -72,7 +73,45 @@ class PerceptronTagger(BaseTagger):
                     c += guess == tags[i]
                     n += 1
             random.shuffle(sentences)
-            logging.info("Iter {0}: {1}/{2}={3}".format(iter_, c, n, _pc(c, n)))
+        self.model.average_weights()
+        # Pickle as a binary file
+        if save_loc is not None:
+            pickle.dump((self.model.weights, self.tagdict, self.classes),
+                         open(save_loc, 'wb'), -1)
+        return None
+
+    def train_graph(self, graph, save_loc=None, nr_iter=5):
+        '''Train a model from graph, and save it at ``save_loc``. ``nr_iter``
+        controls the number of Perceptron training iterations.
+
+        :param sentences: A list of (words, tags) tuples.
+        :param graph: a graph of the POSs which lead to each other.
+        :param save_loc: If not ``None``, saves a pickled model in this location.
+        :param nr_iter: Number of training iterations.
+        '''
+        self._make_tagdict(sentences)
+        self.model.classes = self.classes
+        for iter_ in range(nr_iter):
+            c = 0
+            n = 0
+            for tups in sentences:
+                words = map(operator.itemgetter(0), tups)
+                tags = map(operator.itemgetter(1), tups)
+                prev, prev2 = self.START #do this complicatedly
+                context = self.START + [self._normalize(w) for w in words] \
+                                                                    + self.END
+                for i, word in enumerate(words):
+                    guess = self.tagdict.get(word)
+                    if not guess:
+                        #this is the operant part
+                        feats = self._get_features(i, word, context, prev, prev2)
+                        guess = self.model.predict(feats)
+                        self.model.update(tags[i], guess, feats)
+                    prev2 = prev
+                    prev = guess
+                    c += guess == tags[i]
+                    n += 1
+            random.shuffle(sentences)
         self.model.average_weights()
         # Pickle as a binary file
         if save_loc is not None:
