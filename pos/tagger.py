@@ -33,8 +33,12 @@ class PerceptronTagger(BaseTagger):
         with open("../gen_pos_graph.txt", "r") as pos_file:
             for line in pos_file:
                 first, second = tuple(map(int, line.split()));
-                first_word = self.graphdict[self.nodeperm[first]]
-                second_word = self.graphdict[self.nodeperm[second]]
+                if first >= len(self.nodeperm) or second >= len(self.nodeperm):
+                    continue
+                first_idx = self.nodeperm[first]
+                first_word = self.graphdict[first_idx]
+                second_idx = self.nodeperm[second]
+                second_word = self.graphdict[second_idx]
                 self.graph.add_edge(first_word, second_word)
 
     def tag(self, corpus):
@@ -65,6 +69,7 @@ class PerceptronTagger(BaseTagger):
         for iter_ in range(nr_iter):
             c = 0
             n = 0
+            print "iteration: " ,iter_
             for tups in sentences:
                 words = map(operator.itemgetter(0), tups)
                 tags = map(operator.itemgetter(1), tups)
@@ -104,11 +109,15 @@ class PerceptronTagger(BaseTagger):
         for iter_ in range(nr_iter):
             c = 0
             n = 0
+            print "iteration: " ,iter_
             for tups in sentences:
+                if n % 1000 == 0:
+                    print "n : ", n
                 words = map(operator.itemgetter(0), tups)
                 tags = map(operator.itemgetter(1), tups)
                 context = self.START + [self._normalize(w) for w in words] \
                                                                     + self.END
+                prev = self.START[0] #do this complicatedly
                 for i, word in enumerate(words):
                     guess = self.tagdict.get(word)
                     if not guess:
@@ -116,6 +125,7 @@ class PerceptronTagger(BaseTagger):
                         feats = self._get_features_graph(i, word, context, prev, self.graph)
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
+                    prev = guess
                     c += guess == tags[i]
                     n += 1
             random.shuffle(sentences)
@@ -172,7 +182,7 @@ class PerceptronTagger(BaseTagger):
         add('i-1 tag', prev)
         return features
 
-    def _get_features_graphs(self, i, word, context, graph, prev):
+    def _get_features_graph(self, i, word, context, prev, graph):
         '''Map tokens into a feature representation, implemented as a
         {hashable: float} dict. If the features change, a new model must be
         trained.
@@ -190,7 +200,7 @@ class PerceptronTagger(BaseTagger):
         #therefore, the graph should be a digraph
         #see how that performance works
         add('i-1 tag', prev)
-        for parent, _ in graph_in_edges([prev]):
+        for parent, _ in graph.in_edges([prev]):
             add('i-1 tag parent', parent)
         return features
 

@@ -12,18 +12,19 @@
 
 \section{Introduction}
 
-An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table. However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. \cite{smallworldlang}
+An important statistical regularity in language is Zipf's law, which says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: a power law, meaning a probability distribution of the form:
+
+$$p(x) Cx^{-\alpha} $$
+
+where $C$ is a normalizing constant.
+
+However remarkable it may be, however, it is not a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have internal structure. \cite{smallworldlang}
 
 One important language model which is used in many places which incorporates some aspect of linguistic structure, notably without specifying it, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
 
 We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task, and for a language generation task.
 
 \section{Literature Review}
-
-%%%%
-%%% fold this literature review into a really short one.
-
-%We review MEJ Newman's \emph{Power laws, Pareto Distributions and Zipf's law}\cite{mejpowerlaw}, J. Leskovec and C. Faloutsos's \emph{Scalable Modeling of Real Graphs using Kronecker Multiplication}\cite{kronfit}, and RF Cancho and RV Sole's \emph{The Small World of Human Language}\cite{smallworldlang}.
 
 Language is not even close to the only place where power laws are found, and a power law may be explained by one of a multiplictiy of possible causes. MEJ Newman gives a review \cite{mejpowerlaw}. Among their properties is that, depending on the parameter, the first and second moments can be infinite. That is, the average number of inhabitants of a city is on the order of $10^3$. If the populations of cities were distributed according to the Gaussian, Tokyo would be stupendously unlikely, basically impossible.
 
