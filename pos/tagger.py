@@ -7,7 +7,7 @@ import pickle
 import logging
 import operator
 import itertools
-import networkx
+import networkx as nx
 
 from textblob.base import BaseTagger
 from textblob.tokenizers import WordTokenizer, SentenceTokenizer
@@ -23,11 +23,19 @@ class PerceptronTagger(BaseTagger):
 
     def __init__(self, load=True):
         self.model = AveragedPerceptron()
-        self.graph = initialize the graph here ############
         self.tagdict = {}
         self.classes = set()
+        self.graphdict = pickle.load(open("../pos_dict.pickle", "rb"))
+        self.nodeperm = pickle.load(open("../pos_nodeperm_dict.pickle", "rb"))
+        self.graph = nx.DiGraph()
         if load:
             self.load(self.AP_MODEL_LOC)
+        with open("../gen_pos_graph.txt", "r") as pos_file:
+            for line in pos_file:
+                first, second = tuple(map(int, line.split()));
+                first_word = self.graphdict[self.nodeperm[first]]
+                second_word = self.graphdict[self.nodeperm[second]]
+                self.graph.add_edge(first_word, second_word)
 
     def tag(self, corpus):
         prev, prev2 = self.START
@@ -82,7 +90,7 @@ class PerceptronTagger(BaseTagger):
                          open(save_loc, 'wb'), -1)
         return None
 
-    def train_graph(self, graph, save_loc=None, nr_iter=5):
+    def train_graph(self, sentences, save_loc=None, nr_iter=5):
         '''Train a model from graph, and save it at ``save_loc``. ``nr_iter``
         controls the number of Perceptron training iterations.
 
@@ -164,7 +172,7 @@ class PerceptronTagger(BaseTagger):
         add('i-1 tag', prev)
         return features
 
-    def _get_features_graphs(self, i, word, context, graph, prev)
+    def _get_features_graphs(self, i, word, context, graph, prev):
         '''Map tokens into a feature representation, implemented as a
         {hashable: float} dict. If the features change, a new model must be
         trained.
@@ -182,7 +190,8 @@ class PerceptronTagger(BaseTagger):
         #therefore, the graph should be a digraph
         #see how that performance works
         add('i-1 tag', prev)
-        add('i-1 tag parents', graph.in_edges([prev]))
+        for parent, _ in graph_in_edges([prev]):
+            add('i-1 tag parent', parent)
         return features
 
     def _make_tagdict(self, sentences):
