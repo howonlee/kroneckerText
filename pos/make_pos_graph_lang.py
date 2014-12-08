@@ -7,3 +7,5 @@ if __name__ == "__main__":
     adj = nx.to_numpy_matrix(net)
     #assign the labels... there's some previous code for this
     #then, take it as a Markov chain. How?
+    #how would the Markov chain be turned into a matrix again?
+
