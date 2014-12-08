@@ -10,4 +10,4 @@ if __name__ == "__main__":
     state_dict = {v:k for k, v in word_dict.iteritems()}
     mat = word_lib.bigram_to_mat(bigrams, word_dict)
     mat = mat.tocsr()
-    print " ".join(map(lambda x: state_dict[x], word_lib.sample_from_mat(mat, 0)))
+    print " ".join(map(lambda x: state_dict[x], word_lib.sample_from_mat(mat, 0, num_words=2000)))
