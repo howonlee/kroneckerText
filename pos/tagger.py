@@ -23,6 +23,7 @@ class PerceptronTagger(BaseTagger):
 
     def __init__(self, load=True):
         self.model = AveragedPerceptron()
+        self.graph = initialize the graph here ############
         self.tagdict = {}
         self.classes = set()
         if load:
@@ -104,7 +105,7 @@ class PerceptronTagger(BaseTagger):
                     guess = self.tagdict.get(word)
                     if not guess:
                         #this is the operant part
-                        feats = self._get_features_graph(i, word, context, graph)
+                        feats = self._get_features_graph(i, word, context, prev, self.graph)
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
                     c += guess == tags[i]
@@ -163,7 +164,7 @@ class PerceptronTagger(BaseTagger):
         add('i-1 tag', prev)
         return features
 
-    def _get_features_graphs(self, i, word, context, graph)
+    def _get_features_graphs(self, i, word, context, graph, prev)
         '''Map tokens into a feature representation, implemented as a
         {hashable: float} dict. If the features change, a new model must be
         trained.
@@ -181,6 +182,7 @@ class PerceptronTagger(BaseTagger):
         #therefore, the graph should be a digraph
         #see how that performance works
         add('i-1 tag', prev)
+        add('i-1 tag parents', graph.in_edges([prev]))
         return features
 
     def _make_tagdict(self, sentences):
