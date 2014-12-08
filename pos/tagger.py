@@ -98,18 +98,15 @@ class PerceptronTagger(BaseTagger):
             for tups in sentences:
                 words = map(operator.itemgetter(0), tups)
                 tags = map(operator.itemgetter(1), tups)
-                prev, prev2 = self.START #do this complicatedly
                 context = self.START + [self._normalize(w) for w in words] \
                                                                     + self.END
                 for i, word in enumerate(words):
                     guess = self.tagdict.get(word)
                     if not guess:
                         #this is the operant part
-                        feats = self._get_features(i, word, context, prev, prev2)
+                        feats = self._get_features_graph(i, word, context, graph)
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
-                    prev2 = prev
-                    prev = guess
                     c += guess == tags[i]
                     n += 1
             random.shuffle(sentences)
@@ -163,6 +160,26 @@ class PerceptronTagger(BaseTagger):
         add('bias')
         add('i suffix', word[-3:])
         add('i pref1', word[0])
+        add('i-1 tag', prev)
+        return features
+
+    def _get_features_graphs(self, i, word, context, graph)
+        '''Map tokens into a feature representation, implemented as a
+        {hashable: float} dict. If the features change, a new model must be
+        trained.
+        '''
+        def add(name, *args):
+            features[' '.join((name,) + tuple(args))] += 1
+
+        i += len(self.START)
+        features = defaultdict(int)
+        # It's useful to have a constant feature, which acts sort of like a prior
+        add('bias')
+        add('i suffix', word[-3:])
+        add('i pref1', word[0])
+        #get the i-1 tag from the graph
+        #therefore, the graph should be a digraph
+        #see how that performance works
         add('i-1 tag', prev)
         return features
 
