@@ -12,6 +12,8 @@
 
 \section{Introduction}
 
+%%%% put in the citations in one whole pass
+
 An important statistical regularity in language is Zipf's law. It says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: the frequency is distributed according to a power law, in other words, meaning a probability distribution of the form:
 
 $$p(x) Cx^{-\alpha} $$
@@ -58,11 +60,11 @@ We used the annotated Brown corpus for the model, along with the tags that come 
 
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the stochastic Kronecker graph generates the edges of the graph. %%% this was a mistake: talk about the mistake
 
-The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 3-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
+The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
+
+In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, from a unigram model of the same and from the generated stochastic Kronecker graph. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words. These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet.
 
 %%%%%%%%%%%%%%%%%%%
-
-In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. %%% how?
 
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. %%% clarify
 
@@ -81,7 +83,7 @@ It is not the goal of this project to build a state-of-the-art POS tagger. Rathe
 
 \subsection{Results and Discussion}
 
-One of the goals of this project is to convince that there is something to studying the language network in the way in which we are studying them: as a network not unalike a social network, or a biological network, or a web network. Although the monkey-typing process can be edited to create very many of the realistic graph properties in creating a graph, Miller's explanation for the Zipf phenomenon does not seem to be sufficient as is, seen in this light. %%%cite RTG: A Recursive Realistic Graph Generator using Random Typing
+One of the goals of this project is to convince that there is something to studying the language network in the way in which we are studying them: as a network not unalike a social network, or a biological network, or a web network. Although the monkey-typing process can be edited to create very many of the realistic graph properties in creating a graph, Miller's explanation for the Zipf phenomenon does not seem to be sufficient as is, seen in this light.
 
 One interesting statement to make about the bigram graph created from generated text from the monkey typing method (call it the Miller graph) is that, for a given length $y$ where $y$ is large enough for the central limit theorem to apply, there will be an approximation of the frequency-rank distribution to a lognormal distribution.
 
@@ -124,7 +126,9 @@ We look at that fact because we also empirically observe that the degree distrib
   \includegraphics[width=0.19\textwidth]{pos_triads}
   \includegraphics[width=0.19\textwidth]{kron_triads}
 
-  \caption{Columns, left to right: Brown corpus graph, Stack Overflow questions graph, Miller graph, Brown POS Tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
+  \caption{Columns, left to right: Brown corpus graph, Stack Overflow questions graph, Miller graph, Brown POS tag graph, generated SKG graph (from Brown corpus fit).
+  
+  Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
 \end{figure}
 
 %%%% copout of the perplexity measure because reasons
