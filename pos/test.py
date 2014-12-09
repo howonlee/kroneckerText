@@ -69,5 +69,15 @@ if __name__ == "__main__":
         tagger.train_graph(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag_graph(stripped_tests)
+    elif sys.argv[1] == "kron2":
+        tagger= PerceptronTagger(load=None)
+        tagger.train_graph2(train, sys.argv[1])
+        #tag or tag_graph
+        tags = tagger.tag_graph2(stripped_tests)
+    elif sys.argv[1] == "kron_deg":
+        tagger= PerceptronTagger(load=None)
+        tagger.train_graph_deg(train, sys.argv[1])
+        #tag or tag_graph
+        tags = tagger.tag_graph_deg(stripped_tests)
     test_tags = list(itertools.chain.from_iterable(test_tags))
     get_conf_mat(tags, test_tags, sys.argv[1])
