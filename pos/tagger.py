@@ -407,7 +407,10 @@ class PerceptronTagger(BaseTagger):
         #get the i-1 tag from the graph
         #therefore, the graph should be a digraph
         #see how that performance works
-        add('i-1 tag degree', graph.degree(prev))
+        if type(graph.degree(prev)) is int:
+            add('i-1 tag degree', str(graph.degree(prev)))
+        else: #is dict
+            add('i-1 tag degree', str(graph.degree(prev).values()))
         return features
 
     def _get_features_ngram(self, i, word, prev):
