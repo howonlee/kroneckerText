@@ -7,7 +7,7 @@
 \begin{document}
 
 \title{Kronecker Graphs for Modelling Linguistic Data}
-\author{Howon Lee (howonlee)}
+\author{Howon Lee (howonlee at stanford.edu)}
 \maketitle
 
 \section{Introduction}
@@ -22,9 +22,7 @@ However remarkable it may be, however, Zipf's law is not yet a statement about t
 
 One important language model ubiquitous in NLP which incorporates some aspect of linguistic structure, notably without specification, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
 
-%%% talk about the results instead of this
-
-%We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task, and for a language generation task.
+We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We used that language model for a part-of-speech tagging task, and for a language generation task, and show that an aspect of the structure of the generated graph can be used as a feature for the part-of-speech tagging task.
 
 \section{Literature Review}
 
@@ -56,15 +54,18 @@ If we take the central thesis of RF Cancho and RF Sole's work to be true, then w
 The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags, which would require that the POS tags have a Zipf-like distribution of that sort. \cite{collins}
 
 \subsection{Methods}
-We used the Brown NLTK corpus for the model, along with the tags that come with it on NLTK. There are 1161192 words in the corpus, from a vocabulary of 56057 words.
+We used the Brown NLTK corpus for the model, along with the tags that come with it on NLTK. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples.
+
 %%%% put some real data statistics on here: number of words, vocabulary, number of sentences, bigrams. note that this also is the number of nodes and edges, the V and E.
 %%% sample of Brown text
 %%% cite the damn corpus
 
 In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. %%% how?
 
-% we did a bigram baseline instead of trigram because that's easier.
-% talk about the logic of the tries at the POS tag that we did
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. %%% clarify
+
+% we did a bigram baseline instead of trigram because of the argument from trajectories and stuff
+% talk about the logic of the tries at features of the POS tag that we did
 
 %There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
@@ -135,6 +136,7 @@ We look at that fact because we also empirically observe that the degree distrib
 %%%2. accuracy and f1 scores. Why are the f1 scores so low?
 
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
+%%% talk about the weights problem, note that it wasn't within the scope of the project really, it would probably explain the failure of the degrees
 
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{densification_plot.png}
