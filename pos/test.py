@@ -2,6 +2,7 @@ from tagger import PerceptronTagger
 from nltk.corpus import brown
 import operator
 import itertools
+import sys
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -24,7 +25,7 @@ def tag_strip(sentence_list):
         tags_list.append(map(operator.itemgetter(1), sentence))
     return new_sentence_list, tags_list
 
-def get_conf_mat(tags, test_tags, name="baseline"):
+def get_conf_mat(tags, test_tags, name="gen_res"):
     tags = map(operator.itemgetter(1), tags)
     #test_tags = map(operator.itemgetter(1), tags)
     assert len(tags) == len(test_tags)
@@ -42,18 +43,25 @@ def get_conf_mat(tags, test_tags, name="baseline"):
     for idx, tup in enumerate(zip(tags, test_tags)):
         tag, test = tup
         conf_mat[vocab_dict[tag], vocab_dict[test]] += 1
-    print vocab_dict
+    np.save(name + "_conf_mat", conf_mat)
     plt.matshow(conf_mat)
     plt.colorbar()
     plt.savefig(name + "_conf_mat")
 
 if __name__ == "__main__":
-    text = "Simple is better than complex. Complex is better than complicated."
+    assert len(sys.argv) >  1
     sentences = brown.tagged_sents()
     train, test = traintest_split(brown.tagged_sents())
     stripped_tests, test_tags = tag_strip(test)
-    tagger= PerceptronTagger(load=True)
-    tagger.train_graph(train, "gen_res")
-    #tags = tagger.tag(stripped_tests)
-    #test_tags = list(itertools.chain.from_iterable(test_tags))
-    #get_conf_mat(tags, test_tags)
+    #must put actual filename
+    tagger= PerceptronTagger(load=sys.argv[1])
+    if sys.argv[1] == "gen_res":
+        tagger.train(train, sys.argv[1])
+        #tag or tag_graph
+        tags = tagger.tag(stripped_tests)
+    else:
+        tagger.train_graph(train, sys.argv[1])
+        #tag or tag_graph
+        tags = tagger.tag_graph(stripped_tests)
+    test_tags = list(itertools.chain.from_iterable(test_tags))
+    get_conf_mat(tags, test_tags, sys.argv[1])

@@ -21,7 +21,7 @@ class PerceptronTagger(BaseTagger):
     END = ['-END-', '-END2-']
     AP_MODEL_LOC = os.path.join(os.path.dirname(__file__), PICKLE)
 
-    def __init__(self, load=True):
+    def __init__(self, load=None):
         self.model = AveragedPerceptron()
         self.tagdict = {}
         self.classes = set()
@@ -29,7 +29,7 @@ class PerceptronTagger(BaseTagger):
         self.nodeperm = pickle.load(open("../pos_nodeperm_dict.pickle", "rb"))
         self.graph = nx.DiGraph()
         if load:
-            self.load(self.AP_MODEL_LOC)
+            self.load(load)
         with open("../gen_pos_graph.txt", "r") as pos_file:
             for line in pos_file:
                 first, second = tuple(map(int, line.split()));
@@ -50,6 +50,20 @@ class PerceptronTagger(BaseTagger):
                 tag = self.tagdict.get(word)
                 if not tag:
                     features = self._get_features(i, word, context, prev, prev2)
+                    tag = self.model.predict(features)
+                tokens.append((word, tag))
+                prev2 = prev
+                prev = tag
+        return tokens
+
+    def tag_graph(self, corpus):
+        prev, prev2 = self.START
+        tokens = []
+        for sentence in corpus:
+            for i, word in enumerate(sentence):
+                tag = self.tagdict.get(word)
+                if not tag:
+                    features = self._get_features_graph(i, word, prev, self.graph)
                     tag = self.model.predict(features)
                 tokens.append((word, tag))
                 prev2 = prev
@@ -115,14 +129,11 @@ class PerceptronTagger(BaseTagger):
                     print "n : ", n
                 words = map(operator.itemgetter(0), tups)
                 tags = map(operator.itemgetter(1), tups)
-                context = self.START + [self._normalize(w) for w in words] \
-                                                                    + self.END
-                prev = self.START[0] #do this complicatedly
+                prev = self.START[0]
                 for i, word in enumerate(words):
                     guess = self.tagdict.get(word)
                     if not guess:
-                        #this is the operant part
-                        feats = self._get_features_graph(i, word, context, prev, self.graph)
+                        feats = self._get_features_graph(i, word, prev, self.graph)
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
                     prev = guess
@@ -179,10 +190,9 @@ class PerceptronTagger(BaseTagger):
         add('bias')
         add('i suffix', word[-3:])
         add('i pref1', word[0])
-        add('i-1 tag', prev)
         return features
 
-    def _get_features_graph(self, i, word, context, prev, graph):
+    def _get_features_graph(self, i, word, prev, graph):
         '''Map tokens into a feature representation, implemented as a
         {hashable: float} dict. If the features change, a new model must be
         trained.
@@ -199,7 +209,6 @@ class PerceptronTagger(BaseTagger):
         #get the i-1 tag from the graph
         #therefore, the graph should be a digraph
         #see how that performance works
-        add('i-1 tag', prev)
         for parent, _ in graph.in_edges([prev]):
             add('i-1 tag parent', parent)
         return features
