@@ -14,6 +14,8 @@ def process(arr):
 if __name__ == "__main__":
     assert len(sys.argv) > 1
     confmat = np.load(sys.argv[1])
+    print "========="
+    print sys.argv[1]
     precisions = []
     recalls = []
     f1s = []
@@ -23,12 +25,9 @@ if __name__ == "__main__":
         precisions.append(precision)
         recalls.append(recall)
         f1s.append(2 * precision * recall / (precision + recall))
-    print "precisions: ", precisions
-    print "recalls: ", recalls
-    print "f1s: ", f1s #there's a lot of POS tags that don't matter
     processed_f1s = process(f1s)
     processed_precision = process(precisions)
     processed_recall = process(recalls)
-    print sum(processed_f1s) / len(processed_f1s)
-    print sum(processed_precision) / len(processed_precision)
-    print sum(processed_recall) / len(processed_recall)
+    print "f1: ", sum(processed_f1s) / len(processed_f1s)
+    print "precision: ", sum(processed_precision) / len(processed_precision)
+    print "recall: ", sum(processed_recall) / len(processed_recall)
