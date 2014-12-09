@@ -54,7 +54,7 @@ The problems that this model should be used in is a part-of-speech tagger and in
 \subsection{Methods}
 We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
 
-%%% what about the POS tags?
+%%% what about the POS tags? vocab size of the tags and of the bigrams of tags
 
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% this was a mistake: talk about the mistake
 
@@ -75,11 +75,9 @@ POS tagging is a supervised learning task in natural language processing. A corp
 
 Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one of most note is the previous tag assigned, because that means that an n-gram of the previous POS tags is a feature in the perceptron. %% citation for the typical features in POS tagging
 
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications (where the word corresponds to the tag $>96\%$ of the time), and a feature for the prefix and suffix of the word.
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%% explain the way that we did the POS features, the three kinds of features we tried individually
+We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previou POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
 
 To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
 
