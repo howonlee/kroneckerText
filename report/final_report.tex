@@ -12,8 +12,6 @@
 
 \section{Introduction}
 
-%%%% put in the citations in one whole pass
-
 An important statistical regularity in language is Zipf's law. It says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: the frequency is distributed according to a power law, in other words, meaning a probability distribution of the form:
 
 $$p(x) Cx^{-\alpha} $$
@@ -64,17 +62,10 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 
 %%%%%%%%%%%%%%%%%%%
 
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. %%% clarify
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 
-% we did a bigram baseline instead of trigram because of the argument from trajectories and stuff
-% talk about the logic of the tries at features of the POS tag that we did
-
-%There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
-
-%%% mention the thoughts we had: we want to be able to compare things without the third-order thoughts. we don't want a state-of-the-art thing.
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
-%%% explain the way we generated the text
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
 
 %%% explain the miller graph, the way we did the skg, where did the stack overflow graph come from, the pos graph
@@ -163,7 +154,7 @@ A significant problem remains the matching of the node labels to the words. Sinc
 \subsection{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
 
-%%% citations to add: snap, networkx, honiger, metzenmacher, RTG graph, some respected paper with averaged perceptron, the Brown corpus, Stack overflow corpus
+%%% citations to add: snap, networkx, honiger, metzenmacher, RTG graph, some respected paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
