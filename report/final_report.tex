@@ -54,27 +54,32 @@ The problems that this model should be used in is a part-of-speech tagger and in
 \subsection{Methods}
 We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
 
+%%% what about the POS tags?
+
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% this was a mistake: talk about the mistake
 
 The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
 
-In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
+%%%% copout of the perplexity measure because reasons
+In order to judge the quality of the generated text, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
 
 These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet for each of the 70 snippet triplets.
 
+A $2 \times 2$ Kronecker initiator was fit via KronFit to the bigram graph, and another one was fit to a bigram model of the \emph{POS tags}, which were also in the dataset. %%% what were the params?
+
+The node labels in the generated SKG must be matched to the words in the Brown corpus graph, and to the tags in the POS corpus graph. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
+
+Taking and compressing, via fitting a Kronecker initiator, the POS bigram graph allows us to use the SKG in a task, in order to experiment on the feasibility of using the SKG as a sort of model of language. The SKG's recursion does define a probability distribution over possible graphs, but we drew a graph from the distribution and worked with that graph in order to simplify the implementation.
+
+POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which wasn't terrible, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. %%% cite averaged perceptron, mention stealing from Honiger
+
+Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one of most note is the previous tag assigned, because that means that an n-gram of the previous POS tags is a feature in the perceptron. %% citation for the typical features in POS tagging
+
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% just say that I didn't do BIC because I was too lazy, in gussied up words. so what?
-The node labels in the generated SKG must be matched to the words. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
-
-%%% introduce the POS tagging task HERE
-
-%%% explain the averaged perceptron
-%%% mention stealing from Honiger
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
-
-%%%% copout of the perplexity measure because reasons
 
 To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
 
