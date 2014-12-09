@@ -59,7 +59,11 @@ if __name__ == "__main__":
         tagger.train(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag(stripped_tests)
-    else:
+    elif sys.argv[1] == "bigram":
+        tagger.train_ngram(train, sys.argv[1])
+        #tag or tag_graph
+        tags = tagger.tag_ngram(stripped_tests)
+    elif sys.argv[1] == "kron":
         tagger.train_graph(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag_graph(stripped_tests)

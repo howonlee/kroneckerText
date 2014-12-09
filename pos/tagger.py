@@ -70,6 +70,20 @@ class PerceptronTagger(BaseTagger):
                 prev = tag
         return tokens
 
+    def tag_ngram(self, corpus):
+        prev, prev2 = self.START
+        tokens = []
+        for sentence in corpus:
+            for i, word in enumerate(sentence):
+                tag = self.tagdict.get(word)
+                if not tag:
+                    features = self._get_features_ngram(i, word, prev)
+                    tag = self.model.predict(features)
+                tokens.append((word, tag))
+                prev2 = prev
+                prev = tag
+        return tokens
+
     def train(self, sentences, save_loc=None, nr_iter=5):
         '''Train a model from sentences, and save it at ``save_loc``. ``nr_iter``
         controls the number of Perceptron training iterations.
@@ -98,6 +112,44 @@ class PerceptronTagger(BaseTagger):
                         guess = self.model.predict(feats)
                         self.model.update(tags[i], guess, feats)
                     prev2 = prev
+                    prev = guess
+                    c += guess == tags[i]
+                    n += 1
+            random.shuffle(sentences)
+        self.model.average_weights()
+        # Pickle as a binary file
+        if save_loc is not None:
+            pickle.dump((self.model.weights, self.tagdict, self.classes),
+                         open(save_loc, 'wb'), -1)
+        return None
+
+    def train_ngram(self, sentences, save_loc=None, nr_iter=5):
+        '''Train a model from graph, and save it at ``save_loc``. ``nr_iter``
+        controls the number of Perceptron training iterations.
+
+        :param sentences: A list of (words, tags) tuples.
+        :param graph: a graph of the POSs which lead to each other.
+        :param save_loc: If not ``None``, saves a pickled model in this location.
+        :param nr_iter: Number of training iterations.
+        '''
+        self._make_tagdict(sentences)
+        self.model.classes = self.classes
+        for iter_ in range(nr_iter):
+            c = 0
+            n = 0
+            print "iteration: " ,iter_
+            for tups in sentences:
+                if n % 1000 == 0:
+                    print "n : ", n
+                words = map(operator.itemgetter(0), tups)
+                tags = map(operator.itemgetter(1), tups)
+                prev = self.START[0]
+                for i, word in enumerate(words):
+                    guess = self.tagdict.get(word)
+                    if not guess:
+                        feats = self._get_features_ngram(i, word, prev)
+                        guess = self.model.predict(feats)
+                        self.model.update(tags[i], guess, feats)
                     prev = guess
                     c += guess == tags[i]
                     n += 1
@@ -212,6 +264,22 @@ class PerceptronTagger(BaseTagger):
         for parent, _ in graph.in_edges([prev]):
             add('i-1 tag parent', parent)
         return features
+
+    def _get_features_ngram(self, i, word, prev):
+        '''Map tokens into a feature representation, implemented as a
+        {hashable: float} dict. If the features change, a new model must be
+        trained.
+        '''
+        def add(name, *args):
+            features[' '.join((name,) + tuple(args))] += 1
+
+        i += len(self.START)
+        features = defaultdict(int)
+        # It's useful to have a constant feature, which acts sort of like a prior
+        add('bias')
+        add('i suffix', word[-3:])
+        add('i pref1', word[0])
+        add('i prev', prev)
 
     def _make_tagdict(self, sentences):
         '''Make a tag dictionary for single-tag words.'''
