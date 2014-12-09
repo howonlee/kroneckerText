@@ -53,14 +53,14 @@ If we take the central thesis of RF Cancho and RF Sole's work to be true, then w
 
 The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags, which would require that the POS tags have a Zipf-like distribution of that sort. \cite{collins}
 
-\subsection{Data and Evaluation}
+\subsection{Methods}
 We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. \cite{nltk}
 
 Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
 
 There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
-%%%% put some real data statistics on here
+%%%% put some real data statistics on here: number of words, vocabulary, number of sentences, bigrams. note that this also is the number of nodes and edges, the V and E.
 %%% mention the thoughts we had: we want to be able to compare things without the third-order thoughts. we don't want a state-of-the-art thing.
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
