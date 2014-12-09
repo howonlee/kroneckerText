@@ -58,6 +58,7 @@ The problems that this model should be used in is a part-of-speech tagger and in
 \subsection{Methods}
 We used the Brown NLTK corpus for the model, along with the tags that come with it on NLTK. There are 1161192 words in the corpus, from a vocabulary of 56057 words.
 %%%% put some real data statistics on here: number of words, vocabulary, number of sentences, bigrams. note that this also is the number of nodes and edges, the V and E.
+%%% sample of Brown text
 %%% cite the damn corpus
 
 In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. %%% how?
@@ -71,7 +72,7 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
 %%% explain the way we generated the text
-%%% sample of text
+%%% explain the way that we did the POS features, the three kinds of features we tried individually
 
 %%% explain the miller graph, the way we did the skg, where did the stack overflow graph come from, the pos graph
 
@@ -127,15 +128,12 @@ We look at that fact because we also empirically observe that the degree distrib
 
 %%%% copout of the perplexity measure because reasons
 %%%% mturk: mturk people saying that the first one was good. conjecture that this scheme was all a bit bullshit.
+%%%3. give an example of the damn generated text
 
+%% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. 
+%%%How many classes are there?
+%%%2. accuracy and f1 scores. Why are the f1 scores so low?
 
-%%% report some actual results, omae
-
-%% 1. confusion matrix for the POS baseline
-
-%%%2. confusion matrix with Kronecker graph
-
-%%%3. give an example of the damn things
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
 
 \begin{figure}
