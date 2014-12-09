@@ -2,7 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.5in]{geometry}
 \newcommand{\del}{\nabla}
 \begin{document}
 
@@ -22,7 +22,9 @@ However remarkable it may be, however, Zipf's law is not yet a statement about t
 
 One important language model ubiquitous in NLP which incorporates some aspect of linguistic structure, notably without specification, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
 
-We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task, and for a language generation task.
+%%% talk about the results instead of this
+
+%We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We aim to use that language model for a part-of-speech tagging task, and for a language generation task.
 
 \section{Literature Review}
 
@@ -54,13 +56,13 @@ If we take the central thesis of RF Cancho and RF Sole's work to be true, then w
 The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags, which would require that the POS tags have a Zipf-like distribution of that sort. \cite{collins}
 
 \subsection{Methods}
-We will use the Gutenberg NLTK corpus for the model, splitting it for development and testing. We will also make use of the POS tags from the Penn Treebank, when we implement the full POS system. \cite{nltk}
+We used the Brown NLTK corpus for the model, along with the tags that come with it on NLTK. There are 1161192 words in the corpus, from a vocabulary of 56057 words.%%% number of bigrams, number of trigrams, vocabulary
+%%%% put some real data statistics on here: number of words, vocabulary, number of sentences, bigrams. note that this also is the number of nodes and edges, the V and E.
 
-Perplexity is an easy development measure of the generator's goodness. Of course, it's a bad approximation of anything we care about in the generalization performance. In order to judge mellifluousness, we should evaluate the generated text with human evaluators from Mechanical Turk.
+In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk.
 
 There are well-established methods for evaluation for the POS tagging task, since it is a well-defined machine learning task. Therefore, we will look at accuracy and F1 compared to a gold set from the Penn Treebank, comparing this KronFit tagger to a trigram baseline, a HMM trigram tagger.
 
-%%%% put some real data statistics on here: number of words, vocabulary, number of sentences, bigrams. note that this also is the number of nodes and edges, the V and E.
 %%% mention the thoughts we had: we want to be able to compare things without the third-order thoughts. we don't want a state-of-the-art thing.
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
@@ -79,11 +81,9 @@ So call that random variable, the probability that a uniform word appears, $W$. 
 
 $$ \log W = \sum_y \log P $$
 
-Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once.
+Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
 
 We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed, although we don't actually have a proof of \emph{that}.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% take the mathematical analysis that they have over there, and run with it
 
 %%% brown net, miller net, stack overflow net, kronecker graph
 %%% x: degree y: count %%%%%%%%%%%%%% CDF FUCKER FUCKER %%5 maybe not that one
@@ -92,6 +92,33 @@ We look at that fact because we also empirically observe that the degree distrib
 %%% x: degree y: triads
 %%% 4x4, my lads, let's work on this.
 %%% lots of caveats for the quicker computation
+\begin{figure}
+  \includegraphics[width=0.19\textwidth]{degree_plot}
+  \includegraphics[width=0.19\textwidth]{overflow_degree_plot}
+  \includegraphics[width=0.19\textwidth]{miller_degree_plot}
+  \includegraphics[width=0.19\textwidth]{pos_degree_plot}
+  \includegraphics[width=0.19\textwidth]{kron_degree_plot}
+
+  \includegraphics[width=0.19\textwidth]{clustering_coeff}
+  \includegraphics[width=0.19\textwidth]{overflow_clustering_coeff}
+  \includegraphics[width=0.19\textwidth]{miller_clustering_coeff}
+  \includegraphics[width=0.19\textwidth]{pos_clustering_coeff}
+  \includegraphics[width=0.19\textwidth]{kron_clustering_coeff}
+  
+  \includegraphics[width=0.19\textwidth]{singval_loglog}
+  \includegraphics[width=0.19\textwidth]{overflow_singval_loglog}
+  \includegraphics[width=0.19\textwidth]{miller_singval_loglog}
+  \includegraphics[width=0.19\textwidth]{pos_singval_loglog}
+  \includegraphics[width=0.19\textwidth]{kron_singval_loglog}
+  
+  \includegraphics[width=0.19\textwidth]{triads}
+  \includegraphics[width=0.19\textwidth]{overflow_triads}
+  \includegraphics[width=0.19\textwidth]{miller_triads}
+  \includegraphics[width=0.19\textwidth]{pos_triads}
+  \includegraphics[width=0.19\textwidth]{kron_triads}
+
+  \caption{Columns, left to right: Brown corpus graph, Stack Overflow questions graph, Miller graph, Brown POS Tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
+\end{figure}
 
 \subsection{Results and Discussion}
 
@@ -120,6 +147,9 @@ A significant problem remains the matching of the node labels to the words. Sinc
   \includegraphics[width=0.45\textwidth]{kronfit6_sparsematplot.png}
   \caption{clockwise from top left: matrix plot(dots are edges) of bigram, matrix plot of $\frac{1}{5}$ of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
 \end{figure}
+
+\subsection{Contribution}
+There was only one person involved in the project. However, I have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal. %cite that fucker
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
