@@ -280,6 +280,7 @@ class PerceptronTagger(BaseTagger):
         add('i suffix', word[-3:])
         add('i pref1', word[0])
         add('i prev', prev)
+        return features
 
     def _make_tagdict(self, sentences):
         '''Make a tag dictionary for single-tag words.'''

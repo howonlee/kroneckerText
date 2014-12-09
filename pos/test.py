@@ -54,16 +54,18 @@ if __name__ == "__main__":
     train, test = traintest_split(brown.tagged_sents())
     stripped_tests, test_tags = tag_strip(test)
     #must put actual filename
-    tagger= PerceptronTagger(load=sys.argv[1])
     if sys.argv[1] == "gen_res":
+        tagger= PerceptronTagger(load=None)
         tagger.train(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag(stripped_tests)
     elif sys.argv[1] == "bigram":
+        tagger= PerceptronTagger(load=None)
         tagger.train_ngram(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag_ngram(stripped_tests)
     elif sys.argv[1] == "kron":
+        tagger= PerceptronTagger(load=None)
         tagger.train_graph(train, sys.argv[1])
         #tag or tag_graph
         tags = tagger.tag_graph(stripped_tests)
