@@ -35,7 +35,7 @@ A particular point of interest is the introduction to a possible information-the
 This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of the typing. However, the example of Shannon's entropy game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play Shannon's entropy game. \cite{shannon}
 . 
 
-A possible model of small world graphs is the stochastic Kronecker graph\cite{kronfit}, which is a sample from a distribution over graphs created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
+A possible model of small world graphs is the stochastic Kronecker graph (SKG)\cite{kronfit}, which is a sample from a distribution over graphs created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
 The novel contribution of this paper is to note that the parameters for that distribution can be fitted with KronFit, a gradient descent algorithm which learns much bigger graphs much faster than previous attempts to fit graphs like the exponential random graph. This is because it uses MCMC to assign node labels and because it uses the sparsity of the small world graph to estimate the likelihood in time linear to the number of edges instead of quadratic to the number of nodes. The number of parameters is determined using a BIC metric.
 
@@ -54,11 +54,13 @@ The problems that this model should be used in is a part-of-speech tagger and in
 \subsection{Methods}
 We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
 
-In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the stochastic Kronecker graph generates the edges of the graph. %%% this was a mistake: talk about the mistake
+In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% this was a mistake: talk about the mistake
 
 The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
 
-In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, from a unigram model of the same and from the generated stochastic Kronecker graph. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words. These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet.
+In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
+
+These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet for each of the 70 snippet triplets.
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -69,7 +71,7 @@ The node labels in the generated SKG must be matched to the words. Since we had 
 
 %%% explain the averaged perceptron
 %%% mention stealing from Honiger
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
 
 %%%% copout of the perplexity measure because reasons
@@ -126,11 +128,6 @@ We look at that fact because we also empirically observe that the degree distrib
 
 %%%% mturk: mturk people saying that the first one was good. conjecture that this scheme was all a bit bullshit.
 %%%3. give an example of the damn generated text
-
-\begin{figure}
-  \includegraphics[width=0.19\textwidth]{kron_conf_mat}
-  \caption{Confusion matrices for the parent feature tagger, to show imbalance of classes}
-\end{figure}
 
 %% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. %%How many classes are there?
 
