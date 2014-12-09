@@ -60,17 +60,18 @@ The semantics of construing the trigram model as a graph seem to be significantl
 
 In order to judge mellifluousness, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, from a unigram model of the same and from the generated stochastic Kronecker graph. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words. These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet.
 
-%%%%%%%%%%%%%%%%%%%
-
-A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a single sample. %%% why was the other thoughts infeasible? talk about why we went with the single sample
-
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
+%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%% generally talk about the SKG. we used snap's kronfit and krongen, with 36 params.
+The node labels in the generated SKG must be matched to the words. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
 
-%%% mention stealing from Honiger
+%%% introduce the POS tagging task HERE
+
 %%% explain the averaged perceptron
+%%% mention stealing from Honiger
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
+
 %%%% copout of the perplexity measure because reasons
 
 %%% explain the miller graph, the way we did the skg, where did the stack overflow graph come from, the pos graph
@@ -131,8 +132,7 @@ We look at that fact because we also empirically observe that the degree distrib
   \caption{Confusion matrices for the parent feature tagger, to show imbalance of classes}
 \end{figure}
 
-%% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. 
-%%%How many classes are there?
+%% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. %%How many classes are there?
 
 \begin{figure}
   \begin{tabular}{c || c | c | c | c}
