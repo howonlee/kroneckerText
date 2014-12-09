@@ -62,6 +62,8 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 
 %%%%%%%%%%%%%%%%%%%
 
+A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a single sample. %%% why was the other thoughts infeasible? talk about why we went with the single sample
+
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 
 %%% generally talk about the SKG. we used snap's kronfit and krongen, with 36 params.
@@ -127,45 +129,22 @@ We look at that fact because we also empirically observe that the degree distrib
 %% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. 
 %%%How many classes are there?
 
-
-%%%2. accuracy and f1 scores. Why are the f1 scores so low?
-%=========
-%gen_res_conf_mat.npy
-%f1:  0.289544704014
-%precision:  0.28922919482
-%recall:  0.327992458545
-%acc: 0.86505912358
-%=========
-%kron_conf_mat.npy
-%f1:  0.299157721289
-%precision:  0.289383056189
-%recall:  0.341264192027
-%acc: 0.888033593529
-%=========
-%bigram_conf_mat.npy
-%f1:  0.332120437066
-%precision:  0.328528095776
-%recall:  0.366063834763
-%acc: 0.89446118968
-%=========
-%kron2_conf_mat.npy
-%f1:  0.261158500014
-%precision:  0.261180774632
-%recall:  0.279330462165
-%acc: 0.856248550893
-%=========
-%kron_deg_conf_mat.npy
-%f1:  0.288350374329
-%precision:  0.294723421535
-%recall:  0.315065157764
-%acc: 0.858613494088
+\begin{figure}
+  \begin{tabular}{c || c | c | c | c}
+    & Baseline & Bigram & Parents & Children & Degree \\
+    F1 & 0.289 & 0.332 & 0.299 & 0.261 & 0.288 \\
+    Precision & 0.289 & 0.328 & 0.289 & 0.261 & 0.294 \\
+    Recall & 0.328 & 0.366 & 0.341 & 0.279 & 0.315 \\
+    Accuracy & 0.865 & 0.894 & 0.888 & 0.856 & 0.859 \\
+  \end{tabular}
+  \caption{F1, precision, recall, accuracy for the respective taggers}
+\end{figure}
 
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
 %%% talk about the weights problem, note that it wasn't within the scope of the project really, it would probably explain the failure of the degrees
 
 %we made the whole tagging system...
 
-A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a single sample. %%% why was the other thoughts infeasible? talk more about this
 \begin{figure}
   \includegraphics[width=0.45\textwidth]{bigram_sparsematplot.png}
   \includegraphics[width=0.45\textwidth]{bigram_small_sparsematplot.png}
@@ -174,8 +153,8 @@ A significant problem remains the matching of the node labels to the words. Sinc
   \caption{clockwise from top left: matrix plot(dots are edges) of bigram, matrix plot of $\frac{1}{5}$ of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
 \end{figure}
 
-%%% convince the reader that Kronecker graphs would be good for this
-%%% convince the reader that Kronecker graphs have faults for this
+%%% convince the reader that Kronecker graphs would be good for this: it captures the degree structure, we can get good features from it
+%%% convince the reader that Kronecker graphs have faults for this: talk about the weights. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
 
 \subsection{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
