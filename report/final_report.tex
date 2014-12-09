@@ -62,7 +62,7 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% generally talk about the SKG. we used snap's kronfit and krongen, with 36 params.
+%%% just say that I didn't do BIC because I was too lazy, in gussied up words. so what?
 The node labels in the generated SKG must be matched to the words. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
 
 %%% introduce the POS tagging task HERE
@@ -74,7 +74,7 @@ It is not the goal of this project to build a state-of-the-art POS tagger. Rathe
 
 %%%% copout of the perplexity measure because reasons
 
-%%% explain the miller graph, the way we did the skg, where did the stack overflow graph come from, the pos graph
+To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
 
 \subsection{Results and Discussion}
 
@@ -135,12 +135,15 @@ We look at that fact because we also empirically observe that the degree distrib
 %% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. %%How many classes are there?
 
 \begin{figure}
-  \begin{tabular}{c || c | c | c | c}
-    & Baseline & Bigram & Parents & Children & Degree \\
+  \begin{tabular}{c || c | c | c | c | c}
+    \hline
+    . & Baseline & Bigram & Parents & Children & Degree \\
+    \hline
     F1 & 0.289 & 0.332 & 0.299 & 0.261 & 0.288 \\
     Precision & 0.289 & 0.328 & 0.289 & 0.261 & 0.294 \\
     Recall & 0.328 & 0.366 & 0.341 & 0.279 & 0.315 \\
     Accuracy & 0.865 & 0.894 & 0.888 & 0.856 & 0.859 \\
+    \hline
   \end{tabular}
   \caption{F1, precision, recall, accuracy for the respective taggers}
 \end{figure}
