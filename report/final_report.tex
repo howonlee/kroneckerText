@@ -64,6 +64,9 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 
+%%% generally talk about the SKG
+%We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well: here, the bigram matrix, later, the trigram matrix.
+
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
@@ -129,13 +132,7 @@ We look at that fact because we also empirically observe that the degree distrib
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
 %%% talk about the weights problem, note that it wasn't within the scope of the project really, it would probably explain the failure of the degrees
 
-\begin{figure}
-  \includegraphics[width=0.45\textwidth]{densification_plot.png}
-  \caption{left: densification plot, with $x^{1.14}$ plotted}
-\end{figure}
-
 %we made the whole tagging system...
-%We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well: here, the bigram matrix, later, the trigram matrix.
 
 A significant problem remains the matching of the node labels to the words. Since we had the node label sampling subroutine in the snap library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that would be from something like the stationary distribution of node labels. It is, but it is still a single sample. %%% why was the other thoughts infeasible? talk more about this
 \begin{figure}
