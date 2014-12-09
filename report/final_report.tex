@@ -10,7 +10,11 @@
 \author{Howon Lee (howonlee at stanford.edu)}
 \maketitle
 
-\section{Introduction}
+\section{Abstract}
+
+%%% abstract would be nice
+
+\section{Introduction, Literature Review, Problem}
 
 An important statistical regularity in language is Zipf's law. It says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: the frequency is distributed according to a power law, in other words, meaning a probability distribution of the form:
 
@@ -23,8 +27,6 @@ However remarkable it may be, however, Zipf's law is not yet a statement about t
 One important language model ubiquitous in NLP which incorporates some aspect of linguistic structure, notably without specification, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
 
 We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We used that language model for a part-of-speech tagging task, and for a language generation task, and show that an aspect of the structure of the generated graph can be used as a feature for the part-of-speech tagging task.
-
-\section{Literature Review}
 
 Language is only one of many places where power laws are found, and a power law may be explained by one of a multiplictiy of possible causes. MEJ Newman gives a review \cite{mejpowerlaw}. Among the properties of power laws is that, depending on the parameter, the first and second moments can be infinite. That is, the average number of inhabitants of a city is on the order of $10^3$. If the populations of cities were distributed according to the Gaussian, Tokyo would be stupendously unlikely, basically impossible.
 
@@ -45,8 +47,6 @@ Instead of talking about syntactic structure in sentences, it is possible invest
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
-\subsection{Problem}
-
 If we take the central thesis of RF Cancho and RF Sole's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
 
 The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags, which would require that the POS tags have a Zipf-like distribution of that sort. \cite{collins}
@@ -64,12 +64,12 @@ In order to judge mellifluousness, we evaluated the generated text with human ev
 
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated stochastic Kronecker graph corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus.
 
-%%% generally talk about the SKG
-%We have not made significant progress on the POS tagging system, becaue the generative model will be a component of the POS tagging system only. However, we have made significant progress on the generative model. We have the Kronecker model with 36 (6 by 6) and with 4 parameters(2 by 2), fitted on a bigram model of the corpus construed as a matrix. We chose the number of parameters not according to the principled BIC method but by guessing. In this case, therefore, we are construing KronFit as a way to compress a matrix very well: here, the bigram matrix, later, the trigram matrix.
+%%% generally talk about the SKG. we used snap's kronfit and krongen, with 36 params.
 
 %%% mention stealing from Honiger
 %%% explain the averaged perceptron
 %%% explain the way that we did the POS features, the three kinds of features we tried individually
+%%%% copout of the perplexity measure because reasons
 
 %%% explain the miller graph, the way we did the skg, where did the stack overflow graph come from, the pos graph
 
@@ -121,13 +121,44 @@ We look at that fact because we also empirically observe that the degree distrib
   \caption{Columns, left to right: Brown corpus graph, Stack Overflow questions graph, Miller graph, Brown POS tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
 \end{figure}
 
-%%%% copout of the perplexity measure because reasons
 %%%% mturk: mturk people saying that the first one was good. conjecture that this scheme was all a bit bullshit.
 %%%3. give an example of the damn generated text
 
 %% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. 
 %%%How many classes are there?
+
+
 %%%2. accuracy and f1 scores. Why are the f1 scores so low?
+%=========
+%gen_res_conf_mat.npy
+%f1:  0.289544704014
+%precision:  0.28922919482
+%recall:  0.327992458545
+%acc: 0.86505912358
+%=========
+%kron_conf_mat.npy
+%f1:  0.299157721289
+%precision:  0.289383056189
+%recall:  0.341264192027
+%acc: 0.888033593529
+%=========
+%bigram_conf_mat.npy
+%f1:  0.332120437066
+%precision:  0.328528095776
+%recall:  0.366063834763
+%acc: 0.89446118968
+%=========
+%kron2_conf_mat.npy
+%f1:  0.261158500014
+%precision:  0.261180774632
+%recall:  0.279330462165
+%acc: 0.856248550893
+%=========
+%kron_deg_conf_mat.npy
+%f1:  0.288350374329
+%precision:  0.294723421535
+%recall:  0.315065157764
+%acc: 0.858613494088
 
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
 %%% talk about the weights problem, note that it wasn't within the scope of the project really, it would probably explain the failure of the degrees
@@ -149,7 +180,7 @@ A significant problem remains the matching of the node labels to the words. Sinc
 \subsection{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
 
-%%% citations to add: snap, networkx, honiger, metzenmacher, RTG graph, some respected paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
+%%% citations to add: snap, networkx, honiger, metzenmacher, RTG graph, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
