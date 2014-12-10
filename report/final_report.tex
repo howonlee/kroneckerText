@@ -83,7 +83,7 @@ It is not the goal of this project to build a state-of-the-art POS tagger. Rathe
 
 We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previou POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
 
-%%%% why those features?
+%%%% why those features? explain the philosophy of looking at the previous word without looking at it
 
 To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
 
@@ -137,8 +137,7 @@ Another observation on figure \label{fig:plots} is that the Brown corpus graph h
 Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram model was most realistic, 121 said that the unigram model was most realistic, and 107 said that the SKG-generated text was most realistic. Therefore, it doesn't seem to be the case that this specific generation method creates realistic text.
 %%%3. give an example of the damn generated text, tell us why the kronecker thing sucks
 
-The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}.
-%%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar, which they don't.
+The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}. The F1, precision, recall and accuracy scores are detailed in figure \ref{fig:f1s}.
 
 %%% the degree sucks because there's no correlation to be found
 %i-1 tag degree 32 {u'NR': -0.735, u'NR-HL': 0.735}
@@ -174,6 +173,7 @@ Something to note is that, despite the face that part of the impetus for this pr
     \hline
   \end{tabular}
   \caption{F1, precision, recall, accuracy for the respective taggers}
+  \label{fig:f1s}
 \end{figure}
 
 \subsection*{Contributions}
