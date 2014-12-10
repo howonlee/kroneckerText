@@ -10,15 +10,12 @@
 \author{Howon Lee (howonlee at stanford.edu)}
 \maketitle
 
-%%%%% organize this paper
+\subsection*{Abstract}
+A graphical view of an existing model of natural language is shown to have small world network properties which are not well explained by the Miller random monkey typing model. We create a parsimonious model of language with Kronecker graphs that respects these network properties of words. We sample from that language model, getting unrealistic results. We use that language model to model the tags for a part-of-speech tagging task, and show that an aspect of the structure of the generated graph can be used as a feature for the part-of-speech tagging task.
 
-\section*{Abstract}
+\subsection*{Introduction and Motivation}
 
-%%% abstract would be nice
-
-\section*{Introduction, Literature Review, Problem}
-
-An important statistical regularity in language is Zipf's law. It says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: the frequency is distributed according to a power law, in other words, meaning a probability distribution of the form:
+An important statistical regularity in language is Zipf's law. It says that the most frequent word in a natural language will occur approximately twice as often as the second more frequent one, three times as often as the third, and so on. In other words, the frequency is distributed according to a power law, meaning a probability distribution of the form:
 
 $$p(x) = Cx^{-\alpha} $$
 
@@ -26,58 +23,70 @@ where $C$ is a normalizing constant and $\alpha$ is a parameter.
 
 However remarkable it may be, however, Zipf's law is not yet a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have structure. \cite{smallworldlang}
 
-One important language model ubiquitous in NLP which incorporates some aspect of linguistic structure, notably without specification, is the n-gram, which takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph of words and the order-one and order-two relations between words, as bigram and trigram models do, reveals many small-world properties in the structuring of words in corpuses.
+An important and ubiquitous language model in NLP which incorporates aspects of linguistic structure without formal specification is the n-gram. It takes the semi-Markov assumption that the only context needed to reproduce a word is the past $n$ words. This is of interest, because it turns out that thinking of a corpus as a graph where the nodes are words and relations between words edges, construing the matrix of features of a bigram model as an adjacency matrix, reveals many common properties in the structuring of words in corpuses and many other networks.
 
-We want to deal with the problem of using and adapting already existing algorithms for creating small world nets by creating a parsimonious model of language with Kronecker graphs that respects these network properties of words as they currently exist. We used that language model for a part-of-speech tagging task, and for a language generation task, and show that an aspect of the structure of the generated graph can be used as a feature for the part-of-speech tagging task.
+\subsection*{Literature Review}
 
-Language is only one of many places where power laws are found, and a power law may be explained by one of a multiplictiy of possible causes. MEJ Newman gives a review \cite{mejpowerlaw}. Among the properties of power laws is that, depending on the parameter, the first and second moments can be infinite. That is, the average number of inhabitants of a city is on the order of $10^3$. If the populations of cities were distributed according to the Gaussian, Tokyo would be stupendously unlikely, basically impossible.
+\subsubsection*{MEJ Newman}
 
-A particular point of interest is the introduction to a possible information-theoretic origin of Zipf's law. MEJ Newman reviews a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which is a power law.
+Language is only one of many places where power laws are found, and a power law may be explained by one of a multiplictiy of possible causes. MEJ Newman gives a review \cite{mejpowerlaw}. A particular point of interest in the review is a possible origin of power law phenomena in language due to Miller\cite{gamiller}. Miller's argument goes like this: imagine a monkey typing on a typewriter, delimiting words with some probability and writing a random letter from an alphabet with some uniform probability. Then, this approximates an exponential distribution of frequency of a word $x$ with number of letters $y$. But the number of possible words goes up exponentially with $y$ also, making the distribution of frequencies a combination of exponentials, which is a power law.
 
-This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of the typing. However, the example of Shannon's entropy game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play Shannon's entropy game. \cite{shannon}
+This is a simplistic argument, but can be made less simplistic in talking about arbitrary information in bits instead of symbols in a normal alphabet. However, this theory is only compatible with a random typewriter of information with independence of typing. However, the example of Shannon's entropy game, where one guesses the next word based upon the previous word in a communication, implies that some conditional structure exists in language, since humans can play Shannon's entropy game. \cite{shannon}
 . 
+
+\subsubsection*{Leskovec et al}
 
 A possible model of small world graphs is the stochastic Kronecker graph (SKG)\cite{kronfit}, which is a sample from a distribution over graphs created by drawing a fractal over an adjacency matrix using the Kronecker product operation. The important thing about this model is that it tries to simultaneously fulfill the many observed properties of small world graphs, not just the heavy tail for indegree and outdegree, but also the heavy tail for scree plots, the densification power law, and small diameters, all at the same time.
 
-The novel contribution of this paper is to note that the parameters for that distribution can be fitted with KronFit, a gradient descent algorithm which learns much bigger graphs much faster than previous attempts to fit graphs like the exponential random graph. This is because it uses MCMC to assign node labels and because it uses the sparsity of the small world graph to estimate the likelihood in time linear to the number of edges instead of quadratic to the number of nodes. The number of parameters is determined using a BIC metric.
+The novel contribution of the SKG paper is to note that the parameters for that distribution can be fitted with KronFit, a gradient descent algorithm which learns much bigger graphs much faster than previous attempts to fit graphs like the exponential random graph. This is because it uses Markov Chain Monte Carlo methods to assign node labels and because it uses the sparsity of the small world graph to estimate the likelihood in time linear to the number of edges instead of quadratic to the number of nodes.
 
-There are also real interpretations of the Kronecker product process in the structure and creation of graphs. One intuition is that networks are hierarchically organized into communities, which grow recursively, creating miniature copies of themselves. Another interpretation is to say that each node is described by a sequence of categorical features, and the probability of two nodes linking depends on the product of individual attribute similarities, which allows modelling of homophily and heterophily at the same time.
+There are also interpretations of the Kronecker product process in the structure and creation of graphs. One intuition is that networks are hierarchically organized into communities, which grow recursively, creating miniature copies of themselves. Another interpretation is to say that each node is described by a sequence of categorical features, and the probability of two nodes linking depends on the product of individual attribute similarities, which allows modelling of homophily and heterophily at the same time.
 
 One important point to take into mind is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data \cite{mlcompression}.
 
-Instead of talking about syntactic structure in sentences, it is possible investigate the statistical structure of these mere co-occurrences, and this was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.
+\subsubsection*{Cancho and Sole}
+
+In investigating the syntactic structure of sentences in natural language, it is possible to, instead of talking about syntactic structure in sentences, investigate the statistical structure of mere co-occurrences in a network structure. This was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
 If we take the central thesis of RF Cancho and RF Sole's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
 
-The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags, which would require that the POS tags have a Zipf-like distribution of that sort. \cite{collins}
+The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags. \cite{collins}
 
-\subsection*{Methods}
+\subsection*{Method}
 
 \subsubsection*{Data}
 We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. Each word is tagged with one of 437 tags. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
 
-\subsubsection*{Graph Modelling}
+A $2 \times 2$ Kronecker initiator was fit via KronFit to the bigram graph, and another one was fit to a bigram model of the \emph{POS tags}, which were also in the dataset. %%% what were the params?
+
+\subsubsection*{Graph Modelling and Generation}
 
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% explain
 
 The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
 
+The node labels in the generated SKG must be matched to the words in the Brown corpus graph, and to the tags in the POS corpus graph. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
+
+To generate words from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
+%%%% diss this method
+
 %%%% copout of the perplexity measure because reasons
-In order to judge the quality of the generated text, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG. To generate from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
+
+\subsubsection*{Evaluation of Generated Text}
+
+In order to judge the quality of the generated text, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG.
 
 These snippets were counterbalanced in order (but matched snippet to snippet, so each snippet from the unigram model would be shown with a specific snippet generated with the SKG each time, just the order was changed) and 6 workers on Mechanical Turk were tasked with picking the "most realistic" snippet for each of the 70 snippet triplets.
 
-A $2 \times 2$ Kronecker initiator was fit via KronFit to the bigram graph, and another one was fit to a bigram model of the \emph{POS tags}, which were also in the dataset. %%% what were the params?
+\subsubsection*{POS Tagging}
 
-The node labels in the generated SKG must be matched to the words in the Brown corpus graph, and to the tags in the POS corpus graph. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings.
-
-Taking and compressing, via fitting a Kronecker initiator, the POS bigram graph allows us to use the SKG in a task, in order to experiment on the feasibility of using the SKG as a sort of model of language. The SKG's recursion does define a probability distribution over possible graphs, but we drew a graph from the distribution and worked with that graph in order to simplify the implementation.
-
-POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which wasn't terrible, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. %%% cite averaged perceptron, mention stealing from Honiger
+POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which is still considered relevant, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. %%% cite averaged perceptron, mention stealing from Honiger
 
 Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one of most note is the previous tag assigned, because that means that an n-gram of the previous POS tags is a feature in the perceptron. %% citation for the typical features in POS tagging
+
+Taking and compressing, via fitting a Kronecker initiator, the POS bigram graph allows us to use the SKG in a task, in order to experiment on the feasibility of using the SKG as a sort of model of language. The SKG's recursion does define a probability distribution over possible graphs, but we drew a graph from the distribution and worked with that graph in order to simplify the implementation.
 
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications (where the word corresponds to the tag $>96\%$ of the time), and a feature for the prefix and suffix of the word, and a bias (which acts as a prior, or a smoother).
 
@@ -85,9 +94,8 @@ We have 4 different conditions where we add a different feature. There is a bigr
 
 %%%% why those features? explain the philosophy of looking at the previous word without looking at it
 
-To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
 
-\subsection*{Results and Discussion}
+\subsection*{Analysis, Results and Discussion}
 
 One of the goals of this project is to convince that there is something to studying the language network in the way in which we are studying them: as a network not unalike a social network, or a biological network, or a web network. Although the monkey-typing process can be edited to create very many of the realistic graph properties in creating a graph, Miller's explanation for the Zipf phenomenon does not seem to be sufficient as is, seen in this light.
 
@@ -100,6 +108,12 @@ So call that random variable, the probability that a uniform word appears, $W$. 
 $$ \log W = \sum_y \log P $$
 
 Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
+
+\subsubsection*{Analysis}
+
+To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
+
+%%%%%%%%%%%%%%% talk more here
 
 We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed(see figure \label{fig:plots}), although we don't actually have a proof.
 
@@ -134,8 +148,12 @@ Another observation on figure \label{fig:plots} is that the Brown corpus graph h
   \caption{Columns, left to right: Brown corpus graph, Stack Overflow Java endorsements graph, Miller graph, Brown POS tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
 \end{figure}
 
+\subsubsection*{Mechanical Turk Results}
+
 Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram model was most realistic, 121 said that the unigram model was most realistic, and 107 said that the SKG-generated text was most realistic. Therefore, it doesn't seem to be the case that this specific generation method creates realistic text.
 %%%3. give an example of the damn generated text, tell us why the kronecker thing sucks
+
+\subsubsection*{POS Tagging Results and Discussion}
 
 \begin{figure}
   \includegraphics[width=0.50\textwidth]{kron_conf_mat}
@@ -158,7 +176,6 @@ Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram mode
   \label{fig:f1s}
 \end{figure}
 
-
 The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}. The F1, precision, recall and accuracy scores are detailed in figure \ref{fig:f1s}. The Degree condition and the Child condition did much worse than the baseline, whereas the Parent condition did better, and the bigram condition did better than the parents, overall. Note that the low F1's are explained by this class imbalance, since the averaging for the multiclass F1 is unweighted.
 
 The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition. The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node.
@@ -166,6 +183,8 @@ The poor performance of the Child condition features seems to be explained by ov
 Something to note is that, despite the face that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to generate and store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
 %%% talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
+
+%%%%%%%% talk more here
 
 \subsection*{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
