@@ -141,10 +141,18 @@ The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:conf
 %%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar, which they don't.
 
 %%% the degree sucks because there's no correlation to be found
+%i-1 tag degree 32 {u'NR': -0.735, u'NR-HL': 0.735}
+%i-1 tag degree 137 {u'UH': 0.492, u'JJ': -0.492}
+%i-1 tag degree 249 {u'PPO': 0.809, u'FW-VB': -0.809}
 %%% the parents is good because it sort of models the place in the graph for the previous tag
+%i-1 tag parent DT+BEZ-NC {u'NN-TL': -0.645, u'NNS-TL': 0.645}
+%i-1 tag parent FW-IN+AT-TL {u'NNS$-TL': -0.796, u'NN-TL': -0.344, u'NP-TL': 0.344, u'NN': 0.796}
 %%% the children is bad because the word structure is already captured in the model
+%i-1 tag children AT-NC {u'JJ-HL': 0.759, u'JJ': -0.759}
+%i-1 tag children NP-TL-HL {u'CS': -0.644, u'TO': -0.293, u'IN': 0.293, u'WPS': 0.644}
+%i-1 tag children UH-NC {u'RP': -0.409, u'PN': -0.752, u'CD': 0.752, u'EX': -0.481, u'RB': 0.014, u'IN': 0.409, u'NNS': 0.467}
 
-%%% note the number of parameters in the kronecker graph, be pessimistic about it because actually you need the node labellings
+Something to note is that, despite the face that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to generate and store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
 %%% talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
 
