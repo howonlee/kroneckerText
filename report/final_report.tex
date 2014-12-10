@@ -82,14 +82,13 @@ POS tagging is a supervised learning task in natural language processing. A corp
 
 Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one important for this project is the previous tag assigned, because that means that a bigram of the previous POS tags is a feature in the averaged perceptron. %% citation for the typical features in POS tagging
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications, where the word corresponds to the tag $>96\%$ of the time, a feature for the prefix and suffix of the word being tagged, and a bias (which acts as a prior, or a smoother).
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%% why those features? explain the philosophy of looking at the previous word without looking at it, why not just the node previous?
+
 We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previous POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
-
-%%%% why those features? explain the philosophy of looking at the previous word without looking at it
-
 
 \subsection*{Analysis, Results and Discussion}
 
@@ -108,8 +107,6 @@ Since the $P$'s are IID, we converge by the central limit theorem to the normal 
 \subsubsection*{Analysis}
 
 To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
-
-%%%%%%%%%%%%%%% talk more here
 
 We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed(see figure \label{fig:plots}), although we don't actually have a proof.
 
@@ -148,6 +145,7 @@ Another observation on figure \label{fig:plots} is that the Brown corpus graph h
 
 Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram model was most realistic, 121 said that the unigram model was most realistic, and 107 said that the SKG-generated text was most realistic. Therefore, it doesn't seem to be the case that this specific generation method creates realistic text.
 %%%3. give an example of the damn generated text, tell us why the kronecker thing sucks
+%%% talk about the weights, cop out about how it wasn't within the scope of the project really.
 
 \subsubsection*{POS Tagging Results and Discussion}
 
@@ -176,11 +174,7 @@ The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:conf
 
 The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition. The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node.
 
-Something to note is that, despite the face that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to generate and store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
-
-%%% talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
-
-%%%%%%%% talk more here
+Something to note is that, despite the fact that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
 \subsection*{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code from Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %% cite Honnibal
