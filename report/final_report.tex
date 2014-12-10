@@ -2,6 +2,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{hyperref}
 \usepackage[margin=1in]{geometry}
 \newcommand{\del}{\nabla}
 \begin{document}
@@ -15,7 +16,7 @@ A graphical view of an existing model of natural language is shown to have small
 
 \subsection*{Introduction and Motivation}
 
-An important statistical regularity in language is Zipf's law. It says that the most frequent word in a natural language will occur approximately twice as often as the second more frequent one, three times as often as the third, and so on. In other words, the frequency is distributed according to a power law, meaning a probability distribution of the form: %%%% cite zipf
+An important statistical regularity in language is Zipf's law. It says that the most frequent word in a natural language will occur approximately twice as often as the second more frequent one, three times as often as the third, and so on. In other words, the frequency is distributed according to a power law, meaning a probability distribution of the form: \cite{zipf}
 
 $$p(x) = Cx^{-\alpha} $$
 
@@ -44,20 +45,20 @@ There are also interpretations of the Kronecker product process in the structure
 
 One important point to take into mind is that one suggested usage for the Kronecker fitting algorithm is for compression of graphs. This is important, because whenever we hear "compression" we should smell "machine learning", because any system of compression can be used for prediction, by finding the symbol that compresses best given the history of the data \cite{mlcompression}.
 
-\subsubsection*{Cancho and Sole}
+\subsubsection*{Cancho et al}
 
-In investigating the syntactic structure of sentences in natural language, it is possible to, instead of talking about syntactic structure in sentences, investigate the statistical structure of mere co-occurrences in a network structure. This was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa. %%% cite cancho and sole
+In investigating the syntactic structure of sentences in natural language, it is possible to, instead of talking about syntactic structure in sentences, investigate the statistical structure of mere co-occurrences in a network structure. This was the method of Cancho et al. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa.\cite{smallworldlang}
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
-If we take the central thesis of RF Cancho and RF Sole's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
+If we take the central thesis of Cancho et al's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
 
 The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a part of speech (POS) tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags. \cite{collins}
 
 \subsection*{Method}
 
 \subsubsection*{Data}
-We used the annotated Brown corpus for the model and for all analyses. The Brown corpus is a corpus of general written English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. Each word is tagged with one of 437 tags. For the POS tagging task, a train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
+We used the annotated Brown corpus for the model and for all analyses. The Brown corpus is a corpus of general written English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. Each word is tagged with one of 437 tags. For the POS tagging task, a train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. \cite{brown}
 
 A $2 \times 2$ Kronecker initiator was fit via KronFit to the bigram graph(parameters $[ 0.9999, 0.568; 0.5567, 0.129 ]$), and another $2 \times 2$ Kronecker initiator was fit to a bigram model of the POS tags(parameters $[0.958209, 0.759426; 0.778718, 0.17497]$).
 
@@ -78,9 +79,9 @@ These snippets were counterbalanced in order (but matched snippet to snippet, so
 
 \subsubsection*{POS Tagging}
 
-POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which is still considered relevant, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. (also note statement of contribution). %%% cite averaged perceptron
+POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which is still considered relevant, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. (also note statement of contribution). \cite{avgperceptron}
 
-Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one important for this project is the previous tag assigned, because that means that a bigram of the previous POS tags is a feature in the averaged perceptron. %% citation for the typical features in POS tagging
+Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one important for this project is the previous tag assigned, because that means that a bigram of the previous POS tags is a feature in the averaged perceptron.
 
 It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications, where the word corresponds to the tag $>96\%$ of the time, a feature for the prefix and suffix of the word being tagged, and a bias (which acts as a prior, or a smoother).
 
@@ -107,15 +108,15 @@ So call that random variable, the probability that a uniform word appears, $W$. 
 
 $$ \log W = \sum_y \log P $$
 
-Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (unfortunately, I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
+Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (unfortunately, I thought this analysis was original, and then I found it in \cite{mitzenmacher})
 
 \subsubsection*{Analysis}
 
-To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus.%% cite the snap page for the stack overflow question
+To examine the properties of language networks and compare them, in addition to the bigram model construed as a graph, we looked at the bigram model of language part-of-speech (POS) tags in the graph, as well as a bigram model of a sample of Miller's random monkey typing model of language. We also compare to a real social network, the network of Java endorsements on Stack Overflow, and to the SKG generated on the Brown corpus. \cite{snapdata}
 
 We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed(this is the staircase effect in figure \label{fig:plots}), although we don't actually have a proof.
 
-Another observation on figure \label{fig:plots} is that the Brown corpus graph has a remarkable amount of similarity to the Stack Overflow Java question endorsement graph, meaning that it expresses some of the remarkable network patterns that occurr over and over again in graphs in very different domains. %%% cite kronecker paper
+Another observation on figure \label{fig:plots} is that the Brown corpus graph has a remarkable amount of similarity to the Stack Overflow Java question endorsement graph, meaning that it expresses some of the remarkable network patterns that occurr over and over again in graphs in very different domains.\cite{kronfit}
 
 We think that the POS tag graph's triad involvement structure is as unruly as it is because there are so few nodes compared to the number of edges.
 
@@ -155,11 +156,13 @@ Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram mode
 The explanation for the poor results are actually quite simple. Because the generated SKG is not weighted, and because the unigram and bigram matrices are, the proper distribution of words is not obeyed in the words generated by our naive method. So we have snippets like:
 
 \emph{like probably common even estimation Jesus my same messenger not}
+
 \emph{deliver light laying guard hat chased other big hands terrific}
 
 Compared to comparable snippets from the unigram model:
 
 \emph{sheets while liberal reduced took could believe up activities take}
+
 \emph{loosely Research of combinations were extra as As he in}
 
 \subsubsection*{POS Tagging Results and Discussion}
@@ -189,32 +192,44 @@ The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:conf
 
 The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition.
 
-The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node. This is becaues multiple tags have the same degree, which means that the feature is ambiguous.
+The poor performance of the Degree condition seems to be explained by the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node. This is becaues multiple tags have the same degree, which means that the feature is ambiguous.
 
 Something to note is that, despite the fact that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
 \subsection*{Contributions}
-There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code from Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %% cite Honnibal
-
-%%% citations to add: snap, networkx, honnibal, metzenmacher, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
+There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code from Matthew Honnibal of Macquarie University, and that we used SNAP\cite{snap} and Networkx\cite{networkx} for the manipulation and analysis of language graphs.\cite{honnibal}
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
     Cancho, RF. and RV Sole. 2001. "The Small World of Human Language". Proceedings of the Royal Society B: Biological Sciences.
+  \bibitem{netvalskew}
+    Chakrabarti, D., Y. Zhan and C. Faloutsos. 2004. "R-mat: A recursive model for graph mining." SIAM Conference on Data Mining.
+  \bibitem{avgperceptron}
+    Collins, M. 2002. "Discriminative Training Methods for Hidden Markov Models: Theory and Experiments with Perceptron Algorithms." Proceedings of the ACL-02 conference on Empirical methods in natural language processing.
+  \bibitem{brown}
+    Francis, WN., and H Kucera. 1979. "A Standard Corpus of Present-Dat Edited American English, for use with Digital Computer(Brown)".
+  \bibitem{networkx}
+    Hagberg, AA., DA Schult, and PJ Swart. 2008. "Exploring network structure, dynamics and function using NetworkX". Proceedings of the 7th Python in Science Conference.
+  \bibitem{honnibal}
+    Honnibal, M. 2013. "A good POS tagger in about 200 lines of Python." \url{https://honnibal.wordpress.com/}.
   \bibitem{kronfit}
-    Lekovec, J., and Faloutsos, C. 2007. "Scalable Modeling of Real Graphs Using Kronecker Multiplication." Proceedings of ICML.
-  \bibitem{mejpowerlaw}
-    Newman, MEJ. 2005. "Power laws, Pareto distributions and Zipf's law." Contemporary Physics.
+    Lekovec, J., and C. Faloutsos. 2007. "Scalable Modeling of Real Graphs Using Kronecker Multiplication." Proceedings of ICML.
+  \bibitem{snapdata}
+    Leskovec, J., and A. Krevl. 2014. "SNAP Datasets." \url{http://snap.stanford.edu/data}.
+  \bibitem{snap}
+    Leskovec, J., and R. Sosic. 2014. "SNAP: A general purpose network analysis and graph mining library in C++." \url{http://snap.stanford.edu/snap}
+  \bibitem{fractalcutoffs}
+    Malcai, O., DA. Lidar, O. Biham and D. Avnir. 1998. "Scaling Range and Cutoffs in Empirical Fractals". Physical Review.
   \bibitem{fractaldim}
     Mandelbrot, BB., 1982. "The Fractal Geometry of Nature." WH Freeman and Company.
   \bibitem{lacunarity}
     Mandelbrot, BB., 1995. "Measures of Fractal Lacunarity: Minkowski Content and Alternatives". Fractal Geometry and Stochastics.
+  \bibitem{mitzenmacher}
+    Mitzenmacher, M. 2004. "A Brief History of Generative Models for Power Law and Lognormal Distributions".
+  \bibitem{mejpowerlaw}
+    Newman, MEJ. 2005. "Power laws, Pareto distributions and Zipf's law." Contemporary Physics.
   \bibitem{richter}
     Stix, G. 1992. "Finding Fault." Scientific American.
-  \bibitem{fractalcutoffs}
-    Malcai, O., DA. Lidar, O. Biham and D. Avnir. 1998. "Scaling Range and Cutoffs in Empirical Fractals". Physical Review.
-  \bibitem{netvalskew}
-    Chakrabarti, D., Y. Zhan and C. Faloutsos. 2004. "R-mat: A recursive model for graph mining." SIAM Conference on Data Mining.
   \bibitem{densificationpowerlaw}
     Leskovec, J., JM Kleinberg and C. Faloutsos. 2007. "Graph evolution: Densification and shrinking diameters." ACM TKDD.
   \bibitem{stochkrongraph}
@@ -226,11 +241,13 @@ There was only one person involved in the project. However, we have to note that
   \bibitem{gamiller}
     Miller, GA. 1957. "Some Effects of Intermittent Silence". The American Journal of Psychology.
   \bibitem{shannon}
-    Shannon, C. E., 1950. "Prediction and Entropy of Printed English". Bell System Technical Journal.
+    Shannon, CE., 1950. "Prediction and Entropy of Printed English". Bell System Technical Journal.
   \bibitem{nltk}
-    Bird, Steven, Edward Loper and Ewan Klein, 2009. "Natural Language Processing with Python." O'Reilly Media Inc.
+    Bird, S, E Loper and E Klein, 2009. "Natural Language Processing with Python." O'Reilly Media Inc.
   \bibitem{collins}
-    Collins, Michael. 2011. "Tagging with Hidden Markov Models".
+    Collins, M. 2011. "Tagging with Hidden Markov Models".
+  \bibitem{zipf}
+    Zipf, GK. 1949. "Human Behavior and the Principle of Least Effort." Addison-Wesley.
 \end{thebibliography}
 
 
