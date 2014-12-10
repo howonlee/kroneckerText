@@ -10,6 +10,8 @@
 \author{Howon Lee (howonlee at stanford.edu)}
 \maketitle
 
+%%%%% organize this paper
+
 \section{Abstract}
 
 %%% abstract would be nice
@@ -20,7 +22,7 @@ An important statistical regularity in language is Zipf's law. It says that give
 
 $$p(x) Cx^{-\alpha} $$
 
-where $C$ is a normalizing constant.
+where $C$ is a normalizing constant and $\alpha$ is a parameter.
 
 However remarkable it may be, however, Zipf's law is not yet a statement about the structure of language. This is because it holds for corpuses as bags of words which have frequencies, not as linguistic entities which have structure. \cite{smallworldlang}
 
@@ -56,7 +58,7 @@ We used the annotated Brown corpus for the model, along with the tags that come 
 
 %%% what about the POS tags? vocab size of the tags and of the bigrams of tags
 
-In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% this was a mistake: talk about the mistake
+In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% explain
 
 The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
 
@@ -95,11 +97,9 @@ $$ \log W = \sum_y \log P $$
 
 Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
 
-We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed, although we don't actually have a proof of \emph{that}.
+We look at that fact because we also empirically observe that the degree distribution of this Miller graph seems to be multinomially distributed(see figure \label{fig:plots}), although we don't actually have a proof.
 
-%%% let's have an actual discussion of the data, shall we? talk about the degree plot being much better match to the overflow plot.
-
-%%Talk about the cutoff to the singular value: actually, redo the cutoff to the singular value
+Another observation on figure \label{fig:plots} is that the Brown corpus graph has a remarkable amount of similarity to the Stack Overflow Java question endorsement graph, meaning that it expresses some of the remarkable network patterns that occurr over and over again in graphs in very different domains. %%% cite kronecker paper
 
 \begin{figure}
   \includegraphics[width=0.19\textwidth]{degree_plot}
@@ -125,14 +125,25 @@ We look at that fact because we also empirically observe that the degree distrib
   \includegraphics[width=0.19\textwidth]{miller_triads}
   \includegraphics[width=0.19\textwidth]{pos_triads}
   \includegraphics[width=0.19\textwidth]{kron_triads}
+  \label{fig:plots}
 
-  \caption{Columns, left to right: Brown corpus graph, Stack Overflow questions graph, Miller graph, Brown POS tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
+  \caption{Columns, left to right: Brown corpus graph, Stack Overflow Java endorsements graph, Miller graph, Brown POS tag graph, generated SKG graph (from Brown corpus fit). Rows, top to bottom: degree plot, clustering coefficients, singular values, triad participation}
 \end{figure}
 
-%%%% mturk: mturk people saying that the first one was good. conjecture that this scheme was all a bit bullshit.
-%%%3. give an example of the damn generated text
+Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram model was most realistic, 121 said that the unigram model was most realistic, and 107 said that the SKG-generated text was most realistic. Therefore, it doesn't seem to be the case that this specific generation method creates realistic text.
+%%%3. give an example of the damn generated text, tell us why the kronecker thing sucks
 
-%% 1. confusion matrix for the POS baseline and with all the Kronecker methods. Talk about how this is all bullshit, but for the trivial point that this is an imbalanced class. %%How many classes are there?
+The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}.
+%%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
+
+%%% convince the reader that Kronecker graphs would be good for this: it captures the degree structure, we can get good features from it
+%%% convince the reader that Kronecker graphs have faults for this: talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
+
+\begin{figure}
+  \includegraphics[width=0.50\textwidth]{kron_conf_mat}
+  \label{fig:confmat}
+  \caption{Confusion matrix of POS task, in the Parent condition. The matrix is too small to make out, but it does show the class imbalance.}
+\end{figure}
 
 \begin{figure}
   \begin{tabular}{c || c | c | c | c | c}
@@ -147,22 +158,6 @@ We look at that fact because we also empirically observe that the degree distrib
   \end{tabular}
   \caption{F1, precision, recall, accuracy for the respective taggers}
 \end{figure}
-
-%%% and a LOT of error analysis on the actual words themselves. talk about the idea that they have any actual grammar
-%%% talk about the weights problem, note that it wasn't within the scope of the project really, it would probably explain the failure of the degrees
-
-%we made the whole tagging system...
-
-\begin{figure}
-  \includegraphics[width=0.45\textwidth]{bigram_sparsematplot.png}
-  \includegraphics[width=0.45\textwidth]{bigram_small_sparsematplot.png}
-  \includegraphics[width=0.45\textwidth]{kronfit2_sparsematplot.png}
-  \includegraphics[width=0.45\textwidth]{kronfit6_sparsematplot.png}
-  \caption{clockwise from top left: matrix plot(dots are edges) of bigram, matrix plot of $\frac{1}{5}$ of bigram, 6 by 6 Kronecker fit graph, 2 by 2 Kronecker fit graph}
-\end{figure}
-
-%%% convince the reader that Kronecker graphs would be good for this: it captures the degree structure, we can get good features from it
-%%% convince the reader that Kronecker graphs have faults for this: talk about the weights. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
 
 \subsection{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
