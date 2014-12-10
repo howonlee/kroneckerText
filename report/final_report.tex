@@ -20,7 +20,7 @@
 
 An important statistical regularity in language is Zipf's law. It says that given some corpus of natural language, the frequency of any word is inversely proportional to its rank on the frequency table: the frequency is distributed according to a power law, in other words, meaning a probability distribution of the form:
 
-$$p(x) Cx^{-\alpha} $$
+$$p(x) = Cx^{-\alpha} $$
 
 where $C$ is a normalizing constant and $\alpha$ is a parameter.
 
@@ -79,7 +79,7 @@ POS tagging is a supervised learning task in natural language processing. A corp
 
 Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one of most note is the previous tag assigned, because that means that an n-gram of the previous POS tags is a feature in the perceptron. %% citation for the typical features in POS tagging
 
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications (where the word corresponds to the tag $>96\%$ of the time), and a feature for the prefix and suffix of the word.
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications (where the word corresponds to the tag $>96\%$ of the time), and a feature for the prefix and suffix of the word, and a bias (which acts as a prior, or a smoother).
 
 We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previou POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
 
@@ -137,19 +137,9 @@ Another observation on figure \label{fig:plots} is that the Brown corpus graph h
 Of the $70 \times 6$ responses on Mechanical Turk, 190 said that the bigram model was most realistic, 121 said that the unigram model was most realistic, and 107 said that the SKG-generated text was most realistic. Therefore, it doesn't seem to be the case that this specific generation method creates realistic text.
 %%%3. give an example of the damn generated text, tell us why the kronecker thing sucks
 
-The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}. The F1, precision, recall and accuracy scores are detailed in figure \ref{fig:f1s}.
+The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}. The F1, precision, recall and accuracy scores are detailed in figure \ref{fig:f1s}. The Degree condition and the Child condition did much worse than the baseline, whereas the Parent condition did better, and the bigram condition did better than the parents, overall. Note that the low F1's are explained by this class imbalance, since the averaging for the multiclass F1 is unweighted.
 
-%%% the degree sucks because there's no correlation to be found
-%i-1 tag degree 32 {u'NR': -0.735, u'NR-HL': 0.735}
-%i-1 tag degree 137 {u'UH': 0.492, u'JJ': -0.492}
-%i-1 tag degree 249 {u'PPO': 0.809, u'FW-VB': -0.809}
-%%% the parents is good because it sort of models the place in the graph for the previous tag
-%i-1 tag parent DT+BEZ-NC {u'NN-TL': -0.645, u'NNS-TL': 0.645}
-%i-1 tag parent FW-IN+AT-TL {u'NNS$-TL': -0.796, u'NN-TL': -0.344, u'NP-TL': 0.344, u'NN': 0.796}
-%%% the children is bad because the word structure is already captured in the model
-%i-1 tag children AT-NC {u'JJ-HL': 0.759, u'JJ': -0.759}
-%i-1 tag children NP-TL-HL {u'CS': -0.644, u'TO': -0.293, u'IN': 0.293, u'WPS': 0.644}
-%i-1 tag children UH-NC {u'RP': -0.409, u'PN': -0.752, u'CD': 0.752, u'EX': -0.481, u'RB': 0.014, u'IN': 0.409, u'NNS': 0.467}
+The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition. The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node.
 
 Something to note is that, despite the face that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to generate and store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
