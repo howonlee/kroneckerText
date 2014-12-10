@@ -52,7 +52,7 @@ Looking at the graph created in this way, they find small-world properties like 
 
 If we take the central thesis of RF Cancho and RF Sole's work to be true, then word networks are small world networks. Therefore, they should be able to be fitted to parameters for a Kronecker distribution, which would compress the language graph to a very few parameters. It should be investigated whether these parameters, this model has any value as a language model.
 
-The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a POS tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags. \cite{collins}
+The problems that this model should be used in is a part-of-speech tagger and in a generative model. The generative model should be used to generate text, and examined to see if it generates reasonable test. The language model should also be put into a part of speech (POS) tagger as a prior for the optimization target in a noisy channel model: there, the model would be of the distribution of the tags. \cite{collins}
 
 \subsection*{Method}
 
@@ -61,20 +61,16 @@ We used the annotated Brown corpus for the model and for all analyses. The Brown
 
 A $2 \times 2$ Kronecker initiator was fit via KronFit to the bigram graph(parameters $[ 0.9999, 0.568; 0.5567, 0.129 ]$), and another $2 \times 2$ Kronecker initiator was fit to a bigram model of the POS tags(parameters $[0.958209, 0.759426; 0.778718, 0.17497]$).
 
-\subsubsection*{Graph Modelling and Generation}
+\subsubsection*{Graph Modelling}
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. Although the bigram matrix has different values at each entry, which would indicate that a weighted graph would be the best model, we did not use a weighted graph, because of how the SKG generates the edges of the graph.
 
 The semantics of construing the trigram model as a graph seem to be significantly more ambiguous. That is, should the adjacency matrix be created to be rectangular, not square, because there are $n$ words which finish a trigram, but $n^2$ words which compose the first two parts of the trigram, or should the trigram itself be construed as a 2-path in the already-created bigram graph, or should some other construal be used? This is a very interesting topic for further research, but since the bigrams could be studied easily we decided that it was out of the scope of this project. Therefore, all analyses talk about bigrams.
 
 The node labels in the generated SKG must be matched to the words in the Brown corpus graph, and to the tags in the POS corpus graph. Since we had the node label sampling subroutine in the SNAP library, a simple heuristic was taking the last sample after the whole chain had run, reasoning that that this matching would be from the stationary distribution of matchings, because KronFit uses MCMC to draw from that distribution.
 
+\subsubsection*{Generation of Text}
+
 To generate words from the SKG, a random node was taken as the start point in the graph and the nodes of the path created by uniformly randomly choosing an out-edge at each step were translated into the corresponding words.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%%% copout of the perplexity measure because reasons
-
-\subsubsection*{Evaluation of Generated Text}
 
 In order to judge the quality of the generated text, we evaluated the generated text with human evaluators from Mechanical Turk. 70 "snippets" of 10 words each were generated from the bigram model of the Brown corpus, 70 from a unigram model of the same and 70 generated from the SKG.
 
@@ -82,15 +78,15 @@ These snippets were counterbalanced in order (but matched snippet to snippet, so
 
 \subsubsection*{POS Tagging}
 
-POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which is still considered relevant, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. %%% cite averaged perceptron, mention stealing from Honiger
+POS tagging is a supervised learning task in natural language processing. A corpus is read and parts of speech assigned to every word and other token, such as noun, verb, adjective, etc. Since the features are the subject of this investigation, we used the simplest algorithm which is still considered relevant, which was the averaged perceptron, a perceptron which stores the progression of its weights as it goes through its training and returns the prediction of the perceptron with the average weights when classifying. (also note statement of contribution). %%% cite averaged perceptron
 
-Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one of most note is the previous tag assigned, because that means that an n-gram of the previous POS tags is a feature in the perceptron. %% citation for the typical features in POS tagging
+Typical features in POS tagging include the suffix and prefix of the word to be classified, some context in the sentence, and the previous tags assigned. Of those, the one important for this project is the previous tag assigned, because that means that a bigram of the previous POS tags is a feature in the averaged perceptron. %% citation for the typical features in POS tagging
 
-Taking and compressing, via fitting a Kronecker initiator, the POS bigram graph allows us to use the SKG in a task, in order to experiment on the feasibility of using the SKG as a sort of model of language. The SKG's recursion does define a probability distribution over possible graphs, but we drew a graph from the distribution and worked with that graph in order to simplify the implementation.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications (where the word corresponds to the tag $>96\%$ of the time), and a feature for the prefix and suffix of the word, and a bias (which acts as a prior, or a smoother).
+It is not the goal of this project to build a state-of-the-art POS tagger. Rather, we want to see the usefulness of features of the generated SKG corresponding to the bigram graph of the POS corpus, to show that the structure of the graph can be harnessed to give information about the original corpus. Therefore, we had very few features in the baseline. There is a tag lookup table for very easy classifications, where the word corresponds to the tag $>96\%$ of the time, a feature for the prefix and suffix of the word being tagged, and a bias (which acts as a prior, or a smoother).
 
-We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previou POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
+We have 4 different conditions where we add a different feature. There is a bigram condition, where we add the previous POS tag as a feature. There is a parent condition, where we add the nodes which \emph{would} be the parents of the previous POS tag in the generated SKG, but \emph{not} the previous POS tag itself, as a feature. The is a child condition, where we add the nodes which would be the children of the previous POS tag, but, again, not the previous POS tag itself. There is a degree condition, where we only add the degree of the previous POS tag as a feature. %this is super confusing, play with it
 
 %%%% why those features? explain the philosophy of looking at the previous word without looking at it
 
@@ -187,9 +183,9 @@ Something to note is that, despite the face that part of the impetus for this pr
 %%%%%%%% talk more here
 
 \subsection*{Contributions}
-There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code by Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %cite that guy, snap, networkx, add MIT license back in again in the code. that's kosher, right?
+There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code from Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %% cite Honnibal
 
-%%% citations to add: snap, networkx, honiger, metzenmacher, RTG graph, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
+%%% citations to add: snap, networkx, honnibal, metzenmacher, RTG graph, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}
