@@ -56,11 +56,9 @@ The problems that this model should be used in is a part-of-speech tagger and in
 \subsection*{Methods}
 
 \subsubsection*{Data}
-We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
+We used the annotated Brown corpus for the model, along with the tags that come with it on NLTK, so the Penn Treebank. The Brown corpus is a general corpus of English, in different genres such as news, religion, fiction, and government documents. There are 1161192 words in the corpus, in 57340 sentences, from a vocabulary of 56057 words, and 455267 unique bigrams. Each word is tagged with one of 437 tags. A train-test split was done of $\frac{2}{3}$ of the sentences being training examples and $\frac{1}{3}$ of the sentences being test examples. %%% cite the brown corpus
 
 \subsubsection*{Graph Modelling}
-
-%%% what about the POS tags? vocab size of the tags and of the bigrams of tags
 
 In order to construe a bigram model as a graph, all that is needed to say that the nodes of the graph are the individual single words, and that there exists an edge in the graph if there the words corresponding to the nodes are adjacent in the corpus. In this case we use directed graphs throughout. We did not use a weighted graph, because of how the SKG generates the edges of the graph. %%% explain
 
@@ -148,7 +146,7 @@ The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:conf
 
 %%% note the number of parameters in the kronecker graph, be pessimistic about it because actually you need the node labellings
 
-%%% convince the reader that Kronecker graphs have faults for this: talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
+%%% talk about the weights, cop out about how it wasn't within the scope of the project really. talk about the node matching problem. give an example of a mismatched node, maybe one with a fucked-up degree there
 
 \begin{figure}
   \includegraphics[width=0.50\textwidth]{kron_conf_mat}
