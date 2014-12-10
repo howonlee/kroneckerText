@@ -15,7 +15,7 @@ A graphical view of an existing model of natural language is shown to have small
 
 \subsection*{Introduction and Motivation}
 
-An important statistical regularity in language is Zipf's law. It says that the most frequent word in a natural language will occur approximately twice as often as the second more frequent one, three times as often as the third, and so on. In other words, the frequency is distributed according to a power law, meaning a probability distribution of the form:
+An important statistical regularity in language is Zipf's law. It says that the most frequent word in a natural language will occur approximately twice as often as the second more frequent one, three times as often as the third, and so on. In other words, the frequency is distributed according to a power law, meaning a probability distribution of the form: %%%% cite zipf
 
 $$p(x) = Cx^{-\alpha} $$
 
@@ -46,7 +46,7 @@ One important point to take into mind is that one suggested usage for the Kronec
 
 \subsubsection*{Cancho and Sole}
 
-In investigating the syntactic structure of sentences in natural language, it is possible to, instead of talking about syntactic structure in sentences, investigate the statistical structure of mere co-occurrences in a network structure. This was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa. %%% cite the thing
+In investigating the syntactic structure of sentences in natural language, it is possible to, instead of talking about syntactic structure in sentences, investigate the statistical structure of mere co-occurrences in a network structure. This was the method of Cancho and Sole. Why? Four reasons. It's easier to examine link structures automatically, as opposed to syntactic structures. They don't know what types of links there are in the structures of words, but just having the propinquity of words will capture almost every type. They are not interested in all the links, so looking at whole sentences will not be as productive. Long-distance syntactic links imply the existence of lower-distance syntactic links, but not vice versa. %%% cite cancho and sole
 
 Looking at the graph created in this way, they find small-world properties like high clustering coefficient, small diameter and power law degree distribution. They hypothesize that this leads to words that exist to speed up navigation in this small world, words like "and", "the", "of", "in", which do not contribute meaning but structure to grammar. They also hypothesize that the disfluency caused in agrammatism is caused by disruption to this small world.
 
@@ -107,7 +107,7 @@ So call that random variable, the probability that a uniform word appears, $W$. 
 
 $$ \log W = \sum_y \log P $$
 
-Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
+Since the $P$'s are IID, we converge by the central limit theorem to the normal distribution for the log of $W$. The probability of the space bar being hit doesn't affect this convergence to the normal because it only appears once. (unfortunately, I thought this analysis was original, and then I found it in) %%%% that mitzenmeiyer-whatever paper
 
 \subsubsection*{Analysis}
 
@@ -187,14 +187,16 @@ Compared to comparable snippets from the unigram model:
 
 The POS task was extremely class-imbalanced, as is shown in figure \ref{fig:confmat}. The F1, precision, recall and accuracy scores are detailed in figure \ref{fig:f1s}. The Degree condition and the Child condition did much worse than the baseline, whereas the Parent condition did better, and the bigram condition did better than the parents, overall. Note that the low F1's are explained by this class imbalance, since the averaging for the multiclass F1 is unweighted.
 
-The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition. The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node.
+The poor performance of the Child condition features seems to be explained by overfitting. A heuristic measure for overfitting could be the number of features which apply to very few classes (because this leads to memorizing the data). There are 252 features which apply to less than 50 classes in the Child condition, compared to 31 in the Degree condition and 59 in the Parent condition.
+
+The poor performance of the Degree condition seems to be the general uselessness of the degree feature for prediction, because the number of the degree itself doesn't say anything about even the local structure of the tag corresponding to the node. This is becaues multiple tags have the same degree, which means that the feature is ambiguous.
 
 Something to note is that, despite the fact that part of the impetus for this project was the thought that a very large but sparse n-gram model could be represented compactly by the SKG, it is the case that there might not really be a large savings in the number of parameters or a compression, because there is a need to store the node labellings to map between the labels for the SKG and the words or tags in the corpus.
 
 \subsection*{Contributions}
 There was only one person involved in the project. However, we have to note that much of the infrastructure of the Perceptron tagger was mutated from code from Matthew Honnibal of Macquarie University, and that we used SNAP and Networkx for the manipulation and analysis of language graphs. %% cite Honnibal
 
-%%% citations to add: snap, networkx, honnibal, metzenmacher, RTG graph, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
+%%% citations to add: snap, networkx, honnibal, metzenmacher, some respected conll paper with averaged perceptron, the Brown corpus, Stack overflow corpus. add them in the text, too
 
 \begin{thebibliography}{99}
   \bibitem{smallworldlang}

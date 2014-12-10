@@ -1,252 +1,153 @@
-i-1 tag children AT-NC 2
-i-1 tag children NP-TL-HL 4
-i-1 tag children NR$-TL 12
-i-1 tag children RB-TL 24
-i-1 tag children TO-TL 16
-i-1 tag children :-HL 38
-i-1 tag children JJR-TL 15
-i-1 tag children UH-NC 7
-i-1 tag children WPS-TL 4
-i-1 tag children FW-IN+AT-TL 7
-i-1 tag children PPSS+BER 24
-i-1 tag children PPSS+BEM 20
-i-1 tag children BEM 16
-i-1 tag children BEN 37
-i-1 tag children BED 43
-i-1 tag children BEG 41
-i-1 tag children VB-NC 21
-i-1 tag children DOD 27
-i-1 tag children CS-HL 10
-i-1 tag children DOZ 33
-i-1 tag children WDT+BEZ 16
-i-1 tag children NP$-HL 6
-i-1 tag children PPSS+MD 24
-i-1 tag children DO* 17
-i-1 tag children BER*-NC 4
-i-1 tag children WPS+HVD 7
-i-1 tag children MD* 24
-i-1 tag children VBN-HL 47
-i-1 tag children WRB+BEZ 9
-i-1 tag children FW-JJ-TL 37
-i-1 tag children WRB+MD 5
-i-1 tag children VBN-NC 7
-i-1 tag children WPO 31
-i-1 tag children CS-TL 2
-i-1 tag children IN-NC 10
-i-1 tag children WRB+BEZ-TL 5
-i-1 tag children JJ-NC 17
-i-1 tag children FW-JJ 36
-i-1 tag children . 13
-i-1 tag children :-TL 12
-i-1 tag children WRB+DOD 4
-i-1 tag children ABL 25
-i-1 tag children NN-TL-NC 10
-i-1 tag children '' 49
-i-1 tag children BEZ* 20
-i-1 tag children RP-NC 13
-i-1 tag children HVD* 11
-i-1 tag children VBG-NC 10
-i-1 tag children (-HL 36
-i-1 tag children IN-TL-HL 6
-i-1 tag children NN$-TL 49
-i-1 tag children FW-VBG-TL 2
-i-1 tag children WQL 30
-i-1 tag children NPS-TL 29
-i-1 tag children HV* 7
-i-1 tag children NPS-HL 2
-i-1 tag children HVN 27
-i-1 tag children HVG 30
-i-1 tag children HVD 43
-i-1 tag children HVZ 36
-i-1 tag children PPL 26
-i-1 tag children PPS-HL 6
-i-1 tag children EX+BEZ 18
-i-1 tag children )-HL 27
-i-1 tag children PP$$ 31
-i-1 tag children NNS-NC 12
-i-1 tag children WRB-NC 3
-i-1 tag children EX 34
-i-1 tag children NNS$-NC 2
-i-1 tag children WPS+BEZ-NC 2
-i-1 tag children FW-CC-TL 7
-i-1 tag children VB+PPO 3
-i-1 tag children WP$ 16
-i-1 tag children TO-HL 19
-i-1 tag children ABN-TL 12
-i-1 tag children NIL 42
-i-1 tag children VBZ-HL 27
-i-1 tag children DOZ* 8
-i-1 tag children NN+HVZ 9
-i-1 tag children PPSS-NC 2
-i-1 tag children FW-IN 26
-i-1 tag children WPO-TL 2
-i-1 tag children NP-NC 14
-i-1 tag children VBG-HL 40
-i-1 tag children JJS-TL 13
-i-1 tag children FW-PPSS+HV 2
-i-1 tag children VBZ-TL 12
-i-1 tag children FW-PPO 4
-i-1 tag children VB-TL 42
-i-1 tag children PPSS+HVD 24
-i-1 tag children JJ+JJ-NC 2
-i-1 tag children MD-HL 2
-i-1 tag children PPS+HVZ 20
-i-1 tag children PPS+HVD 16
-i-1 tag children NPS-NC 4
-i-1 tag children VB+IN 2
-i-1 tag children CC-NC 2
-i-1 tag children NR$ 22
-i-1 tag children HV-TL 4
-i-1 tag children NRS 8
-i-1 tag children FW-NN$-TL 7
-i-1 tag children WRB-HL 9
-i-1 tag children CD$ 4
-i-1 tag children FW-NR 2
-i-1 tag children FW-NP 6
-i-1 tag children FW-RB 21
-i-1 tag children JJ-TL-HL 16
-i-1 tag children CC-TL-HL 2
-i-1 tag children VBD-NC 6
-i-1 tag children RB-NC 4
-i-1 tag children WRB-TL 9
-i-1 tag children DTI 47
-i-1 tag children DOD* 17
-i-1 tag children FW-CD-TL 2
-i-1 tag children MD+TO 4
-i-1 tag children NR-TL 48
-i-1 tag children PPSS-HL 2
-i-1 tag children BED* 17
-i-1 tag children FW-AT+NN-TL 9
-i-1 tag children FW-UH-TL 2
-i-1 tag children NPS$ 27
-i-1 tag children DO-TL 13
-i-1 tag children NP$-TL 44
-i-1 tag children FW-VBG 6
-i-1 tag children NN+BEZ 21
-i-1 tag children NN$-HL 8
-i-1 tag children RN 6
-i-1 tag children WRB+IN 2
-i-1 tag children VBG-TL 45
-i-1 tag children ) 49
-i-1 tag children NN-NC 47
-i-1 tag children JJT-TL 6
-i-1 tag children RP+IN 0
-i-1 tag children CC-HL 3
-i-1 tag children FW-OD-TL 6
-i-1 tag children FW-PPL 4
-i-1 tag children PN$ 23
-i-1 tag children NP+HVZ 8
-i-1 tag children DTS 38
-i-1 tag children DTX 22
-i-1 tag children DT$ 4
-i-1 tag children JJS 40
-i-1 tag children ABN-HL 2
-i-1 tag children NNS$ 37
-i-1 tag children PPS+MD 21
-i-1 tag children BEDZ* 20
-i-1 tag children NR-HL 3
-i-1 tag children FW-AT-TL 24
-i-1 tag children NN-TL-HL 39
-i-1 tag children PP$-TL 23
-i-1 tag children FW-CD 7
-i-1 tag children FW-NN-TL 48
-i-1 tag children FW-VB-NC 2
-i-1 tag children QLP 27
-i-1 tag children FW-JJR 2
-i-1 tag children BEZ-TL 4
-i-1 tag children FW-IN-TL 30
-i-1 tag children QL-TL 4
-i-1 tag children RB+CS 6
-i-1 tag children .-HL 5
-i-1 tag children VBG+TO 7
-i-1 tag children WRB+BER 4
-i-1 tag children HV+TO 6
-i-1 tag children VBN-TL 46
-i-1 tag children ABX 31
-i-1 tag children WDT+DO+PPS 4
-i-1 tag children FW-JJ-NC 5
-i-1 tag children PPO-TL 6
-i-1 tag children AP$ 9
-i-1 tag children NNS$-HL 2
-i-1 tag children FW-VB 15
-i-1 tag children JJR-NC 5
-i-1 tag children CD-HL 44
-i-1 tag children TO-NC 7
-i-1 tag children FW-NNS-TL 24
-i-1 tag children WRB+DO 2
-i-1 tag children NN+BEZ-TL 2
-i-1 tag children RP-TL 6
-i-1 tag children FW-* 4
-i-1 tag children MD+HV 7
-i-1 tag children NR-NC 8
-i-1 tag children FW-VB-TL 2
-i-1 tag children JJT 42
-i-1 tag children FW-NN-NC 6
-i-1 tag children NNS$-TL 30
-i-1 tag children FW-NP-TL 2
-i-1 tag children FW-AT 18
-i-1 tag children RP-HL 9
-i-1 tag children WDT-HL 15
-i-1 tag children WPS+BEZ 17
-i-1 tag children PPLS 21
-i-1 tag children FW-PPSS 11
-i-1 tag children HVZ* 11
-i-1 tag children BER-TL 12
-i-1 tag children OD-HL 3
-i-1 tag children FW-IN+NN 2
-i-1 tag children HVZ-TL 6
-i-1 tag children JJT-HL 2
-i-1 tag children EX+MD 11
-i-1 tag children DT-TL 9
-i-1 tag children CC-TL 44
-i-1 tag children NPS$-TL 2
-i-1 tag children PN-TL 5
-i-1 tag children BEM* 9
-i-1 tag children PN+BEZ 2
-i-1 tag children PPS+BEZ-NC 2
-i-1 tag children TO+VB 6
-i-1 tag children RB$ 5
-i-1 tag children FW-CC 25
-i-1 tag children RBT 28
-i-1 tag children BER* 19
-i-1 tag children PPS+BEZ 41
-i-1 tag children FW-PPO+IN 2
-i-1 tag children VBD-TL 6
-i-1 tag children CD-NC 2
-i-1 tag children FW-NNS 29
-i-1 tag children RB-HL 23
-i-1 tag children RB+BEZ 7
-i-1 tag children FW-NN$ 8
-i-1 tag children FW-NNS-NC 6
-i-1 tag children OD-TL 41
-i-1 tag children WQL-TL 4
-i-1 tag children WDT+BEZ-TL 2
-i-1 tag children DOZ-TL 2
-i-1 tag children AT-HL 35
-i-1 tag children VB-HL 37
-i-1 tag children NNS-TL-HL 7
-i-1 tag children DT+BEZ 32
-i-1 tag children BE-TL 2
-i-1 tag children AP-TL 23
-i-1 tag children FW-AT+NP-TL 2
-i-1 tag children FW-NR-TL 4
-i-1 tag children WPS-NC 3
-i-1 tag children FW-UH 8
-i-1 tag children JJR-HL 10
-i-1 tag children MD-TL 9
-i-1 tag children CS-NC 4
-i-1 tag children VB+JJ-NC 2
-i-1 tag children FW-WDT 9
-i-1 tag children AT-TL-HL 4
-i-1 tag children VB+AT 2
-i-1 tag children WPS+MD 9
-i-1 tag children CD-TL-HL 9
-i-1 tag children DT-NC 2
-i-1 tag children PPSS+HV 16
-i-1 tag children VBN+TO 2
-i-1 tag children AP-HL 17
-i-1 tag children FW-IN+AT-T 4
-i-1 tag children UH-TL 12
-i-1 tag children BEN-TL 2
-i-1 tag children NR-TL-HL 7
-i-1 tag children NP+BEZ 14
+i-1 tag children AT-NC {u'JJ-HL': 0.759, u'JJ': -0.759}
+i-1 tag children NP-TL-HL {u'CS': -0.644, u'TO': -0.293, u'IN': 0.293, u'WPS': 0.644}
+i-1 tag children NR$-TL {u'NN': 0.817, u'NNS-TL': 0.395, u'VBD': 0.211, u'NN-TL': 0.782, u'VBN': -0.211, u'RB': -0.923, u'IN': -0.297, u'CS': 0.564, u'JJ': -0.655, u'JJ-TL': 0.275, u'QL': -0.564, u'NPS': -0.395}
+i-1 tag children UH-NC {u'RP': -0.409, u'PN': -0.752, u'CD': 0.752, u'EX': -0.481, u'RB': 0.014, u'IN': 0.409, u'NNS': 0.467}
+i-1 tag children WPS-TL {u'NP': 0.353, u'NN-TL': 0.177, u'NP-TL': 0.064, u'NN': -0.595}
+i-1 tag children FW-IN+AT-TL {u'VB': -0.395, u'NN': -0.762, u'VBD': 0.689, u'VBN': -0.689, u'FW-NN-TL': 1.5, u'JJ': -0.183, u'NP': -0.161}
+i-1 tag children CS-HL {u'VBG': 0.611, u'NN': -0.614, u'VBZ-HL': 0.957, u'PPO': 0.722, u'BEG': -0.611, u'PPS': -0.722, u'TO': 0.067, u'IN': -0.067, u'NP': 0.614, u'NNS': -0.957}
+i-1 tag children NP$-HL {u'VB': -0.531, u'VBG': -0.275, u'NN': 0.275, u'NP-HL': 0.531, u'AP': 0.979, u'IN': -0.979}
+i-1 tag children BER*-NC {u'CD-HL': -0.406, u'NN': -0.132, u'RB': 0.132, u'CD': 0.406}
+i-1 tag children WPS+HVD {u'VBG': -0.771, u'NN': 0.331, u'VBD': -0.793, u'VBN': 1.233, u'TO': -0.006, u'RB': 0.633, u'IN': -0.627}
+i-1 tag children WRB+BEZ {u'MD*': 0.695, u'NN': -0.695, u'NNS-TL': 0.927, u'RB': 1.217, u'IN': -0.929, u'NP': 0.044, u'NNS': -0.927, u'QL': -0.831, u'NP-TL': 0.499}
+i-1 tag children WRB+MD {u'NP': 0.828, u'BER': 0.56, u'VB': -0.828, u'VBG': 0.007, u'NN': -0.567}
+i-1 tag children VBN-NC {u'VB': -0.498, u'JJ': 0.088, u'NN': 0.222, u'CC': -0.251, u'OD': 0.897, u'VBN': 0.545, u'RB': -1.002}
+i-1 tag children CS-TL {u'NN': -0.039, u'RB': 0.039}
+i-1 tag children IN-NC {u'VB': 0.328, u'RB': -0.443, u'NN': -0.278, u'VBD': -0.141, u'NN-TL': 0.491, u'VBN': 0.141, u'CS': -0.304, u'JJ': 0.393, u'NP': -0.491, u'QL': 0.304}
+i-1 tag children WRB+BEZ-TL {u'NP-TL': 0.399, u'NN-TL': 0.567, u'JJ': -0.425, u'RB': -0.966, u'QL': 0.425}
+i-1 tag children . {u':-HL': -0.535, u'VBG': 0.625, u'IN': 0.274, u'CD-HL': -0.676, u'PPO': -0.529, u'.': 0.608, u'PPS': 0.529, u'TO': -0.899, u'CD': 0.338, u'CD-TL': 0.338, u'NP': 0.594, u':': -0.889, u'.-HL': 0.222}
+i-1 tag children :-TL {u'VB': -0.163, u':': -1.094, u'NN': 0.163, u'CD-HL': -1.737, u'NN-TL': 0.672, u'VBN': 0.961, u'CD': -0.836, u'RB': -0.339, u'CD-TL': 0.691, u'NP': 0.624, u'.': 0.718, u'.-HL': 0.34}
+i-1 tag children WRB+DOD {u'NP': -0.576, u'PPO': -0.568, u'PPSS': 0.568, u'FW-NN-TL': 0.576}
+i-1 tag children NN-TL-NC {u'VB': -0.069, u'NN': -0.466, u'PPO': -0.082, u'NN$': -0.844, u'NN-TL': 0.466, u'PPSS': 0.082, u'DT+BEZ': 0.844, u'FW-VB': 0.069, u'NP': -0.33, u'NP-TL': 0.33}
+i-1 tag children RP-NC {u'CS': 0.277, u'VB': -0.076, u'NN': 0.291, u'VBD': 0.867, u'PPO': 0.141, u'VBN': -0.867, u'PPS': -0.141, u'TO': 0.269, u'RB': -0.785, u'IN': 0.516, u'NP': 0.762, u'JJ-HL': -0.762, u'DT': -0.492}
+i-1 tag children HVD* {u'VB': -0.834, u'RB': 1.08, u'NN': -0.737, u'VBD': -0.84, u'VBN': 2.854, u'CD': 0.846, u'PPSS+MD': 0.824, u'JJ': -0.846, u'IN': -0.701, u'CS': -0.822, u'PPSS+HVD': -0.824}
+i-1 tag children VBG-NC {u'NN': 0.038, u'NN-TL': 0.129, u'IN-TL': 0.455, u'TO': -0.486, u'JJ': -0.482, u'IN': 0.03, u'NP': 0.028, u'NNS': -0.868, u'NP-TL': 0.416, u'NNS-NC': 0.739}
+i-1 tag children IN-TL-HL {u'VBG': -0.491, u'AT-TL': 0.144, u'NP-TL': 0.888, u'AT': -0.144, u'IN': -0.888, u'VBG-TL': 0.491}
+i-1 tag children FW-VBG-TL {u'NP': 0.872, u'NNS': -0.872}
+i-1 tag children HV* {u'VB': -0.423, u'HVN': 0.82, u'JJT': -0.412, u'HVD': -0.82, u'VBN': 1.968, u'IN': -0.193, u'NNS': -0.94}
+i-1 tag children NPS-HL {u'NP-HL': -0.321, u'NP-TL': 0.321}
+i-1 tag children PPS-HL {u'VB': 0.382, u'VBD': 0.544, u'VBN': -0.544, u'JJ': -0.382, u'VBZ': 1.054, u'NNS': -1.054}
+i-1 tag children NNS-NC {u'VB': -0.087, u'JJ': 0.868, u'NN': -0.669, u'NN-HL': -0.478, u'VBN': 0.367, u'CS-NC': 0.313, u'RB': -0.487, u'IN': 0.487, u'NP': 0.36, u'VBZ': -0.868, u'DT': -0.313, u'NNS-NC': 0.508}
+i-1 tag children WRB-NC {u'CS': -0.664, u'JJ': 0.217, u'FW-WDT': 0.446}
+i-1 tag children NNS$-NC {u'DT': -0.439, u'WPS': 0.439}
+i-1 tag children WPS+BEZ-NC {u'JJ': -0.528, u'NN': 0.528}
+i-1 tag children FW-CC-TL {u'VB': -0.373, u'VBG': -0.573, u'NN': -0.383, u'FW-OD-TL': 0.038, u'FW-RB-TL': 1.085, u'CD': -0.038, u'FW-NNS': 0.243}
+i-1 tag children VB+PPO {u'VB': 0.836, u'RB': -0.059, u'NN': -0.778}
+i-1 tag children ABN-TL {u'CS': -0.386, u'VB': 0.393, u'JJ': 0.578, u'NN': -1.217, u'AT-TL': 0.364, u'WPS': -0.148, u'AP': -0.972, u'AT': -0.364, u'RB': 1.217, u'DT-TL': 1.63, u'DT': -1.096, u'QL': 0.002}
+i-1 tag children DOZ* {u'VB': 2.423, u'JJ': -0.988, u'NN': -0.982, u'CC': -0.87, u'PPO': 0.77, u'PPS': -0.77, u'RB': 0.483, u'CS': -0.067}
+i-1 tag children NN+HVZ {u'NN': 0.835, u'VBD': -0.818, u'AT-TL': 0.796, u'WPS': 0.61, u'AT': -0.796, u'JJ': -0.017, u'CS': -0.61, u'VBZ': 0.698, u'NNS': -0.698}
+i-1 tag children PPSS-NC {u'JJ': -0.392, u'FW-NNS': 0.392}
+i-1 tag children WPO-TL {u'NP': -0.435, u'NP-TL': 0.435}
+i-1 tag children NP-NC {u'VB': -0.134, u'VBG': -0.233, u'NN': -0.728, u'VBD': 1.343, u'NN-TL': 0.305, u'VBN': -1.343, u'VBZ-NC': 0.02, u'TO': -0.619, u'RB': 0.789, u'IN': 0.619, u'AP': -0.114, u'VBZ': 1.379, u'NNS': -1.399, u'QL': 0.114}
+i-1 tag children JJS-TL {u'NN': -0.035, u'AP': -0.611, u'JJ-TL': 0.107, u'CD-HL': -0.781, u'NN-TL': 0.182, u'CD': 0.781, u'TO': -0.168, u'JJ': -0.289, u'IN': -0.085, u'NP': 0.555, u'VBZ': 0.405, u'IN-TL': 0.253, u'NNS': -0.315}
+i-1 tag children FW-PPSS+HV {u'NP': -0.304, u'NP-TL': 0.304}
+i-1 tag children VBZ-TL {u'RP': -0.356, u'NN': -0.482, u'VBD': 0.794, u'FW-VB-TL': 0.328, u'NN-TL': 0.154, u'VBN': -0.794, u'AT-TL': 0.425, u'AT': -0.425, u'RB': -0.259, u'IN': 0.237, u'CS': 0.119, u'FW-NN-TL': 0.259}
+i-1 tag children FW-PPO {u'NP': -0.728, u'NN-TL': 0.728, u'IN-HL': -0.971, u'NNS': 0.971}
+i-1 tag children JJ+JJ-NC {u'NN-HL': -0.234, u'NN-TL': 0.234}
+i-1 tag children MD-HL {u'NP': -0.243, u'NP-HL': 0.243}
+i-1 tag children NPS-NC {u'NN-HL': -0.115, u'FW-CD-TL': 0.115, u'JJ': -0.783, u'NN': 0.783}
+i-1 tag children VB+IN {u'PPO': -0.655, u'PPSS': 0.655}
+i-1 tag children CC-NC {u'NP': 0.542, u'VBN-TL': -0.542}
+i-1 tag children HV-TL {u'NN': -0.423, u'AT': -0.203, u'JJ': 0.423, u'AT-TL': 0.203}
+i-1 tag children NRS {u'VBG': 0.256, u'NN': 0.17, u'VBD': 0.834, u'NN-TL': -0.975, u'VBN': -0.834, u'AP': 0.908, u'NP': 0.549, u'QL': -0.908}
+i-1 tag children FW-NN$-TL {u'VB': -0.417, u'NN': -0.234, u'FW-IN': 0.234, u'NN-TL': 0.901, u'JJ': 0.097, u'CS': -0.901, u'JJ-TL': 0.32}
+i-1 tag children WRB-HL {u'VB': -0.307, u'RB': 0.631, u'VBD': 0.046, u'VBN': -0.046, u'TO': -0.946, u'TO-HL': 2.837, u'JJ': -0.35, u'IN': -1.891, u'NP': 0.026}
+i-1 tag children CD$ {u'AT-TL': 0.204, u'AT': -0.204, u'NN': -0.953, u'IN': 0.953}
+i-1 tag children FW-NR {u'FW-IN+AT': 0.764, u'VB': -0.764}
+i-1 tag children FW-NP {u'NN': 0.515, u'VBD': -0.515, u'NNS': -0.538, u'FW-PP$': 0.538, u'JJ': -0.972, u'JJ-TL': 0.972}
+i-1 tag children CC-TL-HL {u'NP': 0.321, u'NN-HL': -0.321}
+i-1 tag children VBD-NC {u'RP': -0.868, u'IN-NC': 0.868, u'TO': 0.785, u'RB': 0.784, u'IN': -0.785, u'QL': -0.784}
+i-1 tag children RB-NC {u'CS': -0.207, u'VBN': 0.788, u'JJ': -0.788, u'IN': 0.207}
+i-1 tag children WRB-TL {u'NN': -0.969, u'VBD': 0.886, u'VBN-TL': 0.083, u'NN-TL': 0.966, u'AT-TL': 0.969, u'IN-TL': 0.733, u'TO': -0.733, u'AT': -0.969, u'RB': -0.966}
+i-1 tag children FW-CD-TL {u'CD': -0.796, u'VBD': 0.796}
+i-1 tag children MD+TO {u'VBZ': 0.214, u'NNS': -0.214, u'VBN': -0.613, u'VBD': 0.613}
+i-1 tag children PPSS-HL {u'MD': 0.357, u'NN': -0.357}
+i-1 tag children FW-AT+NN-TL {u'RB': -0.317, u'NN': -0.214, u'FW-IN-TL': 0.4, u'FW-NN-TL': 0.531, u'FW-NN': 0.555, u'JJ': -0.612, u'CS': -0.673, u'JJ-TL': 0.241, u'QL': 0.089}
+i-1 tag children FW-UH-TL {u'PN': -0.638, u'CD': 0.638}
+i-1 tag children DO-TL {u'DTI': -0.967, u'NP': -0.628, u'NNS-TL': 0.162, u'NN': -0.681, u'WPS-TL': 0.967, u'PPO': -0.209, u'NN-TL': 0.968, u'PPSS': 0.209, u'WPS': -0.967, u'BER': 0.681, u'JJ': -0.968, u'NR-TL': 1.595, u'NNS': -0.162}
+i-1 tag children FW-VBG {u'NPS-TL': 0.916, u'NN': 0.262, u'RB': -0.139, u'NP': -0.262, u'NNS': -0.916, u'QL': 0.139}
+i-1 tag children NN$-HL {u'VB': 0.586, u'NNS-TL': 0.477, u'NN': -0.21, u'VBD': -0.391, u'NN-HL': 2.218, u'VBN': 0.391, u'JJ': -2.84, u'JJ-HL': -0.23}
+i-1 tag children RN {u'VBG': -0.152, u'NN': 0.152, u'NN-TL': -0.965, u'RB': 0.775, u'NP': -0.396, u'NP-TL': 0.586}
+i-1 tag children WRB+IN {u'NN': -0.43, u'FW-NNS': 0.43}
+i-1 tag children JJT-TL {u'NNS-TL': 0.799, u'AP': -0.218, u'IN-HL': 0.171, u'IN': -0.171, u'NP': -0.799, u'QL': 0.218}
+i-1 tag children RP+IN {}
+i-1 tag children CC-HL {u'CS': -0.668, u'NN-TL': 0.471, u'RBR': 0.197}
+i-1 tag children FW-OD-TL {u'NN': 0.789, u'FW-CC-TL': 0.313, u'IN': -0.293, u'TO': 0.293, u'JJ': -0.789, u'FW-CC': -0.313}
+i-1 tag children FW-PPL {u'NP': 0.546, u'NN': -0.546, u'QL': 0.911, u'RB': -0.911}
+i-1 tag children NP+HVZ {u'VB': 0.75, u'NNS-TL': 0.233, u'NN': -0.75, u'(': 0.397, u'NN-TL': 0.094, u'(-HL': -0.397, u'NP': -0.094, u'NNS': -0.233}
+i-1 tag children DT$ {u':': -0.365, u'CD-HL': -0.758, u'.': 0.365, u'CD': 0.758}
+i-1 tag children ABN-HL {u'NN': -0.953, u'JJ': 0.953}
+i-1 tag children NR-HL {u'NP': 0.093, u'NN-TL': 0.305, u'NP-TL': -0.398}
+i-1 tag children FW-CD {u'NN': -0.7, u'VBD': 0.464, u'VBN': -0.464, u'FW-NN-TL': 0.7, u'FW-NN': 0.576, u'JJ': 0.39, u'QL': -0.965}
+i-1 tag children FW-VB-NC {u'AT-TL': 0.181, u'AT': -0.181}
+i-1 tag children FW-JJR {u'TO': 0.086, u'IN': -0.086}
+i-1 tag children BEZ-TL {u'PP$': -0.249, u'NP-TL': -0.77, u'NNS-TL': 0.77, u'PP$-TL': 0.249}
+i-1 tag children QL-TL {u'NP': 0.067, u'RB': -0.438, u'NP-TL': 0.11, u'FW-JJ-TL': 0.26}
+i-1 tag children RB+CS {u'CS': 0.356, u'TO': 0.577, u'IN': -0.577, u'NP': 0.812, u'DT': -0.356, u'NNS': -0.812}
+i-1 tag children .-HL {u'CD-TL': 0.138, u'CD': 0.327, u'CD-HL': -0.465, u':-HL': -0.303, u'.': 0.303}
+i-1 tag children VBG+TO {u'VB': 0.535, u'RP': 0.783, u'NN': -0.911, u'PPO': 0.726, u'PPS': -0.726, u'AP': 0.376, u'IN': -0.783}
+i-1 tag children WRB+BER {u'NP': -0.314, u'IN': -0.554, u'NN-TL': 0.314, u'IN-TL': 0.554}
+i-1 tag children HV+TO {u'VB': 0.305, u'NN': -0.305, u'VB-TL': 0.718, u'TO': -0.446, u'IN': 0.446, u'NP': -0.718}
+i-1 tag children WDT+DO+PPS {u'TO': -0.489, u'AT-TL': 0.353, u'AT': -0.353, u'IN': 0.489}
+i-1 tag children FW-JJ-NC {u'TO': 0.502, u'IN-HL': -0.005, u'NN': -0.095, u'FW-CD': 0.095, u'IN': -0.498}
+i-1 tag children PPO-TL {u'NN': -0.56, u'VBD': 0.56, u'NN-TL': 0.355, u'AP-HL': -0.355, u'IN': -0.503, u'CS': 0.503}
+i-1 tag children AP$ {u'RP': -0.699, u'NN': 0.76, u'VBD': 1.122, u'OD-TL': -0.816, u'NN-TL': 0.816, u'VBN': -0.573, u'JJ': -0.812, u'IN': 0.699, u'VBG': -0.496}
+i-1 tag children NNS$-HL {u'NNS-HL': 0.251, u'NNS': -0.251}
+i-1 tag children JJR-NC {u'JJ': 0.123, u'NN': -0.123, u'QL': 0.756, u'RB': 0.101, u'EX': -0.857}
+i-1 tag children TO-NC {u'VB': -0.51, u'NN': -1.023, u'JJS': 0.699, u'PPO': 0.299, u'PPS': -0.299, u'JJ': -0.303, u'VB-NC': 1.138}
+i-1 tag children WRB+DO {u'NN-TL': 0.727, u'QL': -0.727}
+i-1 tag children NN+BEZ-TL {u'NNS': -0.573, u'NPS': 0.573}
+i-1 tag children RP-TL {u'VBG': -0.324, u'NN': 0.324, u'VBD': 0.745, u'VBN': -0.745, u'TO': -0.254, u'IN': 0.254}
+i-1 tag children FW-* {u'NP': -0.237, u'VBG': -0.599, u'JJ-TL': 0.599, u'FW-NN-TL': 0.237}
+i-1 tag children MD+HV {u'VB': -0.369, u'RP': 0.836, u'NN': 0.358, u'VBN': 0.011, u'RB': 0.238, u'IN': -0.078, u'CS': -0.995}
+i-1 tag children NR-NC {u'NN': -0.528, u'NNS-TL': 0.291, u'IN': 0.021, u'NP': 0.846, u'VBZ': -0.148, u':': -0.867, u'NNS': -0.143, u'NP-TL': 0.528}
+i-1 tag children FW-VB-TL {u'TO': -0.503, u'IN': 0.503}
+i-1 tag children FW-NN-NC {u'VBG': -0.321, u'NN': 0.912, u'CD': -0.852, u'JJ': -0.009, u'CD-TL': 0.852, u'QL': -0.582}
+i-1 tag children FW-NP-TL {u'AT-TL': 0.534, u'AT': -0.534}
+i-1 tag children RP-HL {u'NN': 0.094, u'NN-TL': 0.762, u'CD-HL': -0.232, u'PPO': 0.205, u'PPS': -0.205, u'RB': -0.856, u'CD-TL': 0.232, u'VBZ': 0.063, u'NNS': -0.063}
+i-1 tag children FW-PPSS {u'RP': 0.834, u'NN': -0.017, u'NN-TL': 0.141, u'FW-VB': 0.017, u'PPO': 0.317, u'PPS': -0.386, u'TO': 0.275, u'IN-HL': -0.416, u'IN': -0.693, u'NP': -0.141, u'FW-HV': 0.07}
+i-1 tag children HVZ* {u'NN': -0.299, u'VBD': -0.473, u'HVN': 0.259, u'PPO': -0.108, u'VBN': 0.501, u'HVD': -0.259, u'PPS': 0.108, u'CS': -0.374, u'JJ': 0.601, u'NP': 0.648, u'QL': -0.604}
+i-1 tag children BER-TL {u'VB': -0.565, u'NN': 0.002, u'NP$': -0.087, u'NN$-TL': 0.087, u'NN-TL': 0.004, u'PPSS': 0.571, u'IN-TL': 0.836, u'TO-TL': -0.671, u'RB': 0.559, u'IN': -0.491, u'PPO': -0.571, u'VBG-TL': 0.326}
+i-1 tag children OD-HL {u'TO': -0.864, u'IN': -0.131, u'VBD': 0.995}
+i-1 tag children FW-IN+NN {u'RP': 0.057, u'IN': -0.057}
+i-1 tag children HVZ-TL {u'VBD': 0.506, u'CC': -0.322, u'AT-TL': 0.051, u'CC-TL': 0.322, u'VBN': -0.506, u'AT': -0.051}
+i-1 tag children JJT-HL {u'FW-JJ': 0.494, u'NN': -0.494}
+i-1 tag children EX+MD {u'RP': -0.314, u'NN': -0.77, u'NN-TL': 0.77, u'IN': 0.148, u'PPO': 0.531, u'PPSS': -0.531, u'NN$-HL': -0.424, u'NPS-HL': -0.138, u'NP$': 0.424, u'NP': 0.138, u'IN-TL': 0.167}
+i-1 tag children DT-TL {u'VB': -0.375, u'NN': -0.121, u'NN-HL': -0.74, u'NN-TL': 0.384, u'NP-HL': -0.384, u'FW-QL': 0.497, u'IN-TL': 0.567, u'IN': -0.567, u'NP-TL': 0.74}
+i-1 tag children NPS$-TL {u'NN-TL': 0.984, u'NN': -0.984}
+i-1 tag children PN-TL {u'CS': -0.472, u'IN': -0.132, u'JJ': -0.45, u'NP-TL': 0.45, u'IN-TL': 0.604}
+i-1 tag children BEM* {u'VB': 0.623, u'VBG': 0.185, u'NN': -0.299, u'VBD': 0.513, u'PPO': 0.135, u'VBN': -0.513, u'PPS': -0.135, u'JJ': -0.776, u'NP': 0.268}
+i-1 tag children PN+BEZ {u'RP': 0.808, u'IN': -0.808}
+i-1 tag children PPS+BEZ-NC {u'NP': 0.445, u'NN-TL': -0.445}
+i-1 tag children TO+VB {u'VB': 0.82, u'PPO': 0.008, u'PPS': -0.008, u'JJ': -0.82, u'VBZ': 0.27, u'NNS': -0.27}
+i-1 tag children RB$ {u'VBG': -0.231, u'NNS': 0.051, u'NN': 0.18, u'RB': 0.988, u'IN': -0.988}
+i-1 tag children FW-PPO+IN {u'NN': -0.252, u'JJ': 0.252}
+i-1 tag children VBD-TL {u'PP$': -0.101, u'NN-TL': 0.529, u'PPO': 0.101, u'AT-TL': 0.326, u'AT': -0.326, u'IN': -0.529}
+i-1 tag children CD-NC {u'VBG': 0.688, u'JJ': -0.688}
+i-1 tag children RB+BEZ {u'VB': -0.534, u'NN': -0.569, u'VBD': -0.903, u'VBN': 1.472, u'IN-TL': 0.752, u'RB': 0.534, u'IN': -0.752}
+i-1 tag children FW-NN$ {u'VB': -0.076, u'NN': -0.659, u'NN-HL': -0.099, u'VBN': 0.735, u'CD': 0.258, u'FW-VB': 0.099, u'NP': 0.131, u'PN': -0.389}
+i-1 tag children FW-NNS-NC {u'VBD': 0.796, u'PPO': 0.475, u'VBN': -0.796, u'PPS': -0.475, u'VBZ': 0.497, u'NNS': -0.497}
+i-1 tag children WQL-TL {u'TO': -0.028, u'JJT': -0.158, u'VBN': 0.158, u'TO-HL': 0.028}
+i-1 tag children WDT+BEZ-TL {u'JJR': 0.332, u'NN': -0.332}
+i-1 tag children DOZ-TL {u'PPO': 0.41, u'PPSS': -0.41}
+i-1 tag children NNS-TL-HL {u'NN': 0.261, u'VBD': 0.144, u':-HL': 0.085, u'VBN': -0.144, u'NP': 0.432, u':': -0.975, u'JJ-TL': 0.197}
+i-1 tag children BE-TL {u'VBG': -0.967, u'VBG-TL': 0.967}
+i-1 tag children FW-AT+NP-TL {u'NP-HL': 0.961, u'NN-TL': -0.961}
+i-1 tag children FW-NR-TL {u'NNS': -0.914, u'NN': -0.064, u'JJ': 0.064, u'NNS-TL': 0.914}
+i-1 tag children WPS-NC {u'NP': -0.704, u'NNS-TL': 0.329, u'NP-TL': 0.375}
+i-1 tag children FW-UH {u'RB': 0.668, u'TO': 0.269, u'VBN-TL': 0.488, u'IN': -0.269, u'VBN': -0.488, u'AP': -0.839, u'JJ': -0.668, u'FW-VB': 0.839}
+i-1 tag children JJR-HL {u'VBG': -0.549, u'NN': -0.014, u'VBD': 0.16, u'NN-HL': 0.463, u'CD-TL': 0.425, u'VBN': -0.16, u'CD': -0.425, u'TO': -0.222, u'IN': 0.222, u'CS': 0.1}
+i-1 tag children MD-TL {u'VB-TL': 0.193, u'HV': -0.395, u'HV-TL': 0.202, u'PPO': 0.619, u'PPS': -0.619, u'RB': 0.59, u'IN': -0.59, u'VBZ': 0.832, u'NNS': -0.832}
+i-1 tag children CS-NC {u'JJ': 0.048, u'VBN': -0.048, u'NN': -0.509, u'IN': 0.509}
+i-1 tag children VB+JJ-NC {u'RP': 0.142, u'IN': -0.142}
+i-1 tag children FW-WDT {u'NN': -0.13, u'FW-*': 0.406, u'FW-VBZ': 0.02, u'NN-HL': -0.198, u'EX': -0.607, u'RB': 0.111, u'NP': 0.29, u'QL': 0.019, u'NP-TL': 0.089}
+i-1 tag children AT-TL-HL {u')': -0.19, u'NN-TL': 0.656, u')-HL': 0.19, u'NN': -0.656}
+i-1 tag children VB+AT {u'NP': -0.402, u'NP-TL': 0.402}
+i-1 tag children WPS+MD {u'MD': 0.613, u'VB': -0.822, u'VBG': 0.822, u'NN': -0.613, u'VB-TL': 0.033, u'TO': -0.699, u'UH': -0.312, u'IN': 0.699, u'NP': 0.279}
+i-1 tag children CD-TL-HL {u'VB': -0.175, u'NN': -0.375, u'NN-HL': -0.002, u'FW-JJ': 0.175, u'NN-TL': 0.521, u'JJ': -0.756, u'NP': 0.023, u'JJ-TL': 0.441, u'NP-TL': 0.147}
+i-1 tag children DT-NC {u'NN-HL': -0.463, u'WPO-TL': 0.463}
+i-1 tag children VBN+TO {u'JJ': -0.248, u'NN': 0.248}
+i-1 tag children FW-IN+AT-T {u'FW-OD-TL': 0.573, u'TO': -0.287, u'IN': 0.287, u'CD': -0.573}
+i-1 tag children UH-TL {u'MD': 0.961, u'NNS-TL': 0.322, u'NN': -0.961, u'FW-JJ-TL': 0.096, u'NP$': -0.905, u'NN$-TL': 0.18, u'NP': 0.242, u'RB': -0.278, u'JJ-HL': -0.967, u'JJ': -0.473, u'JJ-TL': 1.538, u'NP-TL': 0.244}
+i-1 tag children BEN-TL {u'VBN': -0.515, u'VBD': 0.515}
+i-1 tag children NR-TL-HL {u'VB': -0.952, u'NN': 0.646, u'NNS-TL': 0.038, u'VBD': -0.187, u'VBN': 0.187, u'NP': 0.306, u'NNS': -0.038}
+i-1 tag children NP+BEZ {u'PP$-NC': 0.023, u'PP$': -0.023, u'CC': -0.67, u'PPO': -0.199, u'CD-HL': -0.447, u'NN-TL': 0.623, u'VBN': -0.296, u'CC-TL': 0.127, u'CD': 0.447, u'PPSS': 0.199, u'JJ': -0.355, u'NP': -0.327, u'JJ-TL': 0.355, u'NP-TL': 0.544}
